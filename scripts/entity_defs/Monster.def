@@ -10,7 +10,6 @@
 	<Implements>
 		<Interface>			GameObject		</Interface>
 		<Interface>			State			</Interface>
-		<Interface>			Flags			</Interface>
 		<Interface>			NPCObject		</Interface>
 		<Interface>			Motion			</Interface>
 		<Interface>			Combat			</Interface>
@@ -22,6 +21,10 @@
 	</Properties>
 
 	<CellMethods>
+		<dropNotify>
+			<Arg> 	ITEM_ID	</Arg>
+			<Arg> 	UINT32	</Arg>
+		</dropNotify>
 	</CellMethods>
 </root>
 

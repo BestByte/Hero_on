@@ -32,6 +32,7 @@
     <Compile Include="scripts\base\items\base\__init__.py" />
     <Compile Include="scripts\base\items\__init__.py" />
     <Compile Include="scripts\base\kbemain.py" />
+    <Compile Include="scripts\base\kbengine.py" />
     <Compile Include="scripts\base\quests\base\__init__.py" />
     <Compile Include="scripts\base\quests\__init__.py" />
     <Compile Include="scripts\base\Space.py" />
@@ -42,6 +43,7 @@
     <Compile Include="scripts\base\Watcher.py" />
     <Compile Include="scripts\bots\Account.py" />
     <Compile Include="scripts\bots\Avatar.py" />
+    <Compile Include="scripts\bots\DroppedItem.py" />
     <Compile Include="scripts\bots\Gate.py" />
     <Compile Include="scripts\bots\interfaces\Combat.py" />
     <Compile Include="scripts\bots\interfaces\Dialog.py" />
@@ -56,6 +58,7 @@
     <Compile Include="scripts\bots\items\base\__init__.py" />
     <Compile Include="scripts\bots\items\__init__.py" />
     <Compile Include="scripts\bots\kbemain.py" />
+    <Compile Include="scripts\bots\kbengine.py" />
     <Compile Include="scripts\bots\Monster.py" />
     <Compile Include="scripts\bots\NPC.py" />
     <Compile Include="scripts\bots\quests\base\__init__.py" />
@@ -91,6 +94,7 @@
     <Compile Include="scripts\cell\items\base\__init__.py" />
     <Compile Include="scripts\cell\items\__init__.py" />
     <Compile Include="scripts\cell\kbemain.py" />
+    <Compile Include="scripts\cell\kbengine.py" />
     <Compile Include="scripts\cell\Monster.py" />
     <Compile Include="scripts\cell\NPC.py" />
     <Compile Include="scripts\cell\quests\base\__init__.py" />
@@ -108,6 +112,7 @@
     <Compile Include="scripts\common\Functor.py" />
     <Compile Include="scripts\common\GlobalConst.py" />
     <Compile Include="scripts\common\GlobalDefine.py" />
+    <Compile Include="scripts\common\Inventory.py" />
     <Compile Include="scripts\common\KBEDebug.py" />
     <Compile Include="scripts\common\Math3D.py" />
     <Compile Include="scripts\common\skillbases\SCObject.py" />
@@ -116,14 +121,20 @@
     <Compile Include="scripts\data\d_avatar_inittab.py" />
     <Compile Include="scripts\data\d_dialogs.py" />
     <Compile Include="scripts\data\d_entities.py" />
+    <Compile Include="scripts\data\d_items.py" />
+    <Compile Include="scripts\data\d_shops.py" />
     <Compile Include="scripts\data\d_skills.py" />
     <Compile Include="scripts\data\d_spaces.py" />
     <Compile Include="scripts\data\d_spaces_spawns.py" />
     <Compile Include="scripts\db\kbemain.py" />
+    <Compile Include="scripts\db\kbengine.py" />
     <Compile Include="scripts\interface\kbemain.py" />
+    <Compile Include="scripts\interface\kbengine.py" />
     <Compile Include="scripts\interface\Poller.py" />
     <Compile Include="scripts\logger\kbemain.py" />
+    <Compile Include="scripts\logger\kbengine.py" />
     <Compile Include="scripts\login\kbemain.py" />
+    <Compile Include="scripts\login\kbengine.py" />
     <Compile Include="scripts\server_common\SCDefine.py" />
     <Compile Include="scripts\user_type\AVATAR_DATA.py" />
     <Compile Include="scripts\user_type\AVATAR_INFOS.py" />
@@ -271,6 +282,7 @@
     <Content Include="scripts\entity_defs\Account.def" />
     <Content Include="scripts\entity_defs\alias.xml" />
     <Content Include="scripts\entity_defs\Avatar.def" />
+    <Content Include="scripts\entity_defs\DroppedItem.def" />
     <Content Include="scripts\entity_defs\Gate.def" />
     <Content Include="scripts\entity_defs\interfaces\AI.def" />
     <Content Include="scripts\entity_defs\interfaces\Combat.def" />
@@ -290,6 +302,7 @@
     <Content Include="scripts\entity_defs\SpaceDuplicate.def" />
     <Content Include="scripts\entity_defs\Spaces.def" />
     <Content Include="scripts\entity_defs\SpawnPoint.def" />
+    <Content Include="scripts\entity_defs\State.def" />
     <Content Include="scripts\interface\__pycache__\kbemain.cpython-34.pyc" />
     <Content Include="scripts\interface\__pycache__\Poller.cpython-34.pyc" />
     <Content Include="scripts\logger\__pycache__\kbemain.cpython-34.pyc" />

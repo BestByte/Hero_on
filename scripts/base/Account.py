@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 import KBEngine
-import random
+
 import time
 import d_spaces
+
 import GlobalConst
-from AVATAR_INFOS import TAvatarInfos
-from AVATAR_INFOS import TAvatarInfosList
-from AVATAR_DATA import TAvatarData
+
+from AVATAR_INFO import TAvatarInfo
+from AVATAR_INFO import TAvatarInfoList
 from KBEDebug import *
 import d_avatar_inittab
-import math
+
 class Account(KBEngine.Proxy):
 	"""
 	账号实体
@@ -18,8 +19,12 @@ class Account(KBEngine.Proxy):
 	def __init__(self):
 		KBEngine.Proxy.__init__(self)
 		self.activeAvatar = None
+
 		self.relogin = time.time()
 		
+		
+		
+
 	def reqAvatarList(self):
 		"""
 		exposed.
@@ -27,48 +32,25 @@ class Account(KBEngine.Proxy):
 		"""
 		DEBUG_MSG("Account[%i].reqAvatarList: size=%i." % (self.id, len(self.characters)))
 		self.client.onReqAvatarList(self.characters)
-				
-	def reqCreateAvatar(self, roleType, name):
-		"""
-		exposed.
-		客户端请求创建一个角色
-		"""
-		avatarinfo = TAvatarInfos()
-		avatarinfo.extend([0, "", 0, 0, TAvatarData().createFromDict({"param1" : 0, "param2" :b''})])
-			
-		"""
-		if name in all_avatar_names:
-			retcode = 2
-			self.client.onCreateAvatarResult(retcode, avatarinfo)
-			return
-		"""
-		
+
+	def reqCreateAvatar(self, name, roleType):
 		if len(self.characters) >= 3:
 			DEBUG_MSG("Account[%i].reqCreateAvatar:%s. character=%s.\n" % (self.id, name, self.characters))
+
+			avatarinfo = TAvatarInfo()
+			avatarinfo.extend([0, "", 0, 0])
 			self.client.onCreateAvatarResult(3, avatarinfo)
 			return
 		
 		""" 根据前端类别给出出生点
-		Reference: http://www.kbengine.org/docs/programming/clientsdkprogramming.html, client types
 		UNKNOWN_CLIENT_COMPONENT_TYPE	= 0,
 		CLIENT_TYPE_MOBILE				= 1,	// 手机类
-		CLIENT_TYPE_WIN					= 2,	// pc， 一般都是exe客户端
-		CLIENT_TYPE_LINUX				= 3		// Linux Application program
-		CLIENT_TYPE_MAC					= 4		// Mac Application program
-		CLIENT_TYPE_BROWSER				= 5,	// web应用， html5，flash
-		CLIENT_TYPE_BOTS				= 6,	// bots
-		CLIENT_TYPE_MINI				= 7,	// 微型客户端
+		CLIENT_TYPE_PC					= 2,	// pc， 一般都是exe客户端
+		CLIENT_TYPE_BROWSER				= 3,	// web应用， html5，flash
+		CLIENT_TYPE_BOTS				= 4,	// bots
+		CLIENT_TYPE_MINI				= 5,	// 微型客户端
 		"""
 		spaceUType = GlobalConst.g_demoMaps.get(self.getClientDatas(), 1)
-		
-		# 如果是机器人登陆，随机扔进一个场景
-		if self.getClientType() == 6:
-			while True:
-				spaceName = random.choice(list(GlobalConst.g_demoMaps.keys()))
-				if len(spaceName) > 0:
-					spaceUType = GlobalConst.g_demoMaps[spaceName]
-					break
-
 		spaceData = d_spaces.datas.get(spaceUType)
 		
 		props = {
@@ -77,10 +59,28 @@ class Account(KBEngine.Proxy):
 			"level"				: 1,
 			"spaceUType"		: spaceUType,
 			"direction"			: (0, 0, d_avatar_inittab.datas[roleType]["spawnYaw"]),
-			"position"			: spaceData.get("spawnPos", (0,0,0))
-			}
+			"position"			: spaceData.get("spawnPos", (0,0,0)),
 			
-		avatar = KBEngine.createBaseLocally('Avatar', props)
+			#----------cell---------
+			"roleTypeCell"      : roleType,
+			#---------propertys
+			"level"				: d_avatar_inittab.datas[roleType]["level"],
+			"exp"				: d_avatar_inittab.datas[roleType]["exp"],
+			"money"				: d_avatar_inittab.datas[roleType]["money"],
+			"strength"			: d_avatar_inittab.datas[roleType]["strength"],
+			"dexterity"			: d_avatar_inittab.datas[roleType]["dexterity"],
+			"stamina"			: d_avatar_inittab.datas[roleType]["stamina"],
+
+			"attack_Max"		: d_avatar_inittab.datas[roleType]["strength"]*2,
+			"attack_Min"		: d_avatar_inittab.datas[roleType]["strength"]*1,
+			"defence"			: int(d_avatar_inittab.datas[roleType]["dexterity"]/4),
+			"rating"			: int(d_avatar_inittab.datas[roleType]["dexterity"]/15+100),
+			"dodge"				: int(d_avatar_inittab.datas[roleType]["dexterity"]/15+100),
+			"HP_Max"            : 10,
+			#---------propertys
+			}
+
+		avatar = KBEngine.createBaseLocally("Avatar",props)
 		if avatar:
 			avatar.writeToDB(self._onAvatarSaved)
 		
@@ -98,9 +98,9 @@ class Account(KBEngine.Proxy):
 				del self.characters[key]
 				found = key
 				break
-		
+			
 		self.client.onRemoveAvatar(found)
-					
+
 	def selectAvatarGame(self, dbid):
 		"""
 		exposed.
@@ -110,7 +110,7 @@ class Account(KBEngine.Proxy):
 		# 注意:使用giveClientTo的entity必须是当前baseapp上的entity
 		if self.activeAvatar is None:
 			if dbid in self.characters:
-				self.lastSelCharacter = dbid
+				#self.lastSelCharacter = dbid
 				# 由于需要从数据库加载角色，因此是一个异步过程，加载成功或者失败会调用__onAvatarCreated接口
 				# 当角色创建好之后，account会调用giveClientTo将客户端控制权（可理解为网络连接与某个实体的绑定）切换到Avatar身上，
 				# 之后客户端各种输入输出都通过服务器上这个Avatar来代理，任何proxy实体获得控制权都会调用onEntitiesEnabled
@@ -120,10 +120,11 @@ class Account(KBEngine.Proxy):
 				ERROR_MSG("Account[%i]::selectAvatarGame: not found dbid(%i)" % (self.id, dbid))
 		else:
 			self.giveClientTo(self.activeAvatar)
-		
+
 	#--------------------------------------------------------------------------------------------
 	#                              Callbacks
 	#--------------------------------------------------------------------------------------------
+
 	def onEntitiesEnabled(self):
 		"""
 		KBEngine method.
@@ -194,13 +195,15 @@ class Account(KBEngine.Proxy):
 			return
 			
 		info = self.characters[dbid]
-		avatar.cellData["modelID"] = d_avatar_inittab.datas[info[2]]["modelID"]
-		avatar.cellData["modelScale"] = d_avatar_inittab.datas[info[2]]["modelScale"]
-		avatar.cellData["moveSpeed"] = d_avatar_inittab.datas[info[2]]["moveSpeed"]
+		profesional = info[2]
+
+		avatar.cellData["modelID"] = d_avatar_inittab.datas[profesional]["modelID"]
+		avatar.cellData["modelScale"] = d_avatar_inittab.datas[profesional]["modelScale"]
+		avatar.cellData["moveSpeed"] = d_avatar_inittab.datas[profesional]["moveSpeed"]
 		avatar.accountEntity = self
 		self.activeAvatar = avatar
 		self.giveClientTo(avatar)
-		
+
 	def _onAvatarSaved(self, success, avatar):
 		"""
 		新建角色写入数据库回调
@@ -214,20 +217,19 @@ class Account(KBEngine.Proxy):
 				
 			return
 			
-		avatarinfo = TAvatarInfos()
-		avatarinfo.extend([0, "", 0, 0, TAvatarData().createFromDict({"param1" : 0, "param2" :b''})])
+		avatarinfo = TAvatarInfo()
+		avatarinfo.extend([0, "", 0, 0])
 
 		if success:
-			info = TAvatarInfos()
-			info.extend([avatar.databaseID, avatar.cellData["name"], avatar.roleType, 1, TAvatarData().createFromDict({"param1" : 1, "param2" :b'1'})])
-			self.characters[avatar.databaseID] = info
 			avatarinfo[0] = avatar.databaseID
 			avatarinfo[1] = avatar.cellData["name"]
 			avatarinfo[2] = avatar.roleType
 			avatarinfo[3] = 1
+			self.characters[avatar.databaseID] = avatarinfo
 			self.writeToDB()
 
 			avatar.destroy()
-		
+
 		if self.client:
 			self.client.onCreateAvatarResult(0, avatarinfo)
+

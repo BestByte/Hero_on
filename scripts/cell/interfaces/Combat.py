@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 import GlobalDefine
+import random
 from KBEDebug import * 
 from interfaces.CombatPropertys import CombatPropertys
+import d_avatar_inittab
 
 class Combat(CombatPropertys):
 	"""
@@ -54,6 +56,12 @@ class Combat(CombatPropertys):
 		self.onDie(killerID)
 		self.changeState(GlobalDefine.ENTITY_STATE_DEAD)
 		self.onAfterDie(killerID)
+		if self.isMonster():
+			if random.randint(0, 10) == 1:#掉落概率是10
+				self.dropNotify(random.randint(1, 11),1)
+			killer.exp += random.randint(1, 10)
+			if killer.exp > killer.level*5+20:
+				killer.upgrade()
 	
 	def canDie(self, attackerID, skillID, damageType, damage):
 		"""
@@ -69,8 +77,6 @@ class Combat(CombatPropertys):
 		if self.isDestroyed or self.isDead():
 			return
 		
-		self.addEnemy(attackerID, damage)
-
 		DEBUG_MSG("%s::recvDamage: %i attackerID=%i, skillID=%i, damageType=%i, damage=%i" % \
 			(self.getScriptName(), self.id, attackerID, skillID, damageType, damage))
 			
@@ -87,9 +93,6 @@ class Combat(CombatPropertys):
 		defined.
 		添加敌人
 		"""
-		if entityID in self.enemyLog:
-			return
-
 		DEBUG_MSG("%s::addEnemy: %i entity=%i, enmity=%i" % \
 						(self.getScriptName(), self.id, entityID, enmity))
 		
@@ -107,9 +110,6 @@ class Combat(CombatPropertys):
 		self.enemyLog.remove(entityID)
 		self.onRemoveEnemy(entityID)
 	
-		if len(self.enemyLog) == 0:
-			self.onEnemyEmpty()
-
 	def checkInTerritory(self):
 		"""
 		virtual method.
@@ -146,6 +146,17 @@ class Combat(CombatPropertys):
 		"""
 		virtual method.
 		"""
+		self.exp = 0
+		if self.roleTypeCell == 1:#战士
+			self.strength = d_avatar_inittab.datas[self.roleTypeCell]["strength"] + 1*self.level
+			self.dexterity = d_avatar_inittab.datas[self.roleTypeCell]["dexterity"] + 2*self.level
+			self.stamina = d_avatar_inittab.datas[self.roleTypeCell]["stamina"] + 4*self.level
+
+		else:				#法师
+			self.strength = d_avatar_inittab.datas[self.roleTypeCell]["strength"] + 2*self.level
+			self.dexterity = d_avatar_inittab.datas[self.roleTypeCell]["dexterity"] + 1*self.level
+			self.stamina = d_avatar_inittab.datas[self.roleTypeCell]["stamina"] + 1*self.level
+		self.base.updatePropertys()
 		pass
 		
 	def onDie(self, killerID):
@@ -154,6 +165,9 @@ class Combat(CombatPropertys):
 		"""
 		self.setHP(0)
 		self.setMP(0)
+		if self.isPlayer() and self.level > 1:
+			self.level -= 1
+			self.onLevelChanged(self.level)
 
 	def onBeforeDie(self, killerID):
 		"""
@@ -193,11 +207,3 @@ class Combat(CombatPropertys):
 		删除敌人
 		"""
 		pass
-
-	def onEnemyEmpty(self):
-		"""
-		virtual method.
-		敌人列表空了
-		"""
-		pass
-	

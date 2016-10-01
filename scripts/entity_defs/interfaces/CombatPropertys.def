@@ -29,6 +29,38 @@
 			<Flags>			ALL_CLIENTS			</Flags>
 			<Default>		0				</Default>
 		</MP_Max>
+
+		<attack_Max>
+			<Type>			INT32				</Type>
+			<Flags>			OWN_CLIENT			</Flags>
+			<Default>		10				</Default>
+			<Persistent>	true					</Persistent> 
+		</attack_Max>
+		<attack_Min>
+			<Type>			INT32				</Type>
+			<Flags>			OWN_CLIENT			</Flags>
+			<Default>		0				</Default>
+			<Persistent>	true					</Persistent> 
+		</attack_Min>
+		<defence>
+			<Type>			INT32				</Type>
+			<Flags>			OWN_CLIENT			</Flags>
+			<Default>		0				</Default>
+			<Persistent>	true					</Persistent> 
+		</defence>
+		<rating>
+			<Type>			INT32				</Type>
+			<Flags>			OWN_CLIENT			</Flags>
+			<Default>		99				</Default>
+			<Persistent>	true					</Persistent> 
+		</rating>
+		<dodge>
+			<Type>			INT32				</Type>
+			<Flags>			OWN_CLIENT			</Flags>
+			<Default>		0				</Default>
+			<Persistent>	true				</Persistent> 
+		</dodge>
+
 	</Properties>
 
 	<CellMethods>
@@ -39,6 +71,18 @@
 		<addMP>
 			<Arg>			MP				</Arg>
 		</addMP>
+
+		<addDefence>
+			<Arg>			INT32				</Arg>
+		</addDefence>
+
+		<addAttack_Max>
+			<Arg>			INT32				</Arg>
+		</addAttack_Max>
+
+		<addAttack_Min>
+			<Arg>			INT32				</Arg>
+		</addAttack_Min>
 
 		<setHP>
 			<Arg>			HP				</Arg>

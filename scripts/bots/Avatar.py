@@ -3,9 +3,6 @@ import KBEngine
 import KBExtra
 import random, math
 import Math
-import time
-import d_spaces
-import GlobalDefine
 from KBEDebug import *
 from interfaces.GameObject import GameObject
 from interfaces.Dialog import Dialog
@@ -66,27 +63,26 @@ class Avatar(KBEngine.Entity,
 		玩家跳跃
 		"""
 		pass
-		
-	def update(self):
+#####测试用，不实现##################################
+	def ReceiveChatMessage(self, str):
+		DEBUG_MSG("ReceiveChatMessage:%s" % (str))
+
+	def onReqItemList(itemList, equipList):
 		pass
 
+	def pickUp_re(item_info):
+		pass
+	def dropItem_re(itemId, dbid):
+		pass
+	def equipItemRequest_re(item_info, item_info2):
+		pass
+	def errorInfo(errorCode):
+		pass
+		
 class PlayerAvatar(Avatar):
 	def __init__(self):
 		self.randomWalkRadius = 10.0
-		self.reliveTime = -1
-		self.testTeleportPos = None
-		self.attackTargetID = 0
-		self.testType = random.randint(0, 2) # 测试类别， 0：随机移动， 1：找目标攻击， 2：测试传送
-		self.changeTestTypeTime = time.time()
-
-	def onBecomePlayer( self ):
-		"""
-		KBEngine method.
-		当这个entity被引擎定义为角色时被调用
-		"""
-		DEBUG_MSG("%s::onBecomePlayer: %i" % (self.__class__.__name__, self.id))
-		KBEngine.callback(1, self.update)
-
+		
 	def onEnterSpace(self):
 		"""
 		KBEngine method.
@@ -99,6 +95,7 @@ class PlayerAvatar(Avatar):
 		self.__init__()
 		
 		self.spawnPosition = Math.Vector3( self.position )
+		KBEngine.callback(1, self.updateMove)
 		
 	def onLeaveSpace(self):
 		"""
@@ -118,90 +115,10 @@ class PlayerAvatar(Avatar):
 		z = r * math.sin( b )
 		return Math.Vector3( center.x + x, center.y, center.z + z )
 
-	def testAttackTarget(self):
-		if self.attackTargetID not in self.clientapp.entities:
+	def updateMove(self):
+		#DEBUG_MSG("%s::updateMove: %i" % (self.__class__.__name__, self.id))
+		KBEngine.callback(1, self.updateMove)
+		self.moveToPoint( self.calcRandomWalkPosition(), self.velocity, 0.0, 0, True, True )
 
-			self.attackTargetID = 0
 
-			# 从列表中随机找一个怪物攻击
-			for id, e in self.clientapp.entities.items():
-				if e.className == 'Monster':
-					self.attackTargetID = id
-					break
 
-			# 找不到怪攻击就找人攻击
-			if self.attackTargetID == 0:
-				if self.clientapp.getSpaceData("_mapping") == 'spaces/kbengine_unity3d_demo':
-					for id, e in self.clientapp.entities.items():
-						if e.className == 'Avatar' and id != self.id and not e.isState(GlobalDefine.ENTITY_STATE_DEAD):
-							self.attackTargetID = id
-							break
-
-			if self.attackTargetID == 0:
-				return
-
-		targetPos = self.clientapp.entities[self.attackTargetID].position
-		
-		if self.position.distTo(targetPos) > self.velocity:
-			self.moveToPoint( targetPos, self.velocity, 0.0, 0, True, True )
-		else:
-			self.cell.useTargetSkill(1, self.attackTargetID)
-
-	def testTeleport(self):
-			targetPos = self.testTeleportPos
-
-			if targetPos != None:
-				self.moveToPoint( targetPos, self.velocity, 0.0, 0, True, True )
-			
-			# 有概率的做传送测试, 只在u3ddemo中测试
-			if self.testTeleportPos == None and random.randint(0, 10) < 1:
-				if self.clientapp.getSpaceData("_mapping") == 'spaces/kbengine_unity3d_demo':
-					
-					if random.randint(0, 10) < 5:
-						# 本地传送
-						self.testTeleportPos = (-20.340378, 1.5, -150.070831)
-					else:
-						# 跨场景传送
-						self.testTeleportPos = (-34.340378, 1.5, -121.070831)
-
-				if self.clientapp.getSpaceData("_mapping") == 'spaces/teleportspace':
-					self.testTeleportPos = (10, 1.5, 0)
-			
-			if self.testTeleportPos != None:
-				if self.position.distTo(self.testTeleportPos) < self.velocity:
-					self.testTeleportPos = None
-	
-	def updateTest(self):
-		# 隔一段时间换一种测试方式
-		if time.time() - self.changeTestTypeTime > 60.0:
-			self.changeTestTypeTime = time.time()
-			self.testType = random.randint(0, 2)
-				
-	def update(self):
-		DEBUG_MSG("%s::update: %i" % (self.__class__.__name__, self.id))
-		if self.isDestroyed:
-			return
-
-		KBEngine.callback(1, self.update)
-		
-		# 如果自己已经死亡了，那么延时一下复活
-		if self.isState(GlobalDefine.ENTITY_STATE_DEAD):
-			if self.reliveTime == -1:
-					self.reliveTime = random.randint(1, 10)
-			elif self.reliveTime > 0:
-				self.reliveTime -= 1
-			else:
-				self.cell.relive(1)
-
-			return
-		else:
-			self.reliveTime = -1
-
-			self.updateTest()
-
-			if self.testType == 1:
-				self.testAttackTarget()
-			elif self.testType == 2:
-				self.testTeleport()
-			else:
-				self.moveToPoint( self.calcRandomWalkPosition(), self.velocity, 0.0, 0, True, True )

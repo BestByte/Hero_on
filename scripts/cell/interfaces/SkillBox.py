@@ -9,13 +9,14 @@ class SkillBox:
 	def __init__(self):
 		# 如果玩家没有学习技能，默认添加这些技能
 		if len(self.skills) == 0:
-			self.skills.append(1)
-			self.skills.append(1000101)
-			self.skills.append(2000101)
-			self.skills.append(3000101)
-			self.skills.append(4000101)
-			self.skills.append(5000101)
-			self.skills.append(6000101)
+			if self.roleTypeCell == 2:
+				self.skills.append(1)
+				self.skills.append(2)
+				self.skills.append(3)
+			else:
+				self.skills.append(4)
+				self.skills.append(5)
+				self.skills.append(6)
 
 	def hasSkill(self, skillID):
 		"""

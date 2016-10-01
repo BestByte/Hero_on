@@ -5,7 +5,7 @@
 from KBEDebug import *
 from dialogmgr.funcs.iDFunction import iDFunction
 
-class DFTeleport(iDFunction):
+class DFShop(iDFunction):
 	"""
 	"""
 	def __init__(self, args):

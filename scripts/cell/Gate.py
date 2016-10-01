@@ -51,7 +51,7 @@ class Gate(KBEngine.Entity, GameObject):
 						(self.getScriptName(), self.id, entityEntering.getScriptName(), entityEntering.id, \
 						range_xz, range_y, controllerID, userarg))
 		
-		if self.uid == 40001003: # currspace - teleport
+		if self.uid == 40001002: # currspace - teleport
 			spaceData = d_spaces.datas.get(entityEntering.spaceUType)
 			entityEntering.teleport(None, spaceData["spawnPos"], tuple(self.direction))		
 		else:					 # teleport to xxspace

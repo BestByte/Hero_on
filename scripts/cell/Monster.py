@@ -4,18 +4,17 @@ import math
 import time
 import KBEngine
 import SCDefine
+import d_entities
 from KBEDebug import *
 from interfaces.Combat import Combat
 from interfaces.Spell import Spell
 from interfaces.Motion import Motion
 from interfaces.State import State
-from interfaces.Flags import Flags
 from interfaces.AI import AI
 from interfaces.NPCObject import NPCObject
 
 class Monster(KBEngine.Entity,
 			NPCObject, 
-			Flags,
 			State,
 			Motion, 
 			Combat, 
@@ -24,7 +23,6 @@ class Monster(KBEngine.Entity,
 	def __init__(self):
 		KBEngine.Entity.__init__(self)
 		NPCObject.__init__(self)
-		Flags.__init__(self) 
 		State.__init__(self) 
 		Motion.__init__(self) 
 		Combat.__init__(self) 
@@ -54,6 +52,26 @@ class Monster(KBEngine.Entity,
 		virtual method.
 		"""
 		return True
+
+	def dropNotify(self, itemId, itemCount):
+		datas = d_entities.datas.get(40001003)
+		
+		if datas is None:
+			ERROR_MSG("SpawnPoint::spawn:%i not found." % 40001003)
+			return
+			
+		params = {
+			"uid" : datas["id"],
+			"utype" : datas["etype"],
+			"modelID" : datas["modelID"],
+			"dialogID" : datas["dialogID"],
+			"name" : datas["name"],
+			"descr" : datas.get("descr", ''),
+			"itemId" : itemId,
+			"itemCount" : itemCount,
+		}
+		
+		e = KBEngine.createEntity("DroppedItem", self.spaceID, tuple(self.position), tuple(self.direction), params)
 		
 	#--------------------------------------------------------------------------------------------
 	#                              Callbacks
@@ -140,14 +158,6 @@ class Monster(KBEngine.Entity,
 		"""
 		AI.onRemoveEnemy(self, entityID)
 		Combat.onRemoveEnemy(self, entityID)
-
-	def onEnemyEmpty(self):
-		"""
-		virtual method.
-		敌人列表空了
-		"""
-		AI.onEnemyEmpty(self)
-		Combat.onEnemyEmpty(self)
 
 	def onDestroy(self):
 		"""

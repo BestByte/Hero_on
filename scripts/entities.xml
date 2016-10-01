@@ -4,12 +4,14 @@
 		ÏêÏ¸ËµÃ÷Çë²Î¿¼£ºhttp://kbengine.org/cn/docs/configuration/entities.html
 					http://www.kbengine.org/cn/docs/programming/entitydef.html
 	-->
-	
-	<Account hasClient="true"></Account>
-	<Avatar hasClient="true"></Avatar> <!-- <Avatar hasCell="true" hasBase="true" hasClient="true"></Avatar> -->
+
+	<!-- <Avatar/> -->
+	<Account hasClient="true"></Account><!-- <Account hasCell="true" hasBase="true" hasClient="true"></Account> -->
+	<Avatar hasClient="true"></Avatar>
 	<Monster hasClient="true"></Monster>
 	<NPC hasClient="true"></NPC>
 	<Gate hasClient="true"></Gate>
+	<DroppedItem hasClient="true"></DroppedItem>
 	<Spaces/>
 	<Space/>
 	<SpaceDuplicate/>

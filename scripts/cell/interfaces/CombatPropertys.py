@@ -9,8 +9,8 @@ class CombatPropertys:
 	完善的话可以根据策划excel表来直接生成这个模块
 	"""
 	def __init__(self):
-		self.HP_Max = 100
-		self.MP_Max = 100
+		#self.HP_Max = 100
+		#self.MP_Max = 100
 		
 		# 非死亡状态才需要补满
 		if not self.isState(GlobalDefine.ENTITY_STATE_DEAD) and self.HP == 0 and self.MP == 0:
@@ -29,6 +29,8 @@ class CombatPropertys:
 		v = self.HP + int(val)
 		if v < 0:
 			v = 0
+		if v > self.HP_Max:
+			v = self.HP_Max
 			
 		if self.HP == v:
 			return
@@ -42,11 +44,40 @@ class CombatPropertys:
 		v = self.MP + int(val)
 		if v < 0:
 			v = 0
+		if v > self.MP_Max:
+			v = self.MP_Max
 			
 		if self.MP == v:
 			return
 			
 		self.MP = v
+
+	def addDefence(self, val):
+		v = self.defence + int(val)
+		if v < 0:
+			v = 0
+		
+		if self.defence == v:
+			return
+		self.defence = v
+
+	def addAttack_Max(self, val):
+		v = self.attack_Max + int(val)
+		if v < 0:
+			v = 0
+		
+		if self.attack_Max == v:
+			return
+		self.attack_Max = v
+
+	def addAttack_Min(self, val):
+		v = self.attack_Min + int(val)
+		if v < 0:
+			v = 0
+		
+		if self.attack_Min == v:
+			return
+		self.attack_Min = v
 		
 	def setHP(self, hp):
 		"""
@@ -55,6 +86,8 @@ class CombatPropertys:
 		hp = int(hp)
 		if hp < 0:
 			hp = 0
+		if hp > self.HP_Max:
+			hp = self.HP_Max
 		
 		if self.HP == hp:
 			return
@@ -68,7 +101,8 @@ class CombatPropertys:
 		hp = int(mp)
 		if mp < 0:
 			mp = 0
-
+		if mp > self.MP_Max:
+			mp = self.MP_Max
 		if self.MP == mp:
 			return
 			
