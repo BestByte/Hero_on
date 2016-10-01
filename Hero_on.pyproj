@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>17a138ad-1922-4d4d-9210-bdb19124d48f</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>Hero_on.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>Hero_on</Name>
+    <RootNamespace>Hero_on</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Hero_on.py" />
+    <Compile Include="scripts\base\Account.py" />
+    <Compile Include="scripts\base\Avatar.py" />
+    <Compile Include="scripts\base\interfaces\GameObject.py" />
+    <Compile Include="scripts\base\interfaces\NPCObject.py" />
+    <Compile Include="scripts\base\interfaces\Teleport.py" />
+    <Compile Include="scripts\base\interfaces\__init__.py" />
+    <Compile Include="scripts\base\items\base\__init__.py" />
+    <Compile Include="scripts\base\items\__init__.py" />
+    <Compile Include="scripts\base\kbemain.py" />
+    <Compile Include="scripts\base\quests\base\__init__.py" />
+    <Compile Include="scripts\base\quests\__init__.py" />
+    <Compile Include="scripts\base\Space.py" />
+    <Compile Include="scripts\base\SpaceAlloc.py" />
+    <Compile Include="scripts\base\SpaceDuplicate.py" />
+    <Compile Include="scripts\base\Spaces.py" />
+    <Compile Include="scripts\base\SpawnPoint.py" />
+    <Compile Include="scripts\base\Watcher.py" />
+    <Compile Include="scripts\bots\Account.py" />
+    <Compile Include="scripts\bots\Avatar.py" />
+    <Compile Include="scripts\bots\Gate.py" />
+    <Compile Include="scripts\bots\interfaces\Combat.py" />
+    <Compile Include="scripts\bots\interfaces\Dialog.py" />
+    <Compile Include="scripts\bots\interfaces\Flags.py" />
+    <Compile Include="scripts\bots\interfaces\GameObject.py" />
+    <Compile Include="scripts\bots\interfaces\Motion.py" />
+    <Compile Include="scripts\bots\interfaces\SkillBox.py" />
+    <Compile Include="scripts\bots\interfaces\Spell.py" />
+    <Compile Include="scripts\bots\interfaces\State.py" />
+    <Compile Include="scripts\bots\interfaces\Teleport.py" />
+    <Compile Include="scripts\bots\interfaces\__init__.py" />
+    <Compile Include="scripts\bots\items\base\__init__.py" />
+    <Compile Include="scripts\bots\items\__init__.py" />
+    <Compile Include="scripts\bots\kbemain.py" />
+    <Compile Include="scripts\bots\Monster.py" />
+    <Compile Include="scripts\bots\NPC.py" />
+    <Compile Include="scripts\bots\quests\base\__init__.py" />
+    <Compile Include="scripts\bots\quests\__init__.py" />
+    <Compile Include="scripts\bots\skills\base\DBuff.py" />
+    <Compile Include="scripts\bots\skills\base\SkillInitiative.py" />
+    <Compile Include="scripts\bots\skills\base\SkillPassivity.py" />
+    <Compile Include="scripts\bots\skills\base\__init__.py" />
+    <Compile Include="scripts\bots\skills\SkillAttack.py" />
+    <Compile Include="scripts\bots\skills\__init__.py" />
+    <Compile Include="scripts\cell\Avatar.py" />
+    <Compile Include="scripts\cell\dialogmgr\Dialog.py" />
+    <Compile Include="scripts\cell\dialogmgr\DialogMgr.py" />
+    <Compile Include="scripts\cell\dialogmgr\funcs\DFClose.py" />
+    <Compile Include="scripts\cell\dialogmgr\funcs\DFTeleport.py" />
+    <Compile Include="scripts\cell\dialogmgr\funcs\iDFunction.py" />
+    <Compile Include="scripts\cell\dialogmgr\funcs\__init__.py" />
+    <Compile Include="scripts\cell\dialogmgr\__init__.py" />
+    <Compile Include="scripts\cell\Gate.py" />
+    <Compile Include="scripts\cell\interfaces\AI.py" />
+    <Compile Include="scripts\cell\interfaces\Combat.py" />
+    <Compile Include="scripts\cell\interfaces\CombatPropertys.py" />
+    <Compile Include="scripts\cell\interfaces\Dialog.py" />
+    <Compile Include="scripts\cell\interfaces\Flags.py" />
+    <Compile Include="scripts\cell\interfaces\GameObject.py" />
+    <Compile Include="scripts\cell\interfaces\Motion.py" />
+    <Compile Include="scripts\cell\interfaces\NPCObject.py" />
+    <Compile Include="scripts\cell\interfaces\SkillBox.py" />
+    <Compile Include="scripts\cell\interfaces\Spell.py" />
+    <Compile Include="scripts\cell\interfaces\State.py" />
+    <Compile Include="scripts\cell\interfaces\Teleport.py" />
+    <Compile Include="scripts\cell\interfaces\__init__.py" />
+    <Compile Include="scripts\cell\items\base\__init__.py" />
+    <Compile Include="scripts\cell\items\__init__.py" />
+    <Compile Include="scripts\cell\kbemain.py" />
+    <Compile Include="scripts\cell\Monster.py" />
+    <Compile Include="scripts\cell\NPC.py" />
+    <Compile Include="scripts\cell\quests\base\__init__.py" />
+    <Compile Include="scripts\cell\quests\__init__.py" />
+    <Compile Include="scripts\cell\skills\base\DBuff.py" />
+    <Compile Include="scripts\cell\skills\base\SkillInitiative.py" />
+    <Compile Include="scripts\cell\skills\base\SkillPassivity.py" />
+    <Compile Include="scripts\cell\skills\base\__init__.py" />
+    <Compile Include="scripts\cell\skills\SkillAttack.py" />
+    <Compile Include="scripts\cell\skills\__init__.py" />
+    <Compile Include="scripts\cell\Space.py" />
+    <Compile Include="scripts\cell\SpaceContext.py" />
+    <Compile Include="scripts\cell\SpaceDuplicate.py" />
+    <Compile Include="scripts\cell\SpawnPoint.py" />
+    <Compile Include="scripts\common\Functor.py" />
+    <Compile Include="scripts\common\GlobalConst.py" />
+    <Compile Include="scripts\common\GlobalDefine.py" />
+    <Compile Include="scripts\common\KBEDebug.py" />
+    <Compile Include="scripts\common\Math3D.py" />
+    <Compile Include="scripts\common\skillbases\SCObject.py" />
+    <Compile Include="scripts\common\skillbases\SObject.py" />
+    <Compile Include="scripts\common\skillbases\__init__.py" />
+    <Compile Include="scripts\data\d_avatar_inittab.py" />
+    <Compile Include="scripts\data\d_dialogs.py" />
+    <Compile Include="scripts\data\d_entities.py" />
+    <Compile Include="scripts\data\d_skills.py" />
+    <Compile Include="scripts\data\d_spaces.py" />
+    <Compile Include="scripts\data\d_spaces_spawns.py" />
+    <Compile Include="scripts\db\kbemain.py" />
+    <Compile Include="scripts\interface\kbemain.py" />
+    <Compile Include="scripts\interface\Poller.py" />
+    <Compile Include="scripts\logger\kbemain.py" />
+    <Compile Include="scripts\login\kbemain.py" />
+    <Compile Include="scripts\server_common\SCDefine.py" />
+    <Compile Include="scripts\user_type\AVATAR_DATA.py" />
+    <Compile Include="scripts\user_type\AVATAR_INFOS.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="scripts\" />
+    <Folder Include="scripts\base\" />
+    <Folder Include="scripts\base\interfaces\" />
+    <Folder Include="scripts\base\interfaces\__pycache__\" />
+    <Folder Include="scripts\base\items\" />
+    <Folder Include="scripts\base\items\base\" />
+    <Folder Include="scripts\base\quests\" />
+    <Folder Include="scripts\base\quests\base\" />
+    <Folder Include="scripts\base\__pycache__\" />
+    <Folder Include="scripts\bots\" />
+    <Folder Include="scripts\bots\interfaces\" />
+    <Folder Include="scripts\bots\items\" />
+    <Folder Include="scripts\bots\items\base\" />
+    <Folder Include="scripts\bots\quests\" />
+    <Folder Include="scripts\bots\quests\base\" />
+    <Folder Include="scripts\bots\skills\" />
+    <Folder Include="scripts\bots\skills\base\" />
+    <Folder Include="scripts\cell\" />
+    <Folder Include="scripts\cell\dialogmgr\" />
+    <Folder Include="scripts\cell\dialogmgr\funcs\" />
+    <Folder Include="scripts\cell\dialogmgr\funcs\__pycache__\" />
+    <Folder Include="scripts\cell\dialogmgr\__pycache__\" />
+    <Folder Include="scripts\cell\interfaces\" />
+    <Folder Include="scripts\cell\interfaces\__pycache__\" />
+    <Folder Include="scripts\cell\items\" />
+    <Folder Include="scripts\cell\items\base\" />
+    <Folder Include="scripts\cell\quests\" />
+    <Folder Include="scripts\cell\quests\base\" />
+    <Folder Include="scripts\cell\skills\" />
+    <Folder Include="scripts\cell\skills\base\" />
+    <Folder Include="scripts\cell\skills\base\__pycache__\" />
+    <Folder Include="scripts\cell\skills\__pycache__\" />
+    <Folder Include="scripts\cell\__pycache__\" />
+    <Folder Include="scripts\common\" />
+    <Folder Include="scripts\common\skillbases\" />
+    <Folder Include="scripts\common\skillbases\__pycache__\" />
+    <Folder Include="scripts\common\__pycache__\" />
+    <Folder Include="scripts\data\" />
+    <Folder Include="scripts\data\spawnpoints\" />
+    <Folder Include="scripts\data\__pycache__\" />
+    <Folder Include="scripts\db\" />
+    <Folder Include="scripts\db\__pycache__\" />
+    <Folder Include="scripts\entity_defs\" />
+    <Folder Include="scripts\entity_defs\interfaces\" />
+    <Folder Include="scripts\interface\" />
+    <Folder Include="scripts\interface\__pycache__\" />
+    <Folder Include="scripts\logger\" />
+    <Folder Include="scripts\logger\__pycache__\" />
+    <Folder Include="scripts\login\" />
+    <Folder Include="scripts\login\__pycache__\" />
+    <Folder Include="scripts\server_common\" />
+    <Folder Include="scripts\server_common\__pycache__\" />
+    <Folder Include="scripts\user_type\" />
+    <Folder Include="scripts\user_type\__pycache__\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="scripts\base\interfaces\__pycache__\GameObject.cpython-34.pyc" />
+    <Content Include="scripts\base\interfaces\__pycache__\Teleport.cpython-34.pyc" />
+    <Content Include="scripts\base\interfaces\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="scripts\base\__pycache__\Account.cpython-34.pyc" />
+    <Content Include="scripts\base\__pycache__\Avatar.cpython-34.pyc" />
+    <Content Include="scripts\base\__pycache__\kbemain.cpython-34.pyc" />
+    <Content Include="scripts\base\__pycache__\Space.cpython-34.pyc" />
+    <Content Include="scripts\base\__pycache__\SpaceAlloc.cpython-34.pyc" />
+    <Content Include="scripts\base\__pycache__\SpaceDuplicate.cpython-34.pyc" />
+    <Content Include="scripts\base\__pycache__\Spaces.cpython-34.pyc" />
+    <Content Include="scripts\base\__pycache__\SpawnPoint.cpython-34.pyc" />
+    <Content Include="scripts\base\__pycache__\Watcher.cpython-34.pyc" />
+    <Content Include="scripts\cell\dialogmgr\funcs\__pycache__\DFClose.cpython-34.pyc" />
+    <Content Include="scripts\cell\dialogmgr\funcs\__pycache__\DFTeleport.cpython-34.pyc" />
+    <Content Include="scripts\cell\dialogmgr\funcs\__pycache__\iDFunction.cpython-34.pyc" />
+    <Content Include="scripts\cell\dialogmgr\funcs\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="scripts\cell\dialogmgr\__pycache__\Dialog.cpython-34.pyc" />
+    <Content Include="scripts\cell\dialogmgr\__pycache__\DialogMgr.cpython-34.pyc" />
+    <Content Include="scripts\cell\dialogmgr\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\AI.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\Combat.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\CombatPropertys.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\Dialog.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\Flags.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\GameObject.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\Motion.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\NPCObject.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\SkillBox.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\Spell.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\State.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\Teleport.cpython-34.pyc" />
+    <Content Include="scripts\cell\interfaces\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="scripts\cell\skills\base\__pycache__\SkillInitiative.cpython-34.pyc" />
+    <Content Include="scripts\cell\skills\base\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="scripts\cell\skills\__pycache__\SkillAttack.cpython-34.pyc" />
+    <Content Include="scripts\cell\skills\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="scripts\cell\__pycache__\Avatar.cpython-34.pyc" />
+    <Content Include="scripts\cell\__pycache__\Gate.cpython-34.pyc" />
+    <Content Include="scripts\cell\__pycache__\kbemain.cpython-34.pyc" />
+    <Content Include="scripts\cell\__pycache__\Monster.cpython-34.pyc" />
+    <Content Include="scripts\cell\__pycache__\NPC.cpython-34.pyc" />
+    <Content Include="scripts\cell\__pycache__\Space.cpython-34.pyc" />
+    <Content Include="scripts\cell\__pycache__\SpaceContext.cpython-34.pyc" />
+    <Content Include="scripts\cell\__pycache__\SpaceDuplicate.cpython-34.pyc" />
+    <Content Include="scripts\cell\__pycache__\SpawnPoint.cpython-34.pyc" />
+    <Content Include="scripts\common\skillbases\__pycache__\SCObject.cpython-34.pyc" />
+    <Content Include="scripts\common\skillbases\__pycache__\SObject.cpython-34.pyc" />
+    <Content Include="scripts\common\skillbases\__pycache__\__init__.cpython-34.pyc" />
+    <Content Include="scripts\common\__pycache__\Functor.cpython-34.pyc" />
+    <Content Include="scripts\common\__pycache__\GlobalConst.cpython-34.pyc" />
+    <Content Include="scripts\common\__pycache__\GlobalDefine.cpython-34.pyc" />
+    <Content Include="scripts\common\__pycache__\KBEDebug.cpython-34.pyc" />
+    <Content Include="scripts\data\spawnpoints\xinshoucun_spawnpoints.xml" />
+    <Content Include="scripts\data\__pycache__\d_avatar_inittab.cpython-34.pyc" />
+    <Content Include="scripts\data\__pycache__\d_dialogs.cpython-34.pyc" />
+    <Content Include="scripts\data\__pycache__\d_entities.cpython-34.pyc" />
+    <Content Include="scripts\data\__pycache__\d_skills.cpython-34.pyc" />
+    <Content Include="scripts\data\__pycache__\d_spaces.cpython-34.pyc" />
+    <Content Include="scripts\data\__pycache__\d_spaces_spawns.cpython-34.pyc" />
+    <Content Include="scripts\db\__pycache__\kbemain.cpython-34.pyc" />
+    <Content Include="scripts\entities.xml" />
+    <Content Include="scripts\entity_defs\Account.def" />
+    <Content Include="scripts\entity_defs\alias.xml" />
+    <Content Include="scripts\entity_defs\Avatar.def" />
+    <Content Include="scripts\entity_defs\Gate.def" />
+    <Content Include="scripts\entity_defs\interfaces\AI.def" />
+    <Content Include="scripts\entity_defs\interfaces\Combat.def" />
+    <Content Include="scripts\entity_defs\interfaces\CombatPropertys.def" />
+    <Content Include="scripts\entity_defs\interfaces\Dialog.def" />
+    <Content Include="scripts\entity_defs\interfaces\Flags.def" />
+    <Content Include="scripts\entity_defs\interfaces\GameObject.def" />
+    <Content Include="scripts\entity_defs\interfaces\Motion.def" />
+    <Content Include="scripts\entity_defs\interfaces\NPCObject.def" />
+    <Content Include="scripts\entity_defs\interfaces\SkillBox.def" />
+    <Content Include="scripts\entity_defs\interfaces\Spell.def" />
+    <Content Include="scripts\entity_defs\interfaces\State.def" />
+    <Content Include="scripts\entity_defs\interfaces\Teleport.def" />
+    <Content Include="scripts\entity_defs\Monster.def" />
+    <Content Include="scripts\entity_defs\NPC.def" />
+    <Content Include="scripts\entity_defs\Space.def" />
+    <Content Include="scripts\entity_defs\SpaceDuplicate.def" />
+    <Content Include="scripts\entity_defs\Spaces.def" />
+    <Content Include="scripts\entity_defs\SpawnPoint.def" />
+    <Content Include="scripts\interface\__pycache__\kbemain.cpython-34.pyc" />
+    <Content Include="scripts\interface\__pycache__\Poller.cpython-34.pyc" />
+    <Content Include="scripts\logger\__pycache__\kbemain.cpython-34.pyc" />
+    <Content Include="scripts\login\__pycache__\kbemain.cpython-34.pyc" />
+    <Content Include="scripts\server_common\__pycache__\SCDefine.cpython-34.pyc" />
+    <Content Include="scripts\user_type\.gitignore" />
+    <Content Include="scripts\user_type\__pycache__\AVATAR_DATA.cpython-34.pyc" />
+    <Content Include="scripts\user_type\__pycache__\AVATAR_INFOS.cpython-34.pyc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <Import Condition="Exists($(PtvsTargetsFile))" Project="$(PtvsTargetsFile)" />
+  <Import Condition="!Exists($(PtvsTargetsFile))" Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
