@@ -129,6 +129,15 @@
     <Compile Include="scripts\user_type\AVATAR_INFOS.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="res\" />
+    <Folder Include="res\server\" />
+    <Folder Include="res\spaces\" />
+    <Folder Include="res\spaces\duplicate\" />
+    <Folder Include="res\spaces\kbengine_cocos2d_js_demo\" />
+    <Folder Include="res\spaces\kbengine_ogre_demo\" />
+    <Folder Include="res\spaces\kbengine_unity3d_demo\" />
+    <Folder Include="res\spaces\teleportspace\" />
+    <Folder Include="res\spaces\xinshoucun\" />
     <Folder Include="scripts\" />
     <Folder Include="scripts\base\" />
     <Folder Include="scripts\base\interfaces\" />
@@ -185,6 +194,19 @@
     <Folder Include="scripts\user_type\__pycache__\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="guiconsole.bat" />
+    <Content Include="kill_server.bat" />
+    <Content Include="res\server\kbengine.xml" />
+    <Content Include="res\spaces\.gitignore" />
+    <Content Include="res\spaces\duplicate\.gitignore" />
+    <Content Include="res\spaces\kbengine_cocos2d_js_demo\get_mapeditor.txt" />
+    <Content Include="res\spaces\kbengine_cocos2d_js_demo\kbengine_cocos2d_js_demo.tmx" />
+    <Content Include="res\spaces\kbengine_cocos2d_js_demo\tmw_desert_spacing.png" />
+    <Content Include="res\spaces\kbengine_ogre_demo\.gitignore" />
+    <Content Include="res\spaces\kbengine_unity3d_demo\.gitignore" />
+    <Content Include="res\spaces\teleportspace\.gitignore" />
+    <Content Include="res\spaces\xinshoucun\srv_xinshoucun.navmesh" />
+    <Content Include="res\spaces\xinshoucun\srv_xinshoucun_1.navmesh" />
     <Content Include="scripts\base\interfaces\__pycache__\GameObject.cpython-34.pyc" />
     <Content Include="scripts\base\interfaces\__pycache__\Teleport.cpython-34.pyc" />
     <Content Include="scripts\base\interfaces\__pycache__\__init__.cpython-34.pyc" />
@@ -276,6 +298,7 @@
     <Content Include="scripts\user_type\.gitignore" />
     <Content Include="scripts\user_type\__pycache__\AVATAR_DATA.cpython-34.pyc" />
     <Content Include="scripts\user_type\__pycache__\AVATAR_INFOS.cpython-34.pyc" />
+    <Content Include="start_server.bat" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
