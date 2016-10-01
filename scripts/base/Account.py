@@ -9,7 +9,7 @@ from AVATAR_INFOS import TAvatarInfosList
 from AVATAR_DATA import TAvatarData
 from KBEDebug import *
 import d_avatar_inittab
-
+import math
 class Account(KBEngine.Proxy):
 	"""
 	账号实体
