@@ -280,6 +280,7 @@
     <Content Include="scripts\db\__pycache__\kbemain.cpython-34.pyc" />
     <Content Include="scripts\entities.xml" />
     <Content Include="scripts\entity_defs\Account.def" />
+    <Content Include="scripts\entity_defs\ActivityMgr.def" />
     <Content Include="scripts\entity_defs\alias.xml" />
     <Content Include="scripts\entity_defs\Avatar.def" />
     <Content Include="scripts\entity_defs\DroppedItem.def" />
