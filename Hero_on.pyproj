@@ -118,6 +118,9 @@
     <Compile Include="scripts\common\skillbases\SCObject.py" />
     <Compile Include="scripts\common\skillbases\SObject.py" />
     <Compile Include="scripts\common\skillbases\__init__.py" />
+    <Compile Include="scripts\common\util\py_util.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\data\d_avatar_inittab.py" />
     <Compile Include="scripts\data\d_dialogs.py" />
     <Compile Include="scripts\data\d_entities.py" />
@@ -183,6 +186,7 @@
     <Folder Include="scripts\cell\skills\__pycache__\" />
     <Folder Include="scripts\cell\__pycache__\" />
     <Folder Include="scripts\common\" />
+    <Folder Include="scripts\common\util\" />
     <Folder Include="scripts\common\skillbases\" />
     <Folder Include="scripts\common\skillbases\__pycache__\" />
     <Folder Include="scripts\common\__pycache__\" />
