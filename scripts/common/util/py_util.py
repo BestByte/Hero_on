@@ -1,4 +1,6 @@
 import time
+import math
+import random
 _ONEDAY_SECONDS = 24*60*60
 #生成一个日期的整数，默认以凌晨4:00为界
 def get_number_date(from_time,from_clock):
@@ -31,6 +33,33 @@ def get_number_secs(from_time,from_clock):
 		now_time_table[4]=0
 		now_time_table[5]=0
 		return now_time_table
+
+#从M个数里(等概率)随机出N个不重复的数
+def choose_n_norepeated(t,n):
+	m=t
+	if m<=n:
+		return t
+	t2={}
+	i=0
+	while True:
+		r=random.randint(1,m)
+		if t2[r]==None:
+			t2[r]=1
+			i=i+1
+			if i>=n:
+				return t2
+
+#从{k = prob}表里挑选一个满足概率的k
+def choose_prob(t,min_prob,max_prob):
+	if min_prob and max_prob:
+		ram=random.uniform(min_prob,max_prob)
+	else:
+		ram=random.random()
+	prob=0
+	for k,prob1 in t:
+		prob=prob+prob1
+		if ram<=prob:
+			return k
 
 
 
