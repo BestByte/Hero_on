@@ -61,5 +61,18 @@ def choose_prob(t,min_prob,max_prob):
 		if ram<=prob:
 			return k
 
+#从格式"道具id1,数量1,概率1,道具id2,数量2,概率2,..."中随机出一个道具id和数量
+def choose_random_item(drop):
+	if drop:
+		ram=random.random()
+		n=len(drop)
+		prop=0
+		for i in range(3,n,3):
+			p=drop[i]
+			if p:
+				prop=prop+p
+				if ram<prop:
+					return [drop[i-2],drop[i-1]]
 
+#x=0.3 0.3概率发生
 
