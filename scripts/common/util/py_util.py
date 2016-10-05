@@ -99,5 +99,21 @@ def choose_2(t,t2):
 	n=len(t)
 	if n==0:
 		return None
+	idx=random.random(1,n)
+	return[t[idx],t2[idx]]
+#--从不等概率的一组值里面随机选择个
+#--table格式如：{[值]=概率}；函数返回 值，概率
+def getrandomseed(a):
+	if type(a)==dict:
+		max=0
+		for k,v in a:
+			max=max+v
+		seed=random.randint(1,max)
+		sumvv=0
+		for k,v in a:
+			sumvv=sumvv+sumvv
+			if seed<=sumvv:
+				return {k:v}
+
 
 
