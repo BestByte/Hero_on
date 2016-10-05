@@ -75,4 +75,29 @@ def choose_random_item(drop):
 					return [drop[i-2],drop[i-1]]
 
 #x=0.3 0.3概率发生
+def prob(x):
+	if x<=0:
+		return False
+	return random.random()<x
+#x={0.2,0.3,0.5}，总和1,返回按各自概率返回索引20%返回1，30%返回2,50%返回3
+def choice(x):
+	d=random.random()
+	sum=0
+	for k,v in enumerate(x):
+		if d<v+sum:
+			return k
+		sum=sum+v
+	return sum
+#从一个列表中随机一个值
+def choose_1(t):
+	n=len(t)
+	if n==0:
+		return None
+	return t[random.randint(1,n)]
+#从一个列表中随机一个值,从其关联列表也返回一个值
+def choose_2(t,t2):
+	n=len(t)
+	if n==0:
+		return None
+
 
