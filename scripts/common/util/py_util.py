@@ -143,6 +143,26 @@ def _format_key_value(key,value):
 				sec=t+sec*60
 		return [key2,sec]
 	elif prefix=='_y':
+		i=value.find(' ')
+		str_data=value[1:i-1]
+		str_time=value[i+1:]
+		dd=value.split('-')
+		tt=value.split('-')
+		return [key2,time.struct_time(year=dd[0],month=dd[1],day=dd[2],hour=dd[3],minute=dd[4],second=dd[5])]
+	elif prefix=='_m':
+		tmp=value.split(',')
+		tmp2=[]
+		for _,v in enumerate(tmp):
+			tp=v.split(':')
+			id=int(tp[0]) or  (tp[0])
+			num=int(tp[1]) or tp[1]
+			tmp2[id]=num
+		return [key2,tmp2]
+	else:
+		return key,value
+
+
+
 
 
 
