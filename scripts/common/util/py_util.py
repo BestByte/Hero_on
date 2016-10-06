@@ -160,6 +160,9 @@ def _format_key_value(key,value):
 		return [key2,tmp2]
 	else:
 		return key,value
+def format_key_value(key,value):
+	return _format_key_value(key,value)
+
 
 
 
