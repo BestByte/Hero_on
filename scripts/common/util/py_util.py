@@ -115,5 +115,39 @@ def getrandomseed(a):
 			if seed<=sumvv:
 				return {k:v}
 
+def _format_key_value(key,value):
+	nKeyLen=len(key)
+	
+	prefix=key[-2:]
+	key2=key[:-3]
+	if prefix=='_i' :
+		return [key2,int(value)]
+	elif prefix=='_f':
+		return [key2,int(value)]
+	elif prefix=='_s':
+		return [key2,int(value)]
+	elif prefix=='_l':
+		return[key2,value.split(',')]
+	elif prefix=='_k':
+		tmp=value.split(',')
+		tmp2=[]
+		for _,k in enumerate(tmp):
+			tmp2[k]=1
+		return[key2,tmp2]
+	elif prefix=='_t':
+		tmp=value.split(":")
+		sec=0
+		for i,v in enumerate(tmp):
+			t=int(v)
+			if t:
+				sec=t+sec*60
+		return [key2,sec]
+	elif prefix=='_y':
+
+
+
+
+
+
 
 
