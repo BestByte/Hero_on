@@ -163,6 +163,15 @@ def _format_key_value(key,value):
 def format_key_value(key,value):
 	return _format_key_value(key,value)
 
+#格式化一个table,该table只有一层关系
+def _format_table(t):
+	v2=[]
+	for key,value in enumerate(t):
+		key2=_format_key_value(key,value)[0]
+		value2=_format_key_value(key,vlaue)[1]
+		v2[key2]=value2
+	return v2
+
 
 
 
