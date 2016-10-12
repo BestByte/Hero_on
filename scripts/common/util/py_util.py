@@ -184,8 +184,9 @@ def format_xml_table(t):
 		else:
 			t2[k]=v2
 	return t2
-
-def 
+#读取xml文件
+def -readXml(path,key):
+	
 
 
 
