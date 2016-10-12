@@ -1,8 +1,10 @@
+#coding=utf-8
 import time
+
 import math
 import random
 _ONEDAY_SECONDS = 24*60*60
-#生成一个日期的整数，默认以凌晨4:00为界
+#锟斤拷锟斤拷一锟斤拷锟斤拷锟节碉拷锟斤拷锟斤拷锟斤拷默锟斤拷锟斤拷锟借晨4:00为锟斤拷
 def get_number_date(from_time,from_clock):
 	now_time=from_time or time.time()
 	_from_clock=from_clock or 4
@@ -15,7 +17,7 @@ def get_number_date(from_time,from_clock):
 	else:
 		return now_time_table[0]*1000+now_time_table[1]*100+now_time_table[2]
 
-#获得某日某个时刻点对应的秒数
+#锟斤拷锟斤拷某锟斤拷某锟斤拷时锟教碉拷锟斤拷应锟斤拷锟斤拷锟斤拷
 def get_number_secs(from_time,from_clock):
 	now_time=from_time or time.time()
 	_from_clock=from_clock or 4
@@ -34,7 +36,7 @@ def get_number_secs(from_time,from_clock):
 		now_time_table[5]=0
 		return now_time_table
 
-#从M个数里(等概率)随机出N个不重复的数
+#锟斤拷M锟斤拷锟斤拷锟斤拷(锟饺革拷锟斤拷)锟斤拷锟斤拷锟斤拷N锟斤拷锟斤拷锟截革拷锟斤拷锟斤拷
 def choose_n_norepeated(t,n):
 	m=t
 	if m<=n:
@@ -49,7 +51,7 @@ def choose_n_norepeated(t,n):
 			if i>=n:
 				return t2
 
-#从{k = prob}表里挑选一个满足概率的k
+#锟斤拷{k = prob}锟斤拷锟斤拷锟斤拷选一锟斤拷锟斤拷锟斤拷锟斤拷锟绞碉拷k
 def choose_prob(t,min_prob,max_prob):
 	if min_prob and max_prob:
 		ram=random.uniform(min_prob,max_prob)
@@ -61,7 +63,7 @@ def choose_prob(t,min_prob,max_prob):
 		if ram<=prob:
 			return k
 
-#从格式"道具id1,数量1,概率1,道具id2,数量2,概率2,..."中随机出一个道具id和数量
+#锟接革拷式"锟斤拷锟斤拷id1,锟斤拷锟斤拷1,锟斤拷锟斤拷1,锟斤拷锟斤拷id2,锟斤拷锟斤拷2,锟斤拷锟斤拷2,..."锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷id锟斤拷锟斤拷锟斤拷
 def choose_random_item(drop):
 	if drop:
 		ram=random.random()
@@ -74,12 +76,12 @@ def choose_random_item(drop):
 				if ram<prop:
 					return [drop[i-2],drop[i-1]]
 
-#x=0.3 0.3概率发生
+#x=0.3 0.3锟斤拷锟绞凤拷锟斤拷
 def prob(x):
 	if x<=0:
 		return False
 	return random.random()<x
-#x={0.2,0.3,0.5}，总和1,返回按各自概率返回索引20%返回1，30%返回2,50%返回3
+#x={0.2,0.3,0.5}锟斤拷锟杰猴拷1,锟斤拷锟截帮拷锟斤拷锟皆革拷锟绞凤拷锟斤拷锟斤拷锟斤拷20%锟斤拷锟斤拷1锟斤拷30%锟斤拷锟斤拷2,50%锟斤拷锟斤拷3
 def choice(x):
 	d=random.random()
 	sum=0
@@ -88,21 +90,21 @@ def choice(x):
 			return k
 		sum=sum+v
 	return sum
-#从一个列表中随机一个值
+#锟斤拷一锟斤拷锟叫憋拷锟斤拷锟斤拷锟斤拷一锟斤拷值
 def choose_1(t):
 	n=len(t)
 	if n==0:
 		return None
 	return t[random.randint(1,n)]
-#从一个列表中随机一个值,从其关联列表也返回一个值
+#锟斤拷一锟斤拷锟叫憋拷锟斤拷锟斤拷锟斤拷一锟斤拷值,锟斤拷锟斤拷锟斤拷锟斤拷锟叫憋拷也锟斤拷锟斤拷一锟斤拷值
 def choose_2(t,t2):
 	n=len(t)
 	if n==0:
 		return None
 	idx=random.random(1,n)
 	return[t[idx],t2[idx]]
-#--从不等概率的一组值里面随机选择个
-#--table格式如：{[值]=概率}；函数返回 值，概率
+#--锟接诧拷锟饺革拷锟绞碉拷一锟斤拷值锟斤拷锟斤拷锟斤拷锟斤拷选锟斤拷锟斤拷
+#--table锟斤拷式锟界：{[值]=锟斤拷锟斤拷}锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷 值锟斤拷锟斤拷锟斤拷
 def getrandomseed(a):
 	if type(a)==dict:
 		max=0
@@ -163,7 +165,7 @@ def _format_key_value(key,value):
 def format_key_value(key,value):
 	return _format_key_value(key,value)
 
-#格式化一个table,该table只有一层关系
+#锟斤拷式锟斤拷一锟斤拷table,锟斤拷table只锟斤拷一锟斤拷锟斤拷系
 def _format_table(t):
 	v2=[]
 	for key,value in enumerate(t):
@@ -171,6 +173,19 @@ def _format_table(t):
 		value2=_format_key_value(key,vlaue)[1]
 		v2[key2]=value2
 	return v2
+
+#锟斤拷锟斤拷锟街讹拷锟斤拷锟斤拷缀锟侥猴拷锟斤拷锟睫改达拷xml锟斤拷取锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+def format_xml_table(t):
+	t2=[]
+	for k,v in enumerate(t):
+		v2=_format_table(v)
+		if int(k)!=None:
+			t2[int(k)]=v2
+		else:
+			t2[k]=v2
+	return t2
+
+def 
 
 
 
