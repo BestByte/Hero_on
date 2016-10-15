@@ -186,6 +186,7 @@ def format_xml_table(t):
 	return t2
 #读取xml文件
 def -readXml(path,key):
+	pass
 	
 	
 
