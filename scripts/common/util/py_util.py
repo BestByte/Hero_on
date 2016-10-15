@@ -3,6 +3,8 @@ import time
 
 import math
 import random
+
+import xml.etree.ElementTree as ET
 _ONEDAY_SECONDS = 24*60*60
 #����һ�����ڵ�������Ĭ�����賿4:00Ϊ��
 def get_number_date(from_time,from_clock):
@@ -184,9 +186,26 @@ def format_xml_table(t):
 		else:
 			t2[k]=v2
 	return t2
+PATH=r"scripts\data\%s.xml"
+
 #读取xml文件
-def -readXml(path,key):
-	pass
+def _readXml(path,key):
+	new_path=PATH % (path)
+	#path 即是路径的名字
+	tree=ET.parse(new_path)
+	p=tree.find(r'./'+path)
+	d={}
+	for v in p:
+		for child in v.getchildren():
+			if child.tag==key:
+				tmp=int(child.text)
+				d[tmp]={}
+			else:
+				d[tmp][child.tag]=child.text
+
+	return d
+
+				
 	
 	
 
