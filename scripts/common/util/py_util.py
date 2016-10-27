@@ -163,37 +163,48 @@ def _format_key_value(key,value):
 			tmp2[id]=num
 		return [key2,tmp2]
 	else:
-		return key,value
+		return [key,value]
 def format_key_value(key,value):
 	return _format_key_value(key,value)
 
-#��ʽ��һ��table,��tableֻ��һ����ϵ
+#格式化一个table,该table只有一层关系
 def _format_table(t):
-	v2=[]
-	for key,value in enumerate(t):
-		key2=_format_key_value(key,value)[0]
-		value2=_format_key_value(key,vlaue)[1]
-		v2[key2]=value2
+	v2={}
+	if isinstance(t,dict):
+		for key,value in t.items():
+			key2=_format_key_value(key,value)[0]
+			value2=_format_key_value(key,value)[1]
+			v2[key2]=value2
 	return v2
 
-#�����ֶ�����׺�ĺ����޸Ĵ�xml��ȡ����������
+#根据字段名后缀的含义修改从xml读取的数据类型
 def format_xml_table(t):
-	t2=[]
-	for k,v in enumerate(t):
-		v2=_format_table(v)
-		if int(k)!=None:
-			t2[int(k)]=v2
-		else:
+	p_type=type(t)
+	if isinstance(t,int):
+		for k,v in enumerate(t):
+			v2=_format_table(v)
+		
+			t2[k]=v2
+	elif isinstance(t,dict):
+		t2={}
+		for k,v in t.items():
+			v2=_format_table(v)
+		
 			t2[k]=v2
 	return t2
 PATH=r"scripts\data\%s.xml"
 
 #读取xml文件
 def _readXml(path,key):
-	new_path=PATH % (path)
+	new_path=(PATH % (path)).replace("\\", "/")
+
 	#path 即是路径的名字
 	tree=ET.parse(new_path)
-	p=tree.find(r'./'+path)
+
+	key_path=('./'+path.title())
+	p=tree.findall(key_path)
+
+	#将XML
 	d={}
 	for v in p:
 		for child in v.getchildren():
@@ -202,21 +213,13 @@ def _readXml(path,key):
 				d[tmp]={}
 			else:
 				d[tmp][child.tag]=child.text
+	e=d
+	d=format_xml_table(e)
+	
 
+	print(d)
 	return d
+def _readXmlBy2Key(path,key1,key2):
+	new_path=PATH % (path)
 
-				
 	
-	
-
-
-
-
-
-
-
-
-
-
-
-
