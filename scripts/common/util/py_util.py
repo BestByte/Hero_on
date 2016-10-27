@@ -6,7 +6,7 @@ import random
 
 import xml.etree.ElementTree as ET
 _ONEDAY_SECONDS = 24*60*60
-#����һ�����ڵ�������Ĭ�����賿4:00Ϊ��
+#生成一个日期的整数，默认以凌晨4:00为界
 def get_number_date(from_time,from_clock):
 	now_time=from_time or time.time()
 	_from_clock=from_clock or 4
@@ -19,7 +19,7 @@ def get_number_date(from_time,from_clock):
 	else:
 		return now_time_table[0]*1000+now_time_table[1]*100+now_time_table[2]
 
-#����ĳ��ĳ��ʱ�̵���Ӧ������
+#获得某日某个时刻点对应的秒数
 def get_number_secs(from_time,from_clock):
 	now_time=from_time or time.time()
 	_from_clock=from_clock or 4
@@ -38,7 +38,7 @@ def get_number_secs(from_time,from_clock):
 		now_time_table[5]=0
 		return now_time_table
 
-#��M������(�ȸ���)������N�����ظ�����
+#从M个数里(等概率)随机出N个不重复的数
 def choose_n_norepeated(t,n):
 	m=t
 	if m<=n:
@@ -53,7 +53,7 @@ def choose_n_norepeated(t,n):
 			if i>=n:
 				return t2
 
-#��{k = prob}������ѡһ���������ʵ�k
+#从{k = prob}表里挑选一个满足概率的k
 def choose_prob(t,min_prob,max_prob):
 	if min_prob and max_prob:
 		ram=random.uniform(min_prob,max_prob)
@@ -65,7 +65,7 @@ def choose_prob(t,min_prob,max_prob):
 		if ram<=prob:
 			return k
 
-#�Ӹ�ʽ"����id1,����1,����1,����id2,����2,����2,..."��������һ������id������
+#从格式"道具id1,数量1,概率1,道具id2,数量2,概率2,..."中随机出一个道具id和数量
 def choose_random_item(drop):
 	if drop:
 		ram=random.random()
@@ -78,12 +78,12 @@ def choose_random_item(drop):
 				if ram<prop:
 					return [drop[i-2],drop[i-1]]
 
-#x=0.3 0.3���ʷ���
+#x=0.3 0.3概率发生
 def prob(x):
 	if x<=0:
 		return False
 	return random.random()<x
-#x={0.2,0.3,0.5}���ܺ�1,���ذ����Ը��ʷ�������20%����1��30%����2,50%����3
+#{0.2,0.3,0.5}，总和1,返回按各自概率返回索引20%返回1，30%返回2,50%返回3
 def choice(x):
 	d=random.random()
 	sum=0
@@ -92,21 +92,21 @@ def choice(x):
 			return k
 		sum=sum+v
 	return sum
-#��һ���б�������һ��ֵ
+#从一个列表中随机一个值
 def choose_1(t):
 	n=len(t)
 	if n==0:
 		return None
 	return t[random.randint(1,n)]
-#��һ���б�������һ��ֵ,���������б�Ҳ����һ��ֵ
+#从一个列表中随机一个值,从其关联列表也返回一个值
 def choose_2(t,t2):
 	n=len(t)
 	if n==0:
 		return None
 	idx=random.random(1,n)
 	return[t[idx],t2[idx]]
-#--�Ӳ��ȸ��ʵ�һ��ֵ��������ѡ����
-#--table��ʽ�磺{[ֵ]=����}���������� ֵ������
+#-从不等概率的一组值里面随机选择个
+#--table格式如：{[值]=概率}；函数返回 值，概率
 def getrandomseed(a):
 	if type(a)==dict:
 		max=0
