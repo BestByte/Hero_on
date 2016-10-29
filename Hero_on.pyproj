@@ -24,6 +24,9 @@
   <ItemGroup>
     <Compile Include="Hero_on.py" />
     <Compile Include="scripts\base\Account.py" />
+    <Compile Include="scripts\base\ActivityMgr.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\base\Avatar.py" />
     <Compile Include="scripts\base\interfaces\GameObject.py" />
     <Compile Include="scripts\base\interfaces\NPCObject.py" />
@@ -40,6 +43,9 @@
     <Compile Include="scripts\base\SpaceDuplicate.py" />
     <Compile Include="scripts\base\Spaces.py" />
     <Compile Include="scripts\base\SpawnPoint.py" />
+    <Compile Include="scripts\base\SubSystem\ActivitySystem.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\base\Watcher.py" />
     <Compile Include="scripts\bots\Account.py" />
     <Compile Include="scripts\bots\Avatar.py" />
@@ -158,6 +164,7 @@
     <Folder Include="scripts\base\interfaces\__pycache__\" />
     <Folder Include="scripts\base\items\" />
     <Folder Include="scripts\base\items\base\" />
+    <Folder Include="scripts\base\SubSystem\" />
     <Folder Include="scripts\base\quests\" />
     <Folder Include="scripts\base\quests\base\" />
     <Folder Include="scripts\base\__pycache__\" />

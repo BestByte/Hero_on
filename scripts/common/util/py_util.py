@@ -219,6 +219,9 @@ def _readXml(path,key):
 
 	print(d)
 	return d
+
+#--根据两个关键字来读xml文件,例如科技表根据科技id和科技等级来决定相关的数据
+#--注意,这里的key和key2不能带后缀
 def _readXmlBy2Key(path,key1,key2):
 	new_path=PATH % (path)
 
