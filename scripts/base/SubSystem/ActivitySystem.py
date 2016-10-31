@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import KBEDebug
 import py_util
 
