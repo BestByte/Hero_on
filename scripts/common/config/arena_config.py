@@ -1,5 +1,4 @@
-arenicDataKey
-dict(
+arenicDataKey=dict(
     #-->begin:arenaSystem m_systemData ��key
     tmp_scoresOfDay = 1,
     tmp_rewardOfDay  = 2,
