@@ -1,6 +1,6 @@
 arenicDataKey
 dict(
-    #-->begin:arenaSystem m_systemData µÄkey
+    #-->begin:arenaSystem m_systemData ï¿½ï¿½key
     tmp_scoresOfDay = 1,
     tmp_rewardOfDay  = 2,
     tmp_scoresOfWeek = 3,
@@ -19,7 +19,7 @@ dict(
     #--<end
 
 
-    #-->begin: avatar arenicData µÄkey
+    #-->begin: avatar arenicData ï¿½ï¿½key
     avatar_cdEndTime = 1,
     avatar_buyTimes = 2,
     #--avatar_bufAtk = 3,
@@ -29,8 +29,8 @@ dict(
     avatar_inspire_buf = 7,
     avatar_weakRange = 8,
     avatar_strongRange = 9,
-    avatar_DailyBuys = 10, #--µ±Ìì¹ºÂò´ÎÊý
-    avatar_DailyBuyCd = 11, #--ÏÂ´ÎÇå¹ºÂò´ÎÊýcd
+    avatar_DailyBuys = 10, #--ï¿½ï¿½ï¿½ì¹ºï¿½ï¿½ï¿½ï¿½ï¿½
+    avatar_DailyBuyCd = 11, #--ï¿½Â´ï¿½ï¿½å¹ºï¿½ï¿½ï¿½ï¿½ï¿½cd
     #--<end
 )
 
@@ -45,7 +45,7 @@ arena_text_id = dict(
 	ENEMY_BEATED = 25006,
 	NO_ENEMY     = 25007,
 
-	#--ÌôÕ½
+	#--ï¿½ï¿½Õ½
 	CHALLENGE_CDING = 25017,
 	NO_ENTER_TIMES = 25018,
     NO_WEAK_FOE = 25019,
@@ -67,15 +67,15 @@ arena_text_id = dict(
 
     REFRESH_SUC = 25035,
 
-    #--¸´³ð¹ÄÎè
-    INSPIRE_SUC = 25037, #--¹ÄÎè³É¹¦
-    INSPIRE_ED  = 25038, #--ÒÑ¾­¹ÄÎè¹ýÁË
+    #--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    INSPIRE_SUC = 25037, #--ï¿½ï¿½ï¿½ï¿½É¹ï¿½
+    INSPIRE_ED  = 25038, #--ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    VIP_BUY_FULL = 25039, #--ÒÑ´ï×î´ó¹ºÂò´ÎÊý
+    VIP_BUY_FULL = 25039, #--ï¿½Ñ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 )
 
-#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--- ÅäÖÃ #--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#---
-#--Ä¬ÈÏÅäÖÃ
+#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--- ï¿½ï¿½ï¿½ï¿½ #--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#---
+#--Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 arena_config_default=dict (
 	#--INIT_NUM = 1000,
 	OPEN_LV = 20,
@@ -114,7 +114,7 @@ class arena_config:
 			if value['value']:
 				k=py_util.format_key_value(key,value['value'])[0]
 				v=py_util.format_key_value(key,value['value'])[1]
-	#TODO ´íÎó´¦Àí
+	#TODO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 		self.m_scoreRewards = py_util._readXml('/data/xml/ArenaScoreReward.xml', 'id_i')
 
