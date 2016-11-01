@@ -139,6 +139,9 @@
     <Compile Include="scripts\common\config\spiritData.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\common\config\state_config.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\common\Functor.py" />
     <Compile Include="scripts\common\GlobalConst.py" />
     <Compile Include="scripts\common\GlobalDefine.py" />
