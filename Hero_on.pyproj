@@ -145,6 +145,9 @@
     <Compile Include="scripts\common\config\timer_config.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\common\config\tower_config.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\common\Functor.py" />
     <Compile Include="scripts\common\GlobalConst.py" />
     <Compile Include="scripts\common\GlobalDefine.py" />
