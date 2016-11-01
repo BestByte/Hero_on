@@ -1,4 +1,4 @@
- cfg =dict(
+cfg =dict(
 
 			buy_from_shop         = 1, #--商店购买
 			fuben_drop            = 2, #--副本掉落
