@@ -127,6 +127,9 @@
     <Compile Include="scripts\common\config\arenic_data.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\common\config\oblivion_config.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\common\config\PriceList.py">
       <SubType>Code</SubType>
     </Compile>
