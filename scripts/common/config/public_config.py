@@ -1,5 +1,5 @@
 ﻿from KBEDebug import *
-cfg =dict(
+
 #--mailbox中key的定义
 MAILBOX_KEY_SERVER_ID    = 1,      #--server_id
 MAILBOX_KEY_CLASS_TYPE   = 2,      #--entity class_type
@@ -745,7 +745,7 @@ JWEl_AUTO_MSG_MAIL         = 1091,  #--宝石进入邮件
 JEWL_AUTO_MAIL_SENDER      = 40020,  #--发件人称呼
 JEWL_AUTO_MAIL_TEXT        = 40022,  #--发件人内容
 JEWL_AUTO_MAIL_TITLE       = 40021  #--发件人主题
-)
+
 
 #--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--
 
