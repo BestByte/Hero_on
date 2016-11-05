@@ -4,7 +4,7 @@ import py_util
 
 
 class ActivitySystem:
-	'''�ϵͳ'''
+	'''?ϵͳ'''
 	def __init__(self):
 		self.activityData=py_util._readXml('/data/xml/activityData.xml', 'id_i')
 		self.missionData=py_util._readXml('/data/xml/activityData.xml', 'id_i')

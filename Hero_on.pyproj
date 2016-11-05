@@ -124,7 +124,13 @@
     <Compile Include="scripts\common\config\arena_config.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="scripts\common\config\arenic_data.py">
+    <Compile Include="scripts\common\config\arenic_level.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scripts\common\config\attri_cal.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scripts\common\config\bodyEnhance_config.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="scripts\common\config\channel_config.py">
