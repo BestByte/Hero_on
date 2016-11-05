@@ -127,6 +127,12 @@
     <Compile Include="scripts\common\config\arenic_data.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\common\config\defense_pvp_config.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="scripts\common\config\error_code.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\common\config\event_config.py">
       <SubType>Code</SubType>
     </Compile>
