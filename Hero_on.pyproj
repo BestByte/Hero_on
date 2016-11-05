@@ -130,6 +130,9 @@
     <Compile Include="scripts\common\config\client_text_id.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\common\config\cli_entity_config.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\common\config\CommonXmlConfig.py">
       <SubType>Code</SubType>
     </Compile>
