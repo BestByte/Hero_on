@@ -127,6 +127,9 @@
     <Compile Include="scripts\common\config\arenic_data.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\common\config\client_text_id.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\common\config\CommonXmlConfig.py">
       <SubType>Code</SubType>
     </Compile>
