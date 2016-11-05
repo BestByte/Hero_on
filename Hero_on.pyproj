@@ -127,6 +127,9 @@
     <Compile Include="scripts\common\config\arenic_data.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\common\config\event_def.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\common\config\FormularPara.py">
       <SubType>Code</SubType>
     </Compile>
