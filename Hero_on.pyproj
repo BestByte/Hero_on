@@ -127,6 +127,9 @@
     <Compile Include="scripts\common\config\arenic_data.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\common\config\gm_setting_state.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\common\config\guild_config.py">
       <SubType>Code</SubType>
     </Compile>
