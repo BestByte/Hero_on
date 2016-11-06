@@ -226,6 +226,9 @@
     <Compile Include="scripts\common\config\worldboss_config.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\common\data\ActivityData.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\common\Functor.py" />
     <Compile Include="scripts\common\GlobalConst.py" />
     <Compile Include="scripts\common\GlobalDefine.py" />
@@ -305,6 +308,7 @@
     <Folder Include="scripts\cell\__pycache__\" />
     <Folder Include="scripts\common\" />
     <Folder Include="scripts\common\config\" />
+    <Folder Include="scripts\common\data\" />
     <Folder Include="scripts\common\util\" />
     <Folder Include="scripts\common\skillbases\" />
     <Folder Include="scripts\common\skillbases\__pycache__\" />
