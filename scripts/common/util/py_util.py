@@ -7,6 +7,7 @@ from KBEDebug import *
 import xml.etree.ElementTree as ET
 _ONEDAY_SECONDS = 24*60*60
 #生成一个日期的整数，默认以凌晨4:00为界
+#ToDo 时间time.struct_time有问题
 def get_number_date(from_time,from_clock):
 	now_time=from_time or time.time()
 	_from_clock=from_clock or 4
@@ -123,7 +124,7 @@ def _format_key_value(key,value):
 	nKeyLen=len(key)
 	
 	prefix=key[-2:]
-	key2=key[:-3]
+	key2=key[:-2]
 	if prefix=='_i' :
 		return [key2,int(value)]
 	elif prefix=='_f':
@@ -134,7 +135,7 @@ def _format_key_value(key,value):
 		return[key2,value.split(',')]
 	elif prefix=='_k':
 		tmp=value.split(',')
-		tmp2=[]
+		tmp2={}
 		for _,k in enumerate(tmp):
 			tmp2[k]=1
 		return[key2,tmp2]
@@ -155,7 +156,7 @@ def _format_key_value(key,value):
 		return [key2,time.struct_time(year=dd[0],month=dd[1],day=dd[2],hour=dd[3],minute=dd[4],second=dd[5])]
 	elif prefix=='_m':
 		tmp=value.split(',')
-		tmp2=[]
+		tmp2={}
 		for _,v in enumerate(tmp):
 			tp=v.split(':')
 			id=int(tp[0]) or  (tp[0])
@@ -203,7 +204,7 @@ def _readXml(path,key):
 
 	key_path=('./'+path.title())
 	p=tree.findall(key_path)
-	#这儿意味着XML文件的关键字与路径有关系，因此需要处理XML与路径的不一致的问题。
+	#ToDo 这儿意味着XML文件的关键字与路径有关系，因此需要处理XML与路径的不一致的问题。
 	#将XML
 	d={}
 	for v in p:
