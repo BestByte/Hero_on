@@ -3,7 +3,7 @@ import time
 
 import math
 import random
-
+from KBEDebug import *
 import xml.etree.ElementTree as ET
 _ONEDAY_SECONDS = 24*60*60
 #生成一个日期的整数，默认以凌晨4:00为界
@@ -224,5 +224,30 @@ def _readXml(path,key):
 #--注意,这里的key和key2不能带后缀
 def _readXmlBy2Key(path,key1,key2):
 	new_path=PATH % (path)
+
+	#--计算utf编码字符串的长度
+_utf_arr = [0, 0xc0, 0xe0, 0xf0, 0xf8, 0xfc]
+_utf_arr_len = _utf_arr.__len__()
+#检查utf字符串是否含有char(< 0xc0)字符
+def utfstr_check_char(str, char):
+	if char<0 or char>=0xc0 :
+		ERROR_MSG("utfstr_check_char")
+	
+	left=len(str)
+	cnt=0
+	while left>0:
+		tmp=ord(str[-left])
+		if tmp==char:
+			return True
+		i = _utf_arr_len
+		while _utf_arr[i-1]:
+			if tmp >= _utf_arr[i]:
+				left=left-i
+			i=i-1
+			cnt=cnt+1
+	return cnt
+
+
+
 
 	
