@@ -229,6 +229,9 @@
     <Compile Include="scripts\common\data\ActivityData.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="scripts\common\data\avatar_level_data.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\common\Functor.py" />
     <Compile Include="scripts\common\GlobalConst.py" />
     <Compile Include="scripts\common\GlobalDefine.py" />
