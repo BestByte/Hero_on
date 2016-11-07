@@ -203,7 +203,7 @@ def _readXml(path,key):
 
 	key_path=('./'+path.title())
 	p=tree.findall(key_path)
-
+	#这儿意味着XML文件的关键字与路径有关系，因此需要处理XML与路径的不一致的问题。
 	#将XML
 	d={}
 	for v in p:
@@ -223,7 +223,8 @@ def _readXml(path,key):
 #--根据两个关键字来读xml文件,例如科技表根据科技id和科技等级来决定相关的数据
 #--注意,这里的key和key2不能带后缀
 def _readXmlBy2Key(path,key1,key2):
-	new_path=PATH % (path)
+	d=_readXml(path,'id_i')
+	len=d.__len__()
 
 	#--计算utf编码字符串的长度
 _utf_arr = [0, 0xc0, 0xe0, 0xf0, 0xf8, 0xfc]
