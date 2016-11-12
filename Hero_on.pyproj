@@ -28,6 +28,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="scripts\base\Avatar.py" />
+    <Compile Include="scripts\base\Hall.py" />
     <Compile Include="scripts\base\interfaces\GameObject.py" />
     <Compile Include="scripts\base\interfaces\NPCObject.py" />
     <Compile Include="scripts\base\interfaces\Teleport.py" />
@@ -36,8 +37,12 @@
     <Compile Include="scripts\base\items\__init__.py" />
     <Compile Include="scripts\base\kbemain.py" />
     <Compile Include="scripts\base\kbengine.py" />
+    <Compile Include="scripts\base\Match.py" />
+    <Compile Include="scripts\base\Player.py" />
     <Compile Include="scripts\base\quests\base\__init__.py" />
     <Compile Include="scripts\base\quests\__init__.py" />
+    <Compile Include="scripts\base\Room.py" />
+    <Compile Include="scripts\base\Rooms.py" />
     <Compile Include="scripts\base\Space.py" />
     <Compile Include="scripts\base\SpaceAlloc.py" />
     <Compile Include="scripts\base\SpaceDuplicate.py" />
@@ -108,6 +113,7 @@
     <Compile Include="scripts\cell\NPC.py" />
     <Compile Include="scripts\cell\quests\base\__init__.py" />
     <Compile Include="scripts\cell\quests\__init__.py" />
+    <Compile Include="scripts\cell\Room.py" />
     <Compile Include="scripts\cell\skills\base\DBuff.py" />
     <Compile Include="scripts\cell\skills\base\SkillInitiative.py" />
     <Compile Include="scripts\cell\skills\base\SkillPassivity.py" />

@@ -2,9 +2,9 @@ import py_util
 from KBEDebug import *
 import time
 class ChargeData:
-	#¶ÁÈ¡ÅäÖÃÊý¾Ý
+	#ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	def __init__(self):
-		#Ê±¼äÊÇ»¥³âµÄ
+		#Ê±ï¿½ï¿½ï¿½Ç»ï¿½ï¿½ï¿½ï¿½
 		self.diamond_mine = py_util._readXml('/data/xml/DiamondMine.xml', 'id_i')
 	def GetMineCfg(self):
 		t=time.time()
@@ -26,10 +26,10 @@ class ChargeData:
 		if vip :
 			return vip
 		else:
-			#--Õâ¸öÊÇ×î´óËùÐèvipµÈ¼¶
+			#--ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vipï¿½È¼ï¿½
 				m = cfg[vip_need].__len__()
 				return cfg[vip_need][m]
-#ÊÇ·ñÁìÈ¡Íê×î´ó
+#ï¿½Ç·ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½
 	def IfMax(self,t):
 		m = 0
 		cfg = self.GetMineCfg()
