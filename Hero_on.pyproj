@@ -250,7 +250,7 @@
     <Compile Include="scripts\common\Functor.py" />
     <Compile Include="scripts\common\GlobalConst.py" />
     <Compile Include="scripts\common\GlobalDefine.py" />
-    <Compile Include="scripts\common\Inventory.py" />
+    <AdditionalFiles Include="scripts\common\Inventory.py" />
     <Compile Include="scripts\common\KBEDebug.py" />
     <Compile Include="scripts\common\Math3D.py" />
     <Compile Include="scripts\common\skillbases\SCObject.py" />
@@ -424,6 +424,7 @@
     <Content Include="scripts\data\__pycache__\d_spaces_spawns.cpython-34.pyc" />
     <Content Include="scripts\db\__pycache__\kbemain.cpython-34.pyc" />
     <Content Include="scripts\entities.xml" />
+    <Content Include="scripts\entity_defs\Player.def" />
     <Content Include="scripts\entity_defs\Account.def" />
     <Content Include="scripts\entity_defs\ActivityMgr.def" />
     <Content Include="scripts\entity_defs\alias.xml" />
@@ -444,8 +445,11 @@
     <Content Include="scripts\entity_defs\interfaces\Teleport.def" />
     <Content Include="scripts\entity_defs\Monster.def" />
     <Content Include="scripts\entity_defs\NPC.def" />
+    <Content Include="scripts\entity_defs\Room.def" />
     <Content Include="scripts\entity_defs\Space.def" />
     <Content Include="scripts\entity_defs\SpaceDuplicate.def" />
+    <Content Include="scripts\entity_defs\Rooms.def" />
+    <Content Include="scripts\entity_defs\Match.def" />
     <Content Include="scripts\entity_defs\Spaces.def" />
     <Content Include="scripts\entity_defs\SpawnPoint.def" />
     <Content Include="scripts\entity_defs\State.def" />

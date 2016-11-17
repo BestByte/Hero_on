@@ -1,19 +1,24 @@
 <root>
 	<!--
-		ÊµÌå×¢²áÎÄ¼þ(<ÄãµÄ×Ê²ú¿â>/scripts/entities.xml)
-		ÏêÏ¸ËµÃ÷Çë²Î¿¼£ºhttp://kbengine.org/cn/docs/configuration/entities.html
+		å®žä½“æ³¨å†Œæ–‡ä»¶(<ä½ çš„èµ„äº§åº“>/scripts/entities.xml)
+		è¯¦ç»†è¯´æ˜Žè¯·å‚è€ƒï¼šhttp://kbengine.org/cn/docs/configuration/entities.html
 					http://www.kbengine.org/cn/docs/programming/entitydef.html
 	-->
 
 	<!-- <Avatar/> -->
 	<Account hasClient="true"></Account><!-- <Account hasCell="true" hasBase="true" hasClient="true"></Account> -->
-	<Avatar hasClient="true"></Avatar>
+  <Player hasClient="true"></Player>
+  <Account hasClient="true"></Account>
+  <Avatar hasClient="true"></Avatar>
 	<Monster hasClient="true"></Monster>
 	<NPC hasClient="true"></NPC>
 	<Gate hasClient="true"></Gate>
 	<DroppedItem hasClient="true"></DroppedItem>
 	<Spaces/>
 	<Space/>
+  <Room/>
+  <Rooms/>
+  <Match/>
 	<SpaceDuplicate/>
 	<SpawnPoint/>	
 </root>

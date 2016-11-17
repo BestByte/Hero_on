@@ -42,7 +42,7 @@ class Match(KBEngine.Base, GameObject):
 		self.dList=list(self.dGroup.keys())
 		self.eList=list(self.eGroup.keys())
 		#考虑添加属性
-
+		
 		# 初始化空间分配器
 		#self.initAlloc()
 
@@ -131,7 +131,7 @@ class Match(KBEngine.Base, GameObject):
 
 
 		#下面是根据选出来的两个实体，创建房间
-		KBEngine.globalData["Rommss"].createSpace(0,{},self.playerCal[player.id][k], player)
+		KBEngine.globalData["Romes"].createSpace(0,{},self.playerCal[player.id][k], player)
 
 		#选出来两者之后，把它的字典删除了。
 		#有个问题，会不会删除太早了？
@@ -142,7 +142,7 @@ class Match(KBEngine.Base, GameObject):
 
 		#roomID=int(time.time()*100)
 
-		self.reqEnterRoom(self, roomID,self.playerMactch[player][x], player)
+		#self.reqEnterRoom(self, roomID,self.playerMactch[player][x], player)
 
 	def reqEnterRoom(self,matched_palyer, player):
 		"""

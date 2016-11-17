@@ -5,13 +5,14 @@ import time
 import d_spaces
 
 import GlobalConst
-
+from interfaces.GameObject import GameObject
+from interfaces.Teleport import Teleport
 from AVATAR_INFO import TAvatarInfo
 from AVATAR_INFO import TAvatarInfoList
 from KBEDebug import *
 import d_avatar_inittab
 
-class Player(KBEngine.Proxy):
+class Player(KBEngine.Proxy,GameObject,Teleport):
 	"""
 	账号实体
 	客户端登陆到服务端后，服务端将自动创建这个实体，通过这个实体与客户端进行交互
@@ -25,7 +26,18 @@ class Player(KBEngine.Proxy):
 		self.relogin = time.time()
 
 		#Player创建完成之后自动加入大厅
-		KBEngine.globalData["Hall"].reqEnterHall(self)
+		#KBEngine.globalData["Hall"].reqEnterHall(self)
+	def req_match(self):
+		"""
+		exposed
+		客户端请求匹配
+		"""
+		DEBUG_MSG("Player[%i].req_match" % (self.id))
+		KBEngine.globalData["match%i"%(os.getenv("KBE_BOOTIDX_GROUP"))].addPVPMatch(self,os.getenv("KBE_BOOTIDX_GROUP"))
+		
+		DEBUG_MSG("KBEngine.globalData[match%i]:addPVPMatch(self)" % (os.getenv("KBE_BOOTIDX_GROUP")))
+
+		self.client.on_req_match("正在匹配中...")
 
 	def func(self):
          # 请求获取match的属性
@@ -37,12 +49,7 @@ class Player(KBEngine.Proxy):
 
 		DEBUG_MSG("Player[%i].self.attrs[%s]" % (self.id,attrs))
 
-	def addPVPMatch(self):
-		DEBUG_MSG("Player[%i].reqPVPMatch" % (self.id))
-
-		KBEngine.globalData["match%i"%(os.getenv("KBE_BOOTIDX_GROUP"))].addPVPMatch(self,os.getenv("KBE_BOOTIDX_GROUP"))
-		
-		DEBUG_MSG("KBEngine.globalData[match%i]:addPVPMatch(self)" % (os.getenv("KBE_BOOTIDX_GROUP")))
+	
 
 	#--------------------------------------------------------------------------------------------
 	#                              Callbacks
@@ -56,7 +63,8 @@ class Player(KBEngine.Proxy):
 		"""
 		INFO_MSG("Account[%i]::onEntitiesEnabled:entities enable. mailbox:%s, clientType(%i), clientDatas=(%s), hasAvatar=%s, accountName=%s" % \
 			(self.id, self.client, self.getClientType(), self.getClientDatas(), self.activeAvatar, self.__ACCOUNT_NAME__))
-			
+		Teleport.onEntitiesEnabled(self)
+
 	def onLogOnAttempt(self, ip, port, password):
 		"""
 		KBEngine method.
