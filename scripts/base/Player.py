@@ -22,7 +22,7 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		
 		# 状态0：未开始游戏， 1：游戏中,2:匹配中，3.上线
 		#考虑做个def中的存储
-		self.state = 0
+		#self.state = 0
 		self.relogin = time.time()
 
 		#Player创建完成之后自动加入大厅

@@ -27,7 +27,7 @@ class Rooms(KBEngine.Base, GameObject):
 		KBEngine.globalData["Rooms"] = self
 
 	# 这里真正开始创建这些space实体， 里面调用的createBaseAnywhere函数来创建实体， 如果启动了多个baseapp这个函数根据负载情况将实体选择到合适的进程中创建。	
-	def createSpace(self, spaceKey, context,matched_palyer,palyer_mailbox):
+	def createSpace(self, spaceKey, context,matched_player,player_mailbox):
 		"""
 		"""
 		if spaceKey <= 0:
@@ -39,15 +39,20 @@ class Rooms(KBEngine.Base, GameObject):
 											{
 											"spaceKey" : spaceKey,	\
 											"context" : context,	\
-											"matched_player":matched_palyer, "player_mailbox":palyer_mailbox
+											"matched_player":matched_player, "player_mailbox":player_mailbox
 											}, \
-											Functor.Functor(self.onSpaceCreatedCB, spaceKey))
+											Functor.Functor(self.onSpaceCreatedCB, spaceKey,player_mailbox,matched_player))
 
-	def onSpaceCreatedCB(self, spaceKey, space):
+	def onSpaceCreatedCB(self, spaceKey,player_mailbox,matched_player, space):
 		"""
 		一个space创建好后的回调
 		"""
 		DEBUG_MSG("Rooms::onSpaceCreatedCB: room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
+
+		player_mailbox.client.on_match_success("匹配成功")
+		DEBUG_MSG("player_mailbox.client.on_match_success(匹配成功) room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
+		matched_player.client.on_match_success("匹配成功")
+		DEBUG_MSG("matched_player.client.on_match_success(匹配成功): room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
 		
 	def initAlloc(self):
 

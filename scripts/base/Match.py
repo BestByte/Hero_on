@@ -7,7 +7,7 @@ import Watcher
 from KBEDebug import *
 from SpaceAlloc import *
 from interfaces.GameObject import GameObject
-from RoomAlloc import *
+
 import math
 import time
 import os
