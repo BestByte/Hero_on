@@ -409,12 +409,7 @@
     <Content Include="scripts\db\__pycache__\kbemain.cpython-34.pyc" />
     <Content Include="scripts\entities.xml" />
     <Content Include="scripts\entity_defs\Player.def" />
-    <Content Include="scripts\entity_defs\Account.def" />
-    <Content Include="scripts\entity_defs\ActivityMgr.def" />
     <Content Include="scripts\entity_defs\alias.xml" />
-    <Content Include="scripts\entity_defs\Avatar.def" />
-    <Content Include="scripts\entity_defs\DroppedItem.def" />
-    <Content Include="scripts\entity_defs\Gate.def" />
     <Content Include="scripts\entity_defs\interfaces\AI.def" />
     <Content Include="scripts\entity_defs\interfaces\Combat.def" />
     <Content Include="scripts\entity_defs\interfaces\CombatPropertys.def" />
@@ -430,11 +425,8 @@
     <Content Include="scripts\entity_defs\Monster.def" />
     <Content Include="scripts\entity_defs\NPC.def" />
     <Content Include="scripts\entity_defs\Room.def" />
-    <Content Include="scripts\entity_defs\Space.def" />
-    <Content Include="scripts\entity_defs\SpaceDuplicate.def" />
     <Content Include="scripts\entity_defs\Rooms.def" />
     <Content Include="scripts\entity_defs\Match.def" />
-    <Content Include="scripts\entity_defs\Spaces.def" />
     <Content Include="scripts\entity_defs\SpawnPoint.def" />
     <Content Include="scripts\entity_defs\State.def" />
     <Content Include="scripts\interface\__pycache__\kbemain.cpython-34.pyc" />
