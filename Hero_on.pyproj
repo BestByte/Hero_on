@@ -108,8 +108,6 @@
     <Compile Include="scripts\cell\skills\SkillAttack.py" />
     <Compile Include="scripts\cell\skills\__init__.py" />
     <Compile Include="scripts\cell\Space.py" />
-    <Compile Include="scripts\cell\SpaceContext.py" />
-    <Compile Include="scripts\cell\SpaceDuplicate.py" />
     <Compile Include="scripts\cell\SpawnPoint.py" />
     <Compile Include="scripts\common\config\action_config.py">
       <SubType>Code</SubType>
