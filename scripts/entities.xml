@@ -6,19 +6,15 @@
 	-->
 
 	<!-- <Avatar/> -->
-	<Account hasClient="true"></Account><!-- <Account hasCell="true" hasBase="true" hasClient="true"></Account> -->
+	
   <Player hasClient="true"></Player>
-  <Account hasClient="true"></Account>
-  <Avatar hasClient="true"></Avatar>
+  
 	<Monster hasClient="true"></Monster>
 	<NPC hasClient="true"></NPC>
-	<Gate hasClient="true"></Gate>
-	<DroppedItem hasClient="true"></DroppedItem>
-	<Spaces/>
-	<Space/>
+	
   <Room/>
   <Rooms/>
   <Match/>
-	<SpaceDuplicate/>
+
 	<SpawnPoint/>	
 </root>
