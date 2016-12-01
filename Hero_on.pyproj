@@ -37,10 +37,6 @@
     <Compile Include="scripts\base\quests\__init__.py" />
     <Compile Include="scripts\base\Room.py" />
     <Compile Include="scripts\base\Rooms.py" />
-    <Compile Include="scripts\base\Space.py" />
-    <Compile Include="scripts\base\SpaceAlloc.py" />
-    <Compile Include="scripts\base\SpaceDuplicate.py" />
-    <Compile Include="scripts\base\Spaces.py" />
     <Compile Include="scripts\base\SpawnPoint.py" />
     <Compile Include="scripts\base\SubSystem\ActivitySystem.py">
       <SubType>Code</SubType>
@@ -77,7 +73,6 @@
     <Compile Include="scripts\bots\skills\base\__init__.py" />
     <Compile Include="scripts\bots\skills\SkillAttack.py" />
     <Compile Include="scripts\bots\skills\__init__.py" />
-    <Compile Include="scripts\cell\Avatar.py" />
     <Compile Include="scripts\cell\dialogmgr\Dialog.py" />
     <Compile Include="scripts\cell\dialogmgr\DialogMgr.py" />
     <Compile Include="scripts\cell\dialogmgr\funcs\DFClose.py" />
@@ -85,7 +80,6 @@
     <Compile Include="scripts\cell\dialogmgr\funcs\iDFunction.py" />
     <Compile Include="scripts\cell\dialogmgr\funcs\__init__.py" />
     <Compile Include="scripts\cell\dialogmgr\__init__.py" />
-    <Compile Include="scripts\cell\Gate.py" />
     <Compile Include="scripts\cell\interfaces\AI.py" />
     <Compile Include="scripts\cell\interfaces\Combat.py" />
     <Compile Include="scripts\cell\interfaces\CombatPropertys.py" />
@@ -102,7 +96,6 @@
     <Compile Include="scripts\cell\items\base\__init__.py" />
     <Compile Include="scripts\cell\items\__init__.py" />
     <Compile Include="scripts\cell\kbemain.py" />
-    <Compile Include="scripts\cell\kbengine.py" />
     <Compile Include="scripts\cell\Monster.py" />
     <Compile Include="scripts\cell\NPC.py" />
     <Compile Include="scripts\cell\quests\base\__init__.py" />
