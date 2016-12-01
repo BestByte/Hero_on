@@ -29,18 +29,7 @@ class Match(KBEngine.Base, GameObject):
 		#match1 建立的决定确认的各个实体
 		self.playerCal={}
 		#self.players={}
-		self.aGroup={}#0到200分
-		self.bGroup={}#200到400
-		self.cGroup={}
-		self.dGroup={}
-		self.eGroup={}
-
-		#按照奖牌得分的差异，把不同等级的玩家的键值做一个列表，存储玩家的mailbox
-		self.aList=list(self.aGroup.keys())
-		self.bList=list(self.bGroup.keys())
-		self.cList=list(self.cGroup.keys())
-		self.dList=list(self.dGroup.keys())
-		self.eList=list(self.eGroup.keys())
+		
 		#考虑添加属性
 		
 		# 初始化空间分配器

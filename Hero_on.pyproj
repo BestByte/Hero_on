@@ -257,12 +257,9 @@
     <Compile Include="scripts\db\kbemain.py" />
     <Compile Include="scripts\db\kbengine.py" />
     <Compile Include="scripts\interface\kbemain.py" />
-    <Compile Include="scripts\interface\kbengine.py" />
     <Compile Include="scripts\interface\Poller.py" />
     <Compile Include="scripts\logger\kbemain.py" />
-    <Compile Include="scripts\logger\kbengine.py" />
     <Compile Include="scripts\login\kbemain.py" />
-    <Compile Include="scripts\login\kbengine.py" />
     <Compile Include="scripts\server_common\SCDefine.py" />
     <Compile Include="scripts\user_type\AVATAR_DATA.py" />
     <Compile Include="scripts\user_type\AVATAR_INFOS.py" />
