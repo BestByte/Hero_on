@@ -23,7 +23,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Hero_on.py" />
-    <Compile Include="scripts\base\Hall.py" />
     <Compile Include="scripts\base\interfaces\GameObject.py" />
     <Compile Include="scripts\base\interfaces\NPCObject.py" />
     <Compile Include="scripts\base\interfaces\Teleport.py" />
@@ -98,6 +97,9 @@
     <Compile Include="scripts\cell\kbemain.py" />
     <Compile Include="scripts\cell\Monster.py" />
     <Compile Include="scripts\cell\NPC.py" />
+    <Compile Include="scripts\cell\Player.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\cell\quests\base\__init__.py" />
     <Compile Include="scripts\cell\quests\__init__.py" />
     <Compile Include="scripts\cell\Room.py" />
@@ -426,7 +428,6 @@
     <Content Include="scripts\entity_defs\Rooms.def" />
     <Content Include="scripts\entity_defs\Match.def" />
     <Content Include="scripts\entity_defs\SpawnPoint.def" />
-    <Content Include="scripts\entity_defs\State.def" />
     <Content Include="scripts\interface\__pycache__\kbemain.cpython-34.pyc" />
     <Content Include="scripts\interface\__pycache__\Poller.cpython-34.pyc" />
     <Content Include="scripts\logger\__pycache__\kbemain.cpython-34.pyc" />
