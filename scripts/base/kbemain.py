@@ -5,7 +5,8 @@ import d_spaces
 
 import items
 from KBEDebug import *
-
+import os
+global ser_number 
 def onBaseAppReady(isBootstrap):
 	"""
 	KBEngine method.
@@ -18,10 +19,16 @@ def onBaseAppReady(isBootstrap):
 	# 安装监视器
 	Watcher.setup()
 	
+	ser_number= os.getenv("KBE_BOOTIDX_GROUP")
+
+	#不论第几个baseAPP，都要常见匹配实体Match
 	if isBootstrap:
 		# 创建spacemanager
-		KBEngine.createBaseLocally( "Spaces", {} )
-	
+		KBEngine.createBaseLocally( "Match", {} )
+		KBEngine.createBaseLocally( "Rooms", {} )
+	else:
+		KBEngine.createBaseLocally( "Match", {} )
+
 def onBaseAppShutDown(state):
 	"""
 	KBEngine method.
@@ -45,24 +52,6 @@ def onReadyForLogin(isBootstrap):
 		INFO_MSG('initProgress: completed!')
 		return 1.0
 		
-	spacesEntity = KBEngine.globalData["Spaces"]
-	
-	tmpDatas = list(d_spaces.datas.keys())
-	count = 0
-	total = len(tmpDatas)
-	
-	for utype in tmpDatas:
-		spaceAlloc = spacesEntity.getSpaceAllocs()[utype]
-		if spaceAlloc.__class__.__name__ != "SpaceAllocDuplicate":
-			if len(spaceAlloc.getSpaces()) > 0:
-				count += 1
-		else:
-			count += 1
-	
-	if count < total:
-		v = float(count) / total
-		# INFO_MSG('initProgress: %f' % v)
-		return v;
 	
 	INFO_MSG('initProgress: completed!')
 	return 1.0

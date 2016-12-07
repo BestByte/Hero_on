@@ -120,7 +120,7 @@ class Match(KBEngine.Base, GameObject):
 
 
 		#下面是根据选出来的两个实体，创建房间
-		KBEngine.globalData["Romes"].createSpace(0,{},self.playerCal[player.id][k], player)
+		KBEngine.globalData["Rooms"].createSpace(0,{},self.playerCal[player.id][k], player)
 
 		#选出来两者之后，把它的字典删除了。
 		#有个问题，会不会删除太早了？
