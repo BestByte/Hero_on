@@ -36,7 +36,6 @@
     <Compile Include="scripts\base\quests\__init__.py" />
     <Compile Include="scripts\base\Room.py" />
     <Compile Include="scripts\base\Rooms.py" />
-    <Compile Include="scripts\base\SpawnPoint.py" />
     <Compile Include="scripts\base\SubSystem\ActivitySystem.py">
       <SubType>Code</SubType>
     </Compile>
@@ -109,8 +108,6 @@
     <Compile Include="scripts\cell\skills\base\__init__.py" />
     <Compile Include="scripts\cell\skills\SkillAttack.py" />
     <Compile Include="scripts\cell\skills\__init__.py" />
-    <Compile Include="scripts\cell\Space.py" />
-    <Compile Include="scripts\cell\SpawnPoint.py" />
     <Compile Include="scripts\common\config\action_config.py">
       <SubType>Code</SubType>
     </Compile>
@@ -422,12 +419,9 @@
     <Content Include="scripts\entity_defs\interfaces\Spell.def" />
     <Content Include="scripts\entity_defs\interfaces\State.def" />
     <Content Include="scripts\entity_defs\interfaces\Teleport.def" />
-    <Content Include="scripts\entity_defs\Monster.def" />
-    <Content Include="scripts\entity_defs\NPC.def" />
     <Content Include="scripts\entity_defs\Room.def" />
     <Content Include="scripts\entity_defs\Rooms.def" />
     <Content Include="scripts\entity_defs\Match.def" />
-    <Content Include="scripts\entity_defs\SpawnPoint.def" />
     <Content Include="scripts\interface\__pycache__\kbemain.cpython-34.pyc" />
     <Content Include="scripts\interface\__pycache__\Poller.cpython-34.pyc" />
     <Content Include="scripts\logger\__pycache__\kbemain.cpython-34.pyc" />
