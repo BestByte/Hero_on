@@ -45,10 +45,10 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		 KBEngine.globalData["match%i"%(os.getenv("KBE_BOOTIDX_GROUP"))].reqGetAttr(self)# // 注意：这里将自己传入方法了， 引擎会将其转变为mailbox传输到对方进程上并传入这个实体的方法中， 在spaces中就可以将信息返回给指定实体了。
 		 DEBUG_MSG("KBEngine.globalData[match%i]:reqGetAttr(self)" % (os.getenv("KBE_BOOTIDX_GROUP")))
 
-	def onGetAttr(self, attrs):
-		return self.attrs
+	def onGetAttr(self):
+		return self.champion
 
-		DEBUG_MSG("Player[%i].self.attrs[%s]" % (self.id,attrs))
+		DEBUG_MSG("Player[%i].self.attrs[%s]" % (self.id,self.champion))
 
 	
 

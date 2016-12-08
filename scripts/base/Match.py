@@ -89,9 +89,9 @@ class Match(KBEngine.Base, GameObject):
 
 		DEBUG_MSG("KBEngine.globalData['match1'].addPVPResult(matchedPlayer[%s],matchedPlayer.champion[%i],plalyer[%s],self.reqGetAttrs(player,champion)[%i]),os.getenv('KBE_BOOTIDX_GROUP')[%i]" % (matchedPlayer,matchedPlayer.champion,plalyer,self.reqGetAttrs(player,champion),os.getenv("KBE_BOOTIDX_GROUP")))
 
-	def reqGetAttr(self, mailbox,attrs):
-		mailbox.onGetAttr(self.attrs)
-		DEBUG_MSG("Player[%i].reqGetAttr(self, mailbox,attrs [%s]):" % (mailbox.id,attrs))
+	def reqGetAttr(self, mailbox):
+		mailbox.onGetAttr(self.champion)
+		DEBUG_MSG("Player[%i].reqGetAttr(self, mailbox,attrs [%s]):" % (mailbox.id,self.champion))
 
 	def addPVPResult(self,matchedPlayer,matchedChampion, player,playerChampion,player_match_number,match_order):#match_order 是match的启动值
 
