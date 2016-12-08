@@ -27,6 +27,7 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 
 		#Player创建完成之后自动加入大厅
 		#KBEngine.globalData["Hall"].reqEnterHall(self)
+
 	def req_match(self):
 		"""
 		exposed

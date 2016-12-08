@@ -36,7 +36,7 @@ class Match(KBEngine.Base, GameObject):
 		#self.initAlloc()
 
 		# 初始化房间分配器
-		self.initRoomAlloc()
+		#self.initRoomAlloc()
 
 		# 将自己注册到共享数据中， 在当前进程KBEngine.globalData["Halls"]返回的是Halls实体，其他进程中
 		# 由于实体不在那个进程所以KBEngine.globalData["Halls"]返回的是mailbox
@@ -46,7 +46,7 @@ class Match(KBEngine.Base, GameObject):
 		KBEngine.globalData["match%i"%(os.getenv("KBE_BOOTIDX_GROUP"))] = self
 
 		# 通过添加一个定时器延时执行房间的创建，确保一些状态在此期间能够初始化完毕
-		self.addTimer(3, 1, 1)
+		#self.addTimer(3, 1, 1)
 
 	def addPVPMatch(self,player,palyer_match_num):
 		DEBUG_MSG("Match[%i].addPVPMatch" % (player.id))
@@ -141,40 +141,6 @@ class Match(KBEngine.Base, GameObject):
 		DEBUG_MSG("Room.reqEnterRoom: %s" % (self.roomID))
 		self.players[player.id] = player
 
-	def onTimer(self, id, userArg):
-		"""
-		KBEngine method.
-		使用addTimer后， 当时间到达则该接口被调用
-		@param id		: addTimer 的返回值ID
-		@param userArg	: addTimer 最后一个参数所给入的数据
-		"""
-		DEBUG_MSG(id, userArg)
-
-		if userArg == 1:
-			self.createPVPRoom()
-
-	def initRoomAlloc(self):
-		# 注册一个定时器，在这个定时器中我们每个周期都创建出一些场景，直到创建完所有
-		self._roomAllocs = {}
-
-		self._roomAllocs[0] = RoomAlloc(0)
-
-	def createPVPRoom(self):
-		"""
-		defined.
-		每一秒通过playerLog里的得分一致的玩家来创建房间
-		"""
-		DEBUG_MSG("Halls[%i].reqEnterRoom: %s" % (self.id, roomID))
-		#还需要加点条件
-		if len(self.aList)>=2:
-			for x in range(len(self.aList)):
-				if x%2==0:
-					self._roomAllocs[0].createSpace(0,{},self.aList[x],self.aList[x+1])
-
-	def getSpaceAllocs(self):
-		return self._roomAllocs
-		
-	
 	def loginToSpace(self, avatarEntity, spaceUType, context):
 		"""
 		defined method.
@@ -208,8 +174,6 @@ class Match(KBEngine.Base, GameObject):
 		引擎回调timer触发
 		"""
 		#DEBUG_MSG("%s::onTimer: %i, tid:%i, arg:%i" % (self.getScriptName(), self.id, tid, userArg))
-		if SCDefine.TIMER_TYPE_CREATE_SPACES == userArg:
-			self.createSpaceOnTimer(tid)
 		
 		GameObject.onTimer(self, tid, userArg)
 		
