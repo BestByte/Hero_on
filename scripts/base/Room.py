@@ -37,32 +37,7 @@ class Room(KBEngine.Base, GameObject):
 		self.avatars = {}
 		self.createSpawnPointDatas()
 		
-	def createSpawnPointDatas(self):
-		"""
-		"""
-
-		res = r"scripts\data\spawnpoints\%s_spawnpoints.xml" % self.spaceResName
-		
-		if(len(self.spaceResName) == 0 or not KBEngine.hasRes(res)):
-			return
-			
-		res = KBEngine.getResFullPath(res)
-			
-		tree = etree.parse(res) 
-		root = tree.getroot()
-		
-		DEBUG_MSG("Space::createSpawnPointDatas: %s" % (res))
-		
-		for child in root:
-			position = child[0][0]
-			direction = child[0][1]
-			scaleNode = child[0][2]
-			scale = int(((float(scaleNode[0].text) + float(scaleNode[1].text) + float(scaleNode[2].text)) / 3.0) * 10)
-			self.tmpCreateEntityDatas.append([int(child.attrib['name']), \
-			(float(position[0].text), float(position[1].text), float(position[2].text)), \
-			(float(direction[0].text) * ((math.pi * 2) / 360), float(direction[1].text) * ((math.pi * 2) / 360), float(direction[2].text) * ((math.pi * 2) / 360)), \
-			scale, \
-			])
+	
 
 	#等到引擎API函数onGetCell调用成功之后才负责
 	#出生点的数据（实体类型、坐标、朝向等）是通过配置文件给出的，script/data/d_spaces_spawns.py与script/data/spawnpoints/xinshoucun_spawnpoints.xml 关于这2个配置的由来可以参考配置章节	
