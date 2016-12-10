@@ -68,9 +68,7 @@ class Match(KBEngine.Base, GameObject):
 		charge_value=200 #起始设定的与玩家奖杯的差值
 		charge_id=1 #记录玩家的标号
 		for x in self.playerMactch.values():
-			#若是玩家正在匹配中，则状态码为2
-
-		    #if x.state==2:
+			
 				#若是在线的正要匹配的玩家当中，与匹配的玩家的奖杯数差值最少的玩家
 				#则要传给baseapp1的匹配实体Match
 				#x属于本线程的实体，直接访问champion属性
@@ -100,7 +98,6 @@ class Match(KBEngine.Base, GameObject):
 		#考虑到baseapp的顺序match_order
 		self.playerCal[player.id][match_order]=matchedPlayer
 
-
 		#若是所有的match系统都已经传过来匹配值，则进行最终挑选
 		if self.playerCal[player.id].__len__()==ser_number:
 			cal_result(player_match_number)
@@ -118,7 +115,6 @@ class Match(KBEngine.Base, GameObject):
 					end_palyer=v
 					match_num=k
 
-
 		#下面是根据选出来的两个实体，创建房间
 		KBEngine.globalData["Rooms"].createSpace(0,{},self.playerCal[player.id][k], player)
 
@@ -133,11 +129,9 @@ class Match(KBEngine.Base, GameObject):
 
 		#self.reqEnterRoom(self, roomID,self.playerMactch[player][x], player)
 
-	
-
-	#--------------------------------------------------------------------------------------------
+	#---------------------------------------------------------------------
 	#                              Callbacks
-	#--------------------------------------------------------------------------------------------
+	#---------------------------------------------------------------------
 	def onTimer(self, tid, userArg):
 		"""
 		KBEngine method.
@@ -146,20 +140,6 @@ class Match(KBEngine.Base, GameObject):
 		#DEBUG_MSG("%s::onTimer: %i, tid:%i, arg:%i" % (self.getScriptName(), self.id, tid, userArg))
 		
 		GameObject.onTimer(self, tid, userArg)
-		
-	def onSpaceLoseCell(self, spaceUType, spaceKey):
-		"""
-		defined method.
-		space的cell创建好了
-		"""
-		self._roomAllocs[spaceUType].onSpaceLoseCell(spaceKey)
-		
-	def onSpaceGetCell(self, spaceKey,	context,playerA,playerB):
-		"""
-		defined method.
-		space的cell创建好了
-		"""
-		self._roomAllocs[0].onSpaceGetCell( spaceKey,spaceMailbox,	context,playerA,playerB)
 
 	
 

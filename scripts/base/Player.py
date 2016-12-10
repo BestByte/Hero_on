@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 import KBEngine
-
 import time
 import d_spaces
-
 import GlobalConst
 from interfaces.GameObject import GameObject
 from interfaces.Teleport import Teleport
@@ -42,8 +40,8 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 
 	def func(self):
          # 请求获取match的属性
-		 KBEngine.globalData["match%i"%(os.getenv("KBE_BOOTIDX_GROUP"))].reqGetAttr(self)# // 注意：这里将自己传入方法了， 引擎会将其转变为mailbox传输到对方进程上并传入这个实体的方法中， 在spaces中就可以将信息返回给指定实体了。
-		 DEBUG_MSG("KBEngine.globalData[match%i]:reqGetAttr(self)" % (os.getenv("KBE_BOOTIDX_GROUP")))
+		 KBEngine.globalData["match%i"%(os.getenv("KBE_BOOTIDX_GROUP"))].reqGetAttrs(self)# // 注意：这里将自己传入方法了， 引擎会将其转变为mailbox传输到对方进程上并传入这个实体的方法中， 在spaces中就可以将信息返回给指定实体了。
+		 DEBUG_MSG("KBEngine.globalData[match%i]:reqGetAttrs(self)" % (os.getenv("KBE_BOOTIDX_GROUP")))
 
 	def onGetAttr(self):
 		return self.champion

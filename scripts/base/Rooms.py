@@ -54,63 +54,12 @@ class Rooms(KBEngine.Base, GameObject):
 		matched_player.client.on_match_success("匹配成功")
 		DEBUG_MSG("matched_player.client.on_match_success(匹配成功): room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
 		
-	def initAlloc(self):
-
-		# 注册一个定时器，在这个定时器中我们每个周期都创建出一些场景，直到创建完所有
-		self._spaceAllocs = {}
-		self.addTimer(3, 1, SCDefine.TIMER_TYPE_CREATE_SPACES)
-		
-		self._tmpDatas = list(d_spaces.datas.keys())
-		for utype in self._tmpDatas:
-			spaceData = d_spaces.datas.get(utype)
-			if spaceData["entityType"] == "SpaceDuplicate":
-				self._spaceAllocs[utype] = SpaceAllocDuplicate(utype)
-			else:
-				self._spaceAllocs[utype] = SpaceAlloc(utype)
 	
-	def getSpaceAllocs(self):
-		return self._spaceAllocs
-		
-	def createSpaceOnTimer(self, tid):
-		"""
-		创建space
-		这个定时器下面才是真正才能场景的，前面的__init__()只是初始化
-		"""
-		if len(self._tmpDatas) > 0:
-			spaceUType = self._tmpDatas.pop(0)
-			self._spaceAllocs[spaceUType].init()
-			
-		if len(self._tmpDatas) <= 0:
-			del self._tmpDatas
-			self.delTimer(tid)
-			
-	def loginToSpace(self, avatarEntity, spaceUType, context):
-		"""
-		defined method.
-		某个玩家请求登陆到某个space中
-		"""
-		self._spaceAllocs[spaceUType].loginToSpace(avatarEntity, context)
-	
-	def logoutSpace(self, avatarID, spaceKey):
-		"""
-		defined method.
-		某个玩家请求登出这个space
-		"""
-		for spaceAlloc in self._spaceAllocs.values():
-			space = spaceAlloc.getSpaces().get(spaceKey)
-			if space:
-				space.logoutSpace(avatarID)
-				
-	def teleportSpace(self, entityMailbox, spaceUType, position, direction, context):
-		"""
-		defined method.
-		请求进入某个space中
-		"""
-		self._spaceAllocs[spaceUType].teleportSpace(entityMailbox, position, direction, context)
 
-	#--------------------------------------------------------------------------------------------
+	#-----------------------------------------------------------------------------------------
 	#                              Callbacks
-	#--------------------------------------------------------------------------------------------
+	#-----------------------------------------------------------------------------------------
+
 	def onTimer(self, tid, userArg):
 		"""
 		KBEngine method.
