@@ -27,7 +27,7 @@ class Room(KBEngine.Base, GameObject):
 		#此功能由createInNewSpace完成, __init__可以理解为Space的构造函数。
 		self.createInNewSpace(None)
 		
-		self.spaceUTypeB = self.cellData["spaceUType"]
+		#self.spaceUTypeB = self.cellData["spaceUType"]
 		
 		self.spaceResName = d_spaces.datas.get(self.spaceUTypeB)['resPath']
 		
@@ -111,7 +111,9 @@ class Room(KBEngine.Base, GameObject):
 		for mb, pos, dir in playerB:
 			playerB.cell.onTeleportSpaceCB(self.cell, self.spaceKey, pos, dir)
 
-
+	#---------------------------------------------------------------------
+	#                              Callbacks
+	#---------------------------------------------------------------------
 	def onTimer(self, tid, userArg):
 		"""
 		KBEngine method.
