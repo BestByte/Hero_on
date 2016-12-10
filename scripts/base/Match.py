@@ -92,11 +92,10 @@ class Match(KBEngine.Base, GameObject):
 
 	def reqGetAttrs(self, mailbox):
 		mailbox.onGetAttr(self.champion)
-		DEBUG_MSG("Player[%i].reqGetAttr(self, mailbox,attrs [%s]):" % (mailbox.id,self.champion))
+		DEBUG_MSG("Player[%i].reqGetAttr(self, mailbox,attrs [%s]):" % (mailbox.id))
 
 	def addPVPResult(self,matchedPlayer,matchedChampion, player,playerChampion,player_match_number,match_order):#match_order 是match的启动值
 
-		
 		#主match实体汇总处理
 		#考虑到baseapp的顺序match_order
 		self.playerCal[player.id][match_order]=matchedPlayer
@@ -114,8 +113,8 @@ class Match(KBEngine.Base, GameObject):
 		match_num=0 #最小的玩家所在的baseapp
 		for k ,v in self.playerCal[player.id].items():
 			if v !=None:
-				if min_val>abs(self.reqGetAttr(v)-self.reqGetAttrs(player,champion)):
-					min_val=abs(self.reqGetAttr(v)-self.reqGetAttrs(player,champion))
+				if min_val>abs(self.reqGetAttrs(v)-self.reqGetAttrs(player)):
+					min_val=abs(self.reqGetAttrs(v)-self.reqGetAttrs(player))
 					end_palyer=v
 					match_num=k
 
@@ -134,37 +133,7 @@ class Match(KBEngine.Base, GameObject):
 
 		#self.reqEnterRoom(self, roomID,self.playerMactch[player][x], player)
 
-	def reqEnterRoom(self,matched_palyer, player):
-		"""
-		defined.
-		客户端调用该接口请求进入房间/桌子
-		"""
-		DEBUG_MSG("Room.reqEnterRoom: %s" % (self.roomID))
-		self.players[player.id] = player
-
-	def loginToSpace(self, avatarEntity, spaceUType, context):
-		"""
-		defined method.
-		某个玩家请求登陆到某个space中
-		"""
-		self._roomAllocs[spaceUType].loginToSpace(avatarEntity, context)
 	
-	def logoutSpace(self, avatarID, spaceKey):
-		"""
-		defined method.
-		某个玩家请求登出这个space
-		"""
-		for spaceAlloc in self._roomAllocs.values():
-			space = spaceAlloc.getSpaces().get(spaceKey)
-			if space:
-				space.logoutSpace(avatarID)
-				
-	def teleportSpace(self, entityMailbox, spaceUType, position, direction, context):
-		"""
-		defined method.
-		请求进入某个space中
-		"""
-		self._roomAllocs[spaceUType].teleportSpace(entityMailbox, position, direction, context)
 
 	#--------------------------------------------------------------------------------------------
 	#                              Callbacks
