@@ -56,8 +56,6 @@ class Room(KBEngine.Base, GameObject):
 		引擎回调timer触发
 		"""
 		#DEBUG_MSG("%s::onTimer: %i, tid:%i, arg:%i" % (self.getScriptName(), self.id, tid, userArg))
-		if SCDefine.TIMER_TYPE_SPACE_SPAWN_TICK == userArg:
-			self.spawnOnTimer(tid)
 		
 		GameObject.onTimer(self, tid, userArg)
 		
@@ -67,10 +65,14 @@ class Room(KBEngine.Base, GameObject):
 		KBEngine method.
 		entity的cell部分实体丢失
 		"""
-		KBEngine.globalData["Spaces"].onSpaceLoseCell(self.spaceUTypeB, self.spaceKey)
+		KBEngine.globalData["rooms"].onSpaceLoseCell(self.spaceKey,
+			self,							
+											self.context,	
+											self.matched_palyer,
+											self.player_mailbox)
 		GameObject.onLoseCell(self)
 		
-	#onGetCell添加了一个刷出生点的定时器， 我们不能一次性创建出所有的出生点，因为数量可能很多, 使用定时器分批创建。
+		#onGetCell添加了一个刷出生点的定时器， 我们不能一次性创建出所有的出生点，因为数量可能很多, 使用定时器分批创建。
 
 		#引擎API函数
 

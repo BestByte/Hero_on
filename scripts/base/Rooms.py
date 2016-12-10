@@ -66,17 +66,20 @@ class Rooms(KBEngine.Base, GameObject):
 		引擎回调timer触发
 		"""
 		#DEBUG_MSG("%s::onTimer: %i, tid:%i, arg:%i" % (self.getScriptName(), self.id, tid, userArg))
-		if SCDefine.TIMER_TYPE_CREATE_SPACES == userArg:
-			self.createSpaceOnTimer(tid)
+		
 		
 		GameObject.onTimer(self, tid, userArg)
 		
-	def onSpaceLoseCell(self, spaceUType, spaceKey):
+	def onSpaceLoseCell(self, spaceKey,	
+											room_base_mailbox,
+											context,
+											matched_palyer,
+											player_mailbox):
 		"""
 		defined method.
 		space的cell创建好了
 		"""
-		self._spaceAllocs[spaceUType].onSpaceLoseCell(spaceKey)
+		
 		
 	def onSpaceGetCell(self, spaceKey,	
 											room_base_mailbox,

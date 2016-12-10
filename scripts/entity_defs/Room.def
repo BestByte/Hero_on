@@ -10,12 +10,7 @@
 	</Implements>
 
 	<Properties>
-		<spaceUType>
-			<Type>			UINT32				</Type>
-			<Flags>			CELL_PRIVATE			</Flags>
-			<Persistent>		false				</Persistent>
-		</spaceUType>
-
+		
 		<spaceKey>
 			<Type>			DBID				</Type>
 			<Flags>			BASE				</Flags>
@@ -30,39 +25,19 @@
 	</Properties>
 
 	<BaseMethods>
-		<loginToSpace>
-			<Arg>		MAILBOX		</Arg>
-			<Arg>		PYTHON		</Arg>
-		</loginToSpace>
 
-		<logoutSpace>
-			<Arg>		ENTITY_ID	</Arg>
-		</logoutSpace>
+    <teleportSpace>
 
-		<teleportSpace>
-			<Arg>		MAILBOX		</Arg>
-			<Arg>		POSITION3D	</Arg>
-			<Arg>		DIRECTION3D	</Arg>
-			<Arg>		PYTHON		</Arg>
-		</teleportSpace>
-
-		<onEnter>
-			<Arg>		MAILBOX		</Arg>
-		</onEnter>
-
-		<onLeave>
-			<Arg>		ENTITY_ID	</Arg>
-		</onLeave>
+      <Arg>		ENTITY_UTYPE	</Arg>
+      <Arg>		MAILBOX	</Arg>
+      <Arg>		MAILBOX	</Arg>
+      <Arg>		UNICODE		</Arg>
+    </teleportSpace>
+		
 	</BaseMethods>
 
 	<CellMethods>
-		<onEnter>
-			<Arg>		MAILBOX		</Arg>
-		</onEnter>
-
-		<onLeave>
-			<Arg>		ENTITY_ID	</Arg>
-		</onLeave>
+	
 	</CellMethods>
 </root>
 
