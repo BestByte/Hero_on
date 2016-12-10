@@ -20,8 +20,8 @@ def onBaseAppReady(isBootstrap):
 	Watcher.setup()
 	
 	ser_number= os.getenv("KBE_BOOTIDX_GROUP")
-
-	#不论第几个baseAPP，都要常见匹配实体Match
+	INFO_MSG('onBaseAppReady: ser_number=%s' % ser_number)
+	#不论第几个baseAPP，都要创建匹配实体Match
 	if isBootstrap:
 		# 创建spacemanager
 		KBEngine.createBaseLocally( "Match", {} )
@@ -52,7 +52,6 @@ def onReadyForLogin(isBootstrap):
 		INFO_MSG('initProgress: completed!')
 		return 1.0
 		
-	
 	INFO_MSG('initProgress: completed!')
 	return 1.0
 
@@ -73,8 +72,6 @@ def onInit(isReload):
 	@type isReload: bool
 	"""
 	INFO_MSG('onInit::isReload:%s' % isReload)
-
-	items.onInit()
 
 def onFini():
 	"""

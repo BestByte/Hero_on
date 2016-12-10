@@ -7,10 +7,10 @@ import Watcher
 from KBEDebug import *
 from SpaceAlloc import *
 from interfaces.GameObject import GameObject
-
 import math
 import time
 import os
+
 class Match(KBEngine.Base, GameObject):
 	"""
 	这是一个匹配系统
@@ -30,13 +30,7 @@ class Match(KBEngine.Base, GameObject):
 		self.playerCal={}
 		#self.players={}
 		
-		#考虑添加属性
-		
-		# 初始化空间分配器
-		#self.initAlloc()
-
-		# 初始化房间分配器
-		#self.initRoomAlloc()
+	
 
 		# 将自己注册到共享数据中， 在当前进程KBEngine.globalData["Halls"]返回的是Halls实体，其他进程中
 		# 由于实体不在那个进程所以KBEngine.globalData["Halls"]返回的是mailbox
@@ -48,8 +42,12 @@ class Match(KBEngine.Base, GameObject):
 		# 通过添加一个定时器延时执行房间的创建，确保一些状态在此期间能够初始化完毕
 		#self.addTimer(3, 1, 1)
 
-	def addPVPMatch(self,player,palyer_match_num):
-		DEBUG_MSG("Match[%i].addPVPMatch" % (player.id))
+	def addPVPMatch(self,player,player_match_num):
+		"""
+		player:MailBox
+		player_match_num:Match所在的baseAPP编号
+		""" 
+		DEBUG_MSG("Match[%i].addPVPMatch" % (os.getenv("KBE_BOOTIDX_GROUP")))
 		
 		#只要是匹配的玩家那么，就建立初始化列表 
 		self.playerMactch[player.id]=player
@@ -58,12 +56,15 @@ class Match(KBEngine.Base, GameObject):
 		KBEngine.globalData["match1"].playerCal[player.id]={}
 
 		for x in range(ser_number-1):
-		    KBEngine.globalData["match%i"%(x+1)].eachPVPMatch(player,palyer_match_num)
+		    KBEngine.globalData["match%i"%(x+1)].eachPVPMatch(player,player_match_num)
 
 		#self.charge_value=100#起始设定的与玩家奖杯的差值
 
 	def eachPVPMatch(self,player,player_match_number):
-		#player is mailbox
+		"""
+		player:MailBox
+		player_match_num:Match所在的baseAPP编号
+		""" 
 		charge_value=200 #起始设定的与玩家奖杯的差值
 		charge_id=1 #记录玩家的标号
 		for x in self.playerMactch.values():
@@ -73,11 +74,11 @@ class Match(KBEngine.Base, GameObject):
 				#若是在线的正要匹配的玩家当中，与匹配的玩家的奖杯数差值最少的玩家
 				#则要传给baseapp1的匹配实体Match
 				#x属于本线程的实体，直接访问champion属性
-			if charge_value<abs(x.champion-self.reqGetAttrs(player,champion)) and x.id != player.id:#在同一线程中，不能让两者重复
-					charge_value=abs(x.champion-self.reqGetAttrs(player,champion))
+			if charge_value<abs(x.champion-self.reqGetAttrs(player)) and x.id != player.id:#在同一线程中，不能让两者重复
+					charge_value=abs(x.champion-self.reqGetAttrs(player))
 					charge_id=x.id #记录最小差值玩家的标号
 			else:
-				charge_value=abs(x.champion-self.reqGetAttrs(player,champion))
+				charge_value=abs(x.champion-self.reqGetAttrs(player))
 				charge_id=x.id
 		if KBEngine.entities.has_key(charge_id):
 			matchedPlayer=KBEngine.entities[charge_id]
@@ -85,11 +86,11 @@ class Match(KBEngine.Base, GameObject):
 			matchedPlayer=None
 
 			#主match排序
-		KBEngine.globalData["match1"].addPVPResult(matchedPlayer,matchedPlayer.champion,plalyer,self.reqGetAttrs(player,champion),player_match_number,os.getenv("KBE_BOOTIDX_GROUP"))
+		KBEngine.globalData["match1"].addPVPResult(matchedPlayer,matchedPlayer.champion,plalyer,self.reqGetAttrs(player),player_match_number,os.getenv("KBE_BOOTIDX_GROUP"))
 
-		DEBUG_MSG("KBEngine.globalData['match1'].addPVPResult(matchedPlayer[%s],matchedPlayer.champion[%i],plalyer[%s],self.reqGetAttrs(player,champion)[%i]),os.getenv('KBE_BOOTIDX_GROUP')[%i]" % (matchedPlayer,matchedPlayer.champion,plalyer,self.reqGetAttrs(player,champion),os.getenv("KBE_BOOTIDX_GROUP")))
+		DEBUG_MSG("KBEngine.globalData['match1'].addPVPResult(matchedPlayer[%s],matchedPlayer.champion[%i],plalyer[%s],self.reqGetAttrs(player,champion)[%i]),os.getenv('KBE_BOOTIDX_GROUP')[%i]" % (matchedPlayer,matchedPlayer.champion,plalyer,self.reqGetAttrs(player),os.getenv("KBE_BOOTIDX_GROUP")))
 
-	def reqGetAttr(self, mailbox):
+	def reqGetAttrs(self, mailbox):
 		mailbox.onGetAttr(self.champion)
 		DEBUG_MSG("Player[%i].reqGetAttr(self, mailbox,attrs [%s]):" % (mailbox.id,self.champion))
 
@@ -113,8 +114,8 @@ class Match(KBEngine.Base, GameObject):
 		match_num=0 #最小的玩家所在的baseapp
 		for k ,v in self.playerCal[player.id].items():
 			if v !=None:
-				if min_val>abs(self.reqGetAttr(v,champion)-self.reqGetAttrs(player,champion)):
-					min_val=abs(self.reqGetAttr(v,champion)-self.reqGetAttrs(player,champion))
+				if min_val>abs(self.reqGetAttr(v)-self.reqGetAttrs(player,champion)):
+					min_val=abs(self.reqGetAttr(v)-self.reqGetAttrs(player,champion))
 					end_palyer=v
 					match_num=k
 
