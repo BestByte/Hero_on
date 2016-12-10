@@ -9,12 +9,11 @@
 	
   <Player hasClient="true"></Player>
   
-	<Monster hasClient="true"></Monster>
-	<NPC hasClient="true"></NPC>
+	
 	
   <Room/>
   <Rooms/>
   <Match/>
 
-	<SpawnPoint/>	
+	
 </root>

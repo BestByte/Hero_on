@@ -35,18 +35,6 @@ class Room(KBEngine.Entity, GameObject):
 		del KBEngine.globalData["space_%i" % self.spaceID]
 		self.destroySpace()
 		
-	def onEnter(self, entityMailbox):
-		"""
-		defined method.
-		???볡??
-		"""
-		DEBUG_MSG('Space::onEnter space[%d] entityID = %i.' % (self.spaceUType, entityMailbox.id))
-		
-	def onLeave(self, entityID):
-		"""
-		defined method.
-		?뿪????
-		"""
-		DEBUG_MSG('Space::onLeave space[%d] entityID = %i.' % (self.spaceUType, entityID))
+	
 		
 

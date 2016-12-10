@@ -29,52 +29,12 @@ class Room(KBEngine.Base, GameObject):
 		
 		#self.spaceUTypeB = self.cellData["spaceUType"]
 		
-		self.spaceResName = d_spaces.datas.get(self.spaceUTypeB)['resPath']
+		#self.spaceResName = d_spaces.datas.get(self.spaceUTypeB)['resPath']
 		
 		# 这个地图上创建的entity总数
-		self.tmpCreateEntityDatas = copy.deepcopy(d_spaces_spawns.datas.get(self.spaceUTypeB, ()))
+		#self.tmpCreateEntityDatas = copy.deepcopy(d_spaces_spawns.datas.get(self.spaceUTypeB, ()))
 		
 		self.avatars = {}
-		self.createSpawnPointDatas()
-		
-	
-
-	#等到引擎API函数onGetCell调用成功之后才负责
-	#出生点的数据（实体类型、坐标、朝向等）是通过配置文件给出的，script/data/d_spaces_spawns.py与script/data/spawnpoints/xinshoucun_spawnpoints.xml 关于这2个配置的由来可以参考配置章节	
-	def spawnOnTimer(self, tid):
-		"""
-		????????
-		"""
-		if len(self.tmpCreateEntityDatas) <= 0:
-			self.delTimer(tid)
-			return
-			
-		datas = self.tmpCreateEntityDatas.pop(0)
-		
-		if datas is None:
-			ERROR_MSG("Space::onTimer: spawn %i is error!" % datas[0])
-
-		KBEngine.createBaseAnywhere("SpawnPoint", 
-									{"spawnEntityNO"	: datas[0], 	\
-									"position"			: datas[1], 	\
-									"direction"			: datas[2],		\
-									"modelScale"		: datas[3],		\
-									"createToCell"		: self.cell})
-				
-	def loginToSpace(self, avatarMailbox, context):
-		"""
-		defined method.
-		某个玩家请求登陆到这个space中
-		"""
-		avatarMailbox.createCell(self.cell)
-		self.onEnter(avatarMailbox)
-		
-	def logoutSpace(self, entityID):
-		"""
-		defined method.
-		某个玩家请求登出这个space
-		"""
-		self.onLeave(entityID)
 		
 	def teleportSpace(self, spaceKey, playerA, playerB, context):
 		"""
@@ -85,6 +45,7 @@ class Room(KBEngine.Base, GameObject):
 			playerA.cell.onTeleportSpaceCB(self.cell, self.spaceKey, pos, dir)
 		for mb, pos, dir in playerB:
 			playerB.cell.onTeleportSpaceCB(self.cell, self.spaceKey, pos, dir)
+
 
 	#---------------------------------------------------------------------
 	#                              Callbacks
@@ -100,26 +61,6 @@ class Room(KBEngine.Base, GameObject):
 		
 		GameObject.onTimer(self, tid, userArg)
 		
-	def onEnter(self, entityMailbox):
-		"""
-		defined method.
-		进入场景
-		"""
-		self.avatars[entityMailbox.id] = entityMailbox
-		
-		if self.cell is not None:
-			self.cell.onEnter(entityMailbox)
-		
-	def onLeave(self, entityID):
-		"""
-		defined method.
-		离开场景
-		"""
-		if entityID in self.avatars:
-			del self.avatars[entityID]
-		
-		if self.cell is not None:
-			self.cell.onLeave(entityID)
 
 	def onLoseCell(self):
 		"""
