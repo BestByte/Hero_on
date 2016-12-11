@@ -94,8 +94,6 @@
     <Compile Include="scripts\cell\items\base\__init__.py" />
     <Compile Include="scripts\cell\items\__init__.py" />
     <Compile Include="scripts\cell\kbemain.py" />
-    <Compile Include="scripts\cell\Monster.py" />
-    <Compile Include="scripts\cell\NPC.py" />
     <Compile Include="scripts\cell\Player.py">
       <SubType>Code</SubType>
     </Compile>

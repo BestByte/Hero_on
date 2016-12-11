@@ -8,8 +8,9 @@ from interfaces.State import State
 from interfaces.Motion import Motion
 from interfaces.SkillBox import SkillBox
 from interfaces.Combat import Combat
-
-class Player(KBEngine.Entity,GameObject,Teleport,Motion,Spell,Combat,SkillBox):
+from interfaces.State import State
+from interfaces.Dialog import Dialog
+class Player(KBEngine.Entity,GameObject,Teleport,Motion,Spell,Combat,SkillBox,State,Dialog):
 	def __init__(self):
 		KBEngine.Enity.__init__(self)
 		GameObject.__init__(self)
@@ -17,7 +18,8 @@ class Player(KBEngine.Entity,GameObject,Teleport,Motion,Spell,Combat,SkillBox):
 		Teleport.__init__(self)
 		Motion.__init__(self)
 		Combat.__init__(self)
-
+		State.__init__(self)
+		Dialog.__init__(self)
 
 #---------------------------------------------------------------------------------
 	#                              Callbacks
