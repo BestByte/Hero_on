@@ -14,7 +14,7 @@ def onLoggerAppReady():
 	logger已经准备好了
 	"""
 	INFO_MSG('onLoggerAppReady: bootstrapGroupIndex=%s, bootstrapGlobalIndex=%s' % \
-	 (os.getenv("KBE_BOOTIDX_GROUP"), os.getenv("KBE_BOOTIDX_GLOBAL")))
+	 (int(os.getenv("KBE_BOOTIDX_GROUP")), os.getenv("KBE_BOOTIDX_GLOBAL")))
 
 def onLoggerAppShutDown():
 	"""

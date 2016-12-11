@@ -19,7 +19,7 @@ def onBaseAppReady(isBootstrap):
 	# 安装监视器
 	Watcher.setup()
 	
-	ser_number= os.getenv("KBE_BOOTIDX_GROUP")
+	ser_number= int(os.getenv("KBE_BOOTIDX_GROUP"))
 	INFO_MSG('onBaseAppReady: ser_number=%s' % ser_number)
 	#不论第几个baseAPP，都要创建匹配实体Match
 	if isBootstrap:

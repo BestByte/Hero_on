@@ -12,7 +12,7 @@ def onDBMgrReady():
 	dbmgr已经准备好了
 	"""
 	INFO_MSG('onDBMgrReady: bootstrapGroupIndex=%s, bootstrapGlobalIndex=%s' % \
-	 (os.getenv("KBE_BOOTIDX_GROUP"), os.getenv("KBE_BOOTIDX_GLOBAL")))
+	 (int(os.getenv("KBE_BOOTIDX_GROUP")), os.getenv("KBE_BOOTIDX_GLOBAL")))
 
 	#KBEngine.addTimer(0.01, 1.0, onTick)
 

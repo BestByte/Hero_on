@@ -30,16 +30,16 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		客户端请求匹配
 		"""
 		DEBUG_MSG("Player[%i].req_match" % (self.id))
-		KBEngine.globalData["match%i"%(os.getenv("KBE_BOOTIDX_GROUP"))].addPVPMatch(self,os.getenv("KBE_BOOTIDX_GROUP"))
+		KBEngine.globalData["match%i"%(int(os.getenv("KBE_BOOTIDX_GROUP")))].addPVPMatch(self,int(os.getenv("KBE_BOOTIDX_GROUP")))
 		
-		DEBUG_MSG("KBEngine.globalData[match%i]:addPVPMatch(self)" % (os.getenv("KBE_BOOTIDX_GROUP")))
+		DEBUG_MSG("KBEngine.globalData[match%i]:addPVPMatch(self)" % (int(os.getenv("KBE_BOOTIDX_GROUP"))))
 
 		self.client.on_req_match("正在匹配中...")
 
 	def func(self):
          # 请求获取match的属性
-		 KBEngine.globalData["match%i"%(os.getenv("KBE_BOOTIDX_GROUP"))].reqGetAttrs(self)# // 注意：这里将自己传入方法了， 引擎会将其转变为mailbox传输到对方进程上并传入这个实体的方法中， 在spaces中就可以将信息返回给指定实体了。
-		 DEBUG_MSG("KBEngine.globalData[match%i]:reqGetAttrs(self)" % (os.getenv("KBE_BOOTIDX_GROUP")))
+		 KBEngine.globalData["match%i"%(int(os.getenv("KBE_BOOTIDX_GROUP")))].reqGetAttrs(self)# // 注意：这里将自己传入方法了， 引擎会将其转变为mailbox传输到对方进程上并传入这个实体的方法中， 在spaces中就可以将信息返回给指定实体了。
+		 DEBUG_MSG("KBEngine.globalData[match%i]:reqGetAttrs(self)" % (int(os.getenv("KBE_BOOTIDX_GROUP"))))
 
 	def onGetAttr(self):
 		return self.champion

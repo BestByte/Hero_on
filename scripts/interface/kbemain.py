@@ -38,7 +38,7 @@ def onInterfaceAppReady():
 	interfaces已经准备好了
 	"""
 	INFO_MSG('onInterfaceAppReady: bootstrapGroupIndex=%s, bootstrapGlobalIndex=%s' % \
-	 (os.getenv("KBE_BOOTIDX_GROUP"), os.getenv("KBE_BOOTIDX_GLOBAL")))
+	 (int(os.getenv("KBE_BOOTIDX_GROUP")), os.getenv("KBE_BOOTIDX_GLOBAL")))
 
 	#KBEngine.addTimer(0.01, 1.0, onTick)
 	g_poller.start("localhost", 30040)
