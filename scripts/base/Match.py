@@ -5,7 +5,7 @@ import d_spaces
 import SCDefine
 import Watcher
 from KBEDebug import *
-from SpaceAlloc import *
+
 from interfaces.GameObject import GameObject
 import math
 import time

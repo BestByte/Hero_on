@@ -5,7 +5,7 @@ import d_spaces
 import SCDefine
 import Watcher
 from KBEDebug import *
-from SpaceAlloc import *
+
 from interfaces.GameObject import GameObject
 
 class Rooms(KBEngine.Base, GameObject):
@@ -17,8 +17,7 @@ class Rooms(KBEngine.Base, GameObject):
 		KBEngine.Base.__init__(self)
 		GameObject.__init__(self)
 		
-		# 初始化空间分配器
-		self.initAlloc()
+		
 		
 		# 将自己注册到共享数据中， 在当前进程KBEngine.globalData["Halls"]返回的是Halls实体，其他进程中,由于实体不在那个进程所以KBEngine.globalData["Halls"]返回的是mailbox
 		# 因此调用KBEngine.globalData["Halls"].xxx方法必须在def定义，允许远程访问

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import KBEngine
-import SpaceContext
+
 from KBEDebug import * 
 
 class Teleport:

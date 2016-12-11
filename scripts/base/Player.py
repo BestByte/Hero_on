@@ -5,10 +5,8 @@ import d_spaces
 import GlobalConst
 from interfaces.GameObject import GameObject
 from interfaces.Teleport import Teleport
-from AVATAR_INFO import TAvatarInfo
-from AVATAR_INFO import TAvatarInfoList
+
 from KBEDebug import *
-import d_avatar_inittab
 
 class Player(KBEngine.Proxy,GameObject,Teleport):
 	"""
@@ -60,8 +58,8 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		该entity被正式激活为可使用， 此时entity已经建立了client对应实体， 可以在此创建它的
 		cell部分。
 		"""
-		INFO_MSG("Account[%i]::onEntitiesEnabled:entities enable. mailbox:%s, clientType(%i), clientDatas=(%s), hasAvatar=%s, accountName=%s" % \
-			(self.id, self.client, self.getClientType(), self.getClientDatas(), self.activeAvatar, self.__ACCOUNT_NAME__))
+		INFO_MSG("Account[%i]::onEntitiesEnabled:entities enable. mailbox:%s, clientType(%i), clientDatas=(%s),  accountName=%s" % \
+			(self.id, self.client, self.getClientType(), self.getClientDatas(),  self.__ACCOUNT_NAME__))
 		Teleport.onEntitiesEnabled(self)
 
 	def onLogOnAttempt(self, ip, port, password):
@@ -96,9 +94,7 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		KBEngine method.
 		客户端对应实体已经销毁
 		"""
-		if self.activeAvatar:
-			self.activeAvatar.accountEntity = None
-			self.activeAvatar = None
+		
 
 		DEBUG_MSG("Account[%i].onClientDeath:" % self.id)
 		self.destroy()		
