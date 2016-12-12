@@ -6,7 +6,8 @@ from KBEDebug import *
 class Teleport:
 	def __init__(self):
 		pass
-		
+	
+	#并未调用这个函数	
 	def teleportSpace(self, spaceUType, position, direction, context):
 		"""
 		defined.
