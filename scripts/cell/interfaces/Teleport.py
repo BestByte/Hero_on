@@ -27,7 +27,6 @@ class Teleport:
 		DEBUG_MSG("Teleport::onTeleportSpaceCB: %i spaceID=%s, spaceUType=%i, pos=%s, dir=%s." % \
 					(self.id, spaceCellMailbox.id, spacekey, position, direction))
 		
-		
 		self.teleport(spaceCellMailbox, position, direction)
 		
 	def onTeleportSuccess(self, nearbyEntity):
