@@ -65,7 +65,7 @@ class GameObject:
 		"""
 		获取场景管理器
 		"""
-		return KBEngine.globalData["Spaces"]
+		return KBEngine.globalData["Rooms"]
 	
 	def startDestroyTimer(self):
 		"""
