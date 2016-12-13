@@ -37,7 +37,7 @@ class Match(KBEngine.Base, GameObject):
 		# 因此调用KBEngine.globalData["Halls"].xxx方法必须在def定义，允许远程访问
 
 		# 向全局共享数据中注册这个管理器的mailbox以便在所有逻辑进程中可以方便的访问
-		KBEngine.globalData["match%i"%(int(os.getenv("KBE_BOOTIDX_GROUP")))] = self
+		KBEngine.globalData["match1"] = self
 
 		# 通过添加一个定时器延时执行房间的创建，确保一些状态在此期间能够初始化完毕
 		#self.addTimer(3, 1, 1)
@@ -47,7 +47,7 @@ class Match(KBEngine.Base, GameObject):
 		player:MailBox
 		player_match_num:Match所在的baseAPP编号
 		""" 
-		DEBUG_MSG("Match[%i].addPVPMatch" % (int(os.getenv("KBE_BOOTIDX_GROUP"))))
+		DEBUG_MSG("Match[%i].addPVPMatch" % 1)
 		
 		#只要是匹配的玩家那么，就建立初始化列表 
 		self.playerMactch[player.id]=player
@@ -55,8 +55,8 @@ class Match(KBEngine.Base, GameObject):
 		#在match1上建立，各个match汇总的匹配数据
 		KBEngine.globalData["match1"].playerCal[player.id]={}
 
-		for x in range(ser_number-1):
-		    KBEngine.globalData["match%i"%(x+1)].eachPVPMatch(player,player_match_num)
+		
+		KBEngine.globalData["match1"].eachPVPMatch(player,player_match_num)
 
 		#self.charge_value=100#起始设定的与玩家奖杯的差值
 
@@ -122,8 +122,8 @@ class Match(KBEngine.Base, GameObject):
 		#有个问题，会不会删除太早了？
 
 		del self.playerCal[player.id]
-		del KBEngine.globalData["match%i"%player_match_number].playerMatch[player.id]
-		del KBEngine.globalData["match%i"%k].playerMatch[end_palyer.id]
+		del KBEngine.globalData["match1"%player_match_number].playerMatch[player.id]
+		del KBEngine.globalData["match1"%k].playerMatch[end_palyer.id]
 
 		#roomID=int(time.time()*100)
 

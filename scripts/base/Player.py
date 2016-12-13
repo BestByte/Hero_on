@@ -5,9 +5,9 @@ import d_spaces
 import GlobalConst
 from interfaces.GameObject import GameObject
 from interfaces.Teleport import Teleport
-
+import math
 from KBEDebug import *
-
+import random
 class Player(KBEngine.Proxy,GameObject,Teleport):
 	"""
 	账号实体
@@ -29,17 +29,19 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		exposed
 		客户端请求匹配
 		"""
+		i=random.randint(1,ser_number)
 		DEBUG_MSG("Player[%i].req_match" % (self.id))
-		KBEngine.globalData["match%i"%(int(os.getenv("KBE_BOOTIDX_GROUP")))].addPVPMatch(self,int(os.getenv("KBE_BOOTIDX_GROUP")))
+		KBEngine.globalData["match%i"%i)].addPVPMatch(self,i))
 		
-		DEBUG_MSG("KBEngine.globalData[match%i]:addPVPMatch(self)" % (int(os.getenv("KBE_BOOTIDX_GROUP"))))
+		DEBUG_MSG("KBEngine.globalData[match%i]:addPVPMatch(self)" % (i))
 
 		self.client.on_req_match("正在匹配中...")
 
 	def func(self):
          # 请求获取match的属性
-		 KBEngine.globalData["match%i"%(int(os.getenv("KBE_BOOTIDX_GROUP")))].reqGetAttrs(self)# // 注意：这里将自己传入方法了， 引擎会将其转变为mailbox传输到对方进程上并传入这个实体的方法中， 在spaces中就可以将信息返回给指定实体了。
-		 DEBUG_MSG("KBEngine.globalData[match%i]:reqGetAttrs(self)" % (int(os.getenv("KBE_BOOTIDX_GROUP"))))
+		 i=random.randint(1,ser_number)
+		 KBEngine.globalData["match%i"%(i))].reqGetAttrs(self)# // 注意：这里将自己传入方法了， 引擎会将其转变为mailbox传输到对方进程上并传入这个实体的方法中， 在spaces中就可以将信息返回给指定实体了。
+		 DEBUG_MSG("KBEngine.globalData[match%i]:reqGetAttrs(self)" % (i))
 
 	def onGetAttr(self):
 		return self.champion

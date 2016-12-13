@@ -25,9 +25,11 @@ def onBaseAppReady(isBootstrap):
 	if isBootstrap:
 		# 创建spacemanager
 		KBEngine.createBaseLocally( "Match", {} )
+		KBEngine.setAppFlags(KBEngine.APP_FLAGS_NOT_PARTCIPATING_LOAD_BALANCING )
+		
+	elif int(os.getenv("KBE_BOOTIDX_GROUP"))==2 :
 		KBEngine.createBaseLocally( "Rooms", {} )
-	else:
-		KBEngine.createBaseLocally( "Match", {} )
+
 
 def onBaseAppShutDown(state):
 	"""
