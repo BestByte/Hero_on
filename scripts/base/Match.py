@@ -22,12 +22,9 @@ class Match(KBEngine.Base, GameObject):
 		KBEngine.Base.__init__(self)
 		GameObject.__init__(self)
 
-	
-		#match1 建立的决定确认的各个实体
-		self.playerCal={}
-		#self.players={}
-		
-	
+		#需要匹配的玩家集合
+		self.playerMactch={}
+		#所有的请求PVP对战的玩家集合
 
 		# 将自己注册到共享数据中， 在当前进程KBEngine.globalData["Halls"]返回的是Halls实体，其他进程中
 		# 由于实体不在那个进程所以KBEngine.globalData["Halls"]返回的是mailbox
@@ -39,9 +36,6 @@ class Match(KBEngine.Base, GameObject):
 
 		# 通过添加一个定时器延时执行房间的创建，确保一些状态在此期间能够初始化完毕
 		#self.addTimer(3, 1, 1)
-
-	
-
 	def eachPVPMatch(self,player,player_match_number):
 		"""
 		player:MailBox

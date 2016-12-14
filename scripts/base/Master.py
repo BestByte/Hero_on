@@ -37,8 +37,6 @@ class Master(KBEngine.Base, GameObject):
 		KBEngine.globalData["Master"] = self
 		DEBUG_MSG("KBEngine.globalData[Master]")
 
-		
-
 	def addPVPMatch(self,player,player_match_num):
 		"""
 		defined method.
@@ -54,7 +52,7 @@ class Master(KBEngine.Base, GameObject):
 		self.playerMactch[player.id]=player
 
 		#在Master上建立，各个match汇总的匹配数据
-		KBEngine.globalData["Master"].playerCal[player.id]={}
+		self.playerCal[player.id]={}
 
 		for x in range(4):
 			KBEngine.globalData["match%i"% (x+2)].eachPVPMatch(player,player_match_num)
