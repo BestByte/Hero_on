@@ -43,27 +43,7 @@ class Match(KBEngine.Base, GameObject):
 		# 通过添加一个定时器延时执行房间的创建，确保一些状态在此期间能够初始化完毕
 		#self.addTimer(3, 1, 1)
 
-	def addPVPMatch(self,player,player_match_num):
-		"""
-		defined method.
-
-		player:MailBox
-		player_match_num:Match所在的baseAPP编号
-
-		目前系统共涉及baseapp5个，其中1、2专门负责match匹配实体，3负责rooms创建房间实体，3、4、5生成player实体、room房间实体
-		""" 
-		DEBUG_MSG("Match[%i].addPVPMatch" % int(os.getenv("KBE_BOOTIDX_GROUP")))
-		
-		#只要是匹配的玩家那么，就建立初始化列表 
-		self.playerMactch[player.id]=player
-
-		#在match1上建立，各个match汇总的匹配数据
-		KBEngine.globalData["match1"].playerCal[player.id]={}
-
-		for x in range(2):
-			KBEngine.globalData["match%i"% int(os.getenv("KBE_BOOTIDX_GROUP"))].eachPVPMatch(player,player_match_num)
-
-		#self.charge_value=100#起始设定的与玩家奖杯的差值
+	
 
 	def eachPVPMatch(self,player,player_match_number):
 		"""
@@ -89,7 +69,7 @@ class Match(KBEngine.Base, GameObject):
 			matchedPlayer=None
 
 			#主match排序
-		KBEngine.globalData["match1"].addPVPResult(matchedPlayer,matchedPlayer.champion,plalyer,self.reqGetAttrs(player),player_match_number,int(os.getenv("KBE_BOOTIDX_GROUP")))
+		KBEngine.globalData["Master"].addPVPResult(matchedPlayer,matchedPlayer.champion,plalyer,self.reqGetAttrs(player),player_match_number,int(os.getenv("KBE_BOOTIDX_GROUP")))
 
 		DEBUG_MSG("KBEngine.globalData['match1'].addPVPResult(matchedPlayer[%s],matchedPlayer.champion[%i],plalyer[%s],self.reqGetAttrs(player,champion)[%i]),os.getenv('KBE_BOOTIDX_GROUP')[%i]" % (matchedPlayer,matchedPlayer.champion,plalyer,self.reqGetAttrs(player),int(os.getenv("KBE_BOOTIDX_GROUP"))))
 
@@ -97,46 +77,9 @@ class Match(KBEngine.Base, GameObject):
 		mailbox.onGetAttr(self.champion)
 		DEBUG_MSG("Player[%i].reqGetAttr(self, mailbox,attrs [%s]):" % (mailbox.id))
 
-	def addPVPResult(self,matchedPlayer,matchedChampion, player,playerChampion,player_match_number,match_order):#match_order 是match的启动值
-
-		#主match实体汇总处理
-		#考虑到baseapp的顺序match_order
-		self.playerCal[player.id][match_order]=matchedPlayer
-
-		#若是所有的match系统都已经传过来匹配值，则进行最终挑选
-		if self.playerCal[player.id].__len__()==2:
-			cal_result(player_match_number)
-
-	#最终的匹配函数	
-	def cal_result(self,player_match_number):
-		end_palyer=None
-		
-		min_val=30
-		match_num=0 #最小的玩家所在的baseapp
-		for k ,v in self.playerCal[player.id].items():
-			if v !=None:
-				if min_val>abs(self.reqGetAttrs(v)-self.reqGetAttrs(player)):
-					min_val=abs(self.reqGetAttrs(v)-self.reqGetAttrs(player))
-					end_palyer=v
-					match_num=k
-
-		#下面是根据选出来的两个实体，创建房间
-		KBEngine.globalData["Rooms"].createSpace(0,{},self.playerCal[player.id][k], player)
-
-		#选出来两者之后，把它的字典删除了。
-		#有个问题，会不会删除太早了？
-
-		del self.playerCal[player.id]
-		del KBEngine.globalData["match1"%player_match_number].playerMatch[player.id]
-		del KBEngine.globalData["match1"%k].playerMatch[end_palyer.id]
-
-		#roomID=int(time.time()*100)
-
-		#self.reqEnterRoom(self, roomID,self.playerMactch[player][x], player)
-
-	#---------------------------------------------------------------------
+	#-----------------------------------------------------------
 	#                              Callbacks
-	#---------------------------------------------------------------------
+	#-----------------------------------------------------------
 	def onTimer(self, tid, userArg):
 		"""
 		KBEngine method.
