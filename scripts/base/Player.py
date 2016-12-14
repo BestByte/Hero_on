@@ -42,9 +42,9 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		defined method
 		"""
          # 请求获取match的属性
-		 i=random.randint(2,5)
-		 KBEngine.globalData["match%i"%(i)].reqGetAttrs(self)# // 注意：这里将自己传入方法了， 引擎会将其转变为mailbox传输到对方进程上并传入这个实体的方法中， 在spaces中就可以将信息返回给指定实体了。
-		 DEBUG_MSG("KBEngine.globalData[match%i]:reqGetAttrs(self)" % (i))
+		for i in range(4):
+			KBEngine.globalData["match%i"%(i+2)].reqGetAttrs(self)# // 注意：这里将自己传入方法了， 引擎会将其转变为mailbox传输到对方进程上并传入这个实体的方法中， 在spaces中就可以将信息返回给指定实体了。
+		DEBUG_MSG("KBEngine.globalData[match%i]:reqGetAttrs(self)")
 
 	def onGetAttr(self):
 		"""
