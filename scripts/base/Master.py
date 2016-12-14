@@ -11,75 +11,76 @@ import math
 import time
 import os
 
-class Match(KBEngine.Base, GameObject):
+class Master(KBEngine.Base, GameObject):
 	"""
-	è¿™æ˜¯ä¸€ä¸ªåŒ¹é…ç³»ç»Ÿ
-	å½“å®¢æˆ·ç«¯ç™»å½•æ—¶ï¼ŒPVPæ¨¡å¼ä¸‹ï¼Œå‘å‡ºPVPè¯·æ±‚ï¼Œ
-	åŒ¹é…ç³»ç»Ÿæ ¼å±€ä¸¤è€…çš„championå¾—åˆ†ç›¸è¿‘æ—¶åŒ¹é…åˆ›å»ºspace
-	KBEngineçš„spaceæ˜¯ä¸€ä¸ªæŠ½è±¡ç©ºé—´çš„æ¦‚å¿µï¼Œä¸€ä¸ªç©ºé—´å¯ä»¥è¢«è„šæœ¬å±‚è§†ä¸ºæ¸¸æˆåœºæ™¯ã€æ¸¸æˆæˆ¿é—´ã€ç”šè‡³æ˜¯ä¸€ä¸ªå®‡å®™ã€‚
+	ÕâÊÇÒ»¸öÆ¥ÅäÏµÍ³
+
+	µ±¿Í»§¶ËµÇÂ¼Ê±£¬PVPÄ£Ê½ÏÂ£¬·¢³öPVPÇëÇó£¬
+	Æ¥ÅäÏµÍ³¸ñ¾ÖÁ½ÕßµÄchampionµÃ·ÖÏà½üÊ±Æ¥Åä´´½¨space
+
+	KBEngineµÄspaceÊÇÒ»¸ö³éÏó¿Õ¼äµÄ¸ÅÄî£¬Ò»¸ö¿Õ¼ä¿ÉÒÔ±»½Å±¾²ãÊÓÎªÓÎÏ·³¡¾°¡¢ÓÎÏ··¿¼ä¡¢ÉõÖÁÊÇÒ»¸öÓîÖæ¡£
 	"""
 	def __init__(self):
 		KBEngine.Base.__init__(self)
 		GameObject.__init__(self)
 
-		#éœ€è¦åŒ¹é…çš„ç©å®¶é›†åˆ
+		#ĞèÒªÆ¥ÅäµÄÍæ¼Ò¼¯ºÏ
 		self.playerMactch={}
-		#æ‰€æœ‰çš„è¯·æ±‚PVPå¯¹æˆ˜çš„ç©å®¶é›†åˆ
+		#ËùÓĞµÄÇëÇóPVP¶ÔÕ½µÄÍæ¼Ò¼¯ºÏ
 
-		#match1 å»ºç«‹çš„å†³å®šç¡®è®¤çš„å„ä¸ªå®ä½“
+		#match1 ½¨Á¢µÄ¾ö¶¨È·ÈÏµÄ¸÷¸öÊµÌå
 		self.playerCal={}
 		#self.players={}
 		
 	
 
-		# å°†è‡ªå·±æ³¨å†Œåˆ°å…±äº«æ•°æ®ä¸­ï¼Œ åœ¨å½“å‰è¿›ç¨‹KBEngine.globalData["Halls"]è¿”å›çš„æ˜¯Hallså®ä½“ï¼Œå…¶ä»–è¿›ç¨‹ä¸­
-		# ç”±äºå®ä½“ä¸åœ¨é‚£ä¸ªè¿›ç¨‹æ‰€ä»¥KBEngine.globalData["Halls"]è¿”å›çš„æ˜¯mailbox
-		# å› æ­¤è°ƒç”¨KBEngine.globalData["Halls"].xxxæ–¹æ³•å¿…é¡»åœ¨defå®šä¹‰ï¼Œå…è®¸è¿œç¨‹è®¿é—®
+		# ½«×Ô¼º×¢²áµ½¹²ÏíÊı¾İÖĞ£¬ ÔÚµ±Ç°½ø³ÌKBEngine.globalData["Halls"]·µ»ØµÄÊÇHallsÊµÌå£¬ÆäËû½ø³ÌÖĞ
+		# ÓÉÓÚÊµÌå²»ÔÚÄÇ¸ö½ø³ÌËùÒÔKBEngine.globalData["Halls"]·µ»ØµÄÊÇmailbox
+		# Òò´Ëµ÷ÓÃKBEngine.globalData["Halls"].xxx·½·¨±ØĞëÔÚdef¶¨Òå£¬ÔÊĞíÔ¶³Ì·ÃÎÊ
 
-		# å‘å…¨å±€å…±äº«æ•°æ®ä¸­æ³¨å†Œè¿™ä¸ªç®¡ç†å™¨çš„mailboxä»¥ä¾¿åœ¨æ‰€æœ‰é€»è¾‘è¿›ç¨‹ä¸­å¯ä»¥æ–¹ä¾¿çš„è®¿é—®
-		KBEngine.globalData["match%i"%int(os.getenv("KBE_BOOTIDX_GROUP"))] = self
-		DEBUG_MSG("KBEngine.globalData[match%i)"%int(os.getenv("KBE_BOOTIDX_GROUP")))
+		# ÏòÈ«¾Ö¹²ÏíÊı¾İÖĞ×¢²áÕâ¸ö¹ÜÀíÆ÷µÄmailboxÒÔ±ãÔÚËùÓĞÂß¼­½ø³ÌÖĞ¿ÉÒÔ·½±ãµÄ·ÃÎÊ
+		KBEngine.globalData["Master"] = self
+		DEBUG_MSG("KBEngine.globalData[Master]")
 
-		# é€šè¿‡æ·»åŠ ä¸€ä¸ªå®šæ—¶å™¨å»¶æ—¶æ‰§è¡Œæˆ¿é—´çš„åˆ›å»ºï¼Œç¡®ä¿ä¸€äº›çŠ¶æ€åœ¨æ­¤æœŸé—´èƒ½å¤Ÿåˆå§‹åŒ–å®Œæ¯•
-		#self.addTimer(3, 1, 1)
+		
 
 	def addPVPMatch(self,player,player_match_num):
 		"""
 		defined method.
 
 		player:MailBox
-		player_match_num:Matchæ‰€åœ¨çš„baseAPPç¼–å·
+		player_match_num:MatchËùÔÚµÄbaseAPP±àºÅ
 
-		ç›®å‰ç³»ç»Ÿå…±æ¶‰åŠbaseapp5ä¸ªï¼Œå…¶ä¸­1ã€2ä¸“é—¨è´Ÿè´£matchåŒ¹é…å®ä½“ï¼Œ3è´Ÿè´£roomsåˆ›å»ºæˆ¿é—´å®ä½“ï¼Œ3ã€4ã€5ç”Ÿæˆplayerå®ä½“ã€roomæˆ¿é—´å®ä½“
+		Ä¿Ç°ÏµÍ³¹²Éæ¼°baseapp5¸ö£¬ÆäÖĞ1¡¢2×¨ÃÅ¸ºÔğmatchÆ¥ÅäÊµÌå£¬3¸ºÔğrooms´´½¨·¿¼äÊµÌå£¬3¡¢4¡¢5Éú³ÉplayerÊµÌå¡¢room·¿¼äÊµÌå
 		""" 
 		DEBUG_MSG("Match[%i].addPVPMatch" % int(os.getenv("KBE_BOOTIDX_GROUP")))
 		
-		#åªè¦æ˜¯åŒ¹é…çš„ç©å®¶é‚£ä¹ˆï¼Œå°±å»ºç«‹åˆå§‹åŒ–åˆ—è¡¨ 
+		#Ö»ÒªÊÇÆ¥ÅäµÄÍæ¼ÒÄÇÃ´£¬¾Í½¨Á¢³õÊ¼»¯ÁĞ±í 
 		self.playerMactch[player.id]=player
 
-		#åœ¨match1ä¸Šå»ºç«‹ï¼Œå„ä¸ªmatchæ±‡æ€»çš„åŒ¹é…æ•°æ®
+		#ÔÚmatch1ÉÏ½¨Á¢£¬¸÷¸ömatch»ã×ÜµÄÆ¥ÅäÊı¾İ
 		KBEngine.globalData["match1"].playerCal[player.id]={}
 
 		for x in range(2):
 		KBEngine.globalData["match%i"% int(os.getenv("KBE_BOOTIDX_GROUP"))].eachPVPMatch(player,player_match_num)
 
-		#self.charge_value=100#èµ·å§‹è®¾å®šçš„ä¸ç©å®¶å¥–æ¯çš„å·®å€¼
+		#self.charge_value=100#ÆğÊ¼Éè¶¨µÄÓëÍæ¼Ò½±±­µÄ²îÖµ
 
 	def eachPVPMatch(self,player,player_match_number):
 		"""
 		player:MailBox
-		player_match_num:Matchæ‰€åœ¨çš„baseAPPç¼–å·
+		player_match_num:MatchËùÔÚµÄbaseAPP±àºÅ
 		""" 
-		charge_value=200 #èµ·å§‹è®¾å®šçš„ä¸ç©å®¶å¥–æ¯çš„å·®å€¼
-		charge_id=1 #è®°å½•ç©å®¶çš„æ ‡å·
+		charge_value=200 #ÆğÊ¼Éè¶¨µÄÓëÍæ¼Ò½±±­µÄ²îÖµ
+		charge_id=1 #¼ÇÂ¼Íæ¼ÒµÄ±êºÅ
 		for x in self.playerMactch.values():
 			
-				#è‹¥æ˜¯åœ¨çº¿çš„æ­£è¦åŒ¹é…çš„ç©å®¶å½“ä¸­ï¼Œä¸åŒ¹é…çš„ç©å®¶çš„å¥–æ¯æ•°å·®å€¼æœ€å°‘çš„ç©å®¶
-				#åˆ™è¦ä¼ ç»™baseapp1çš„åŒ¹é…å®ä½“Match
-				#xå±äºæœ¬çº¿ç¨‹çš„å®ä½“ï¼Œç›´æ¥è®¿é—®championå±æ€§
-			if charge_value<abs(x.champion-self.reqGetAttrs(player)) and x.id != player.id:#åœ¨åŒä¸€çº¿ç¨‹ä¸­ï¼Œä¸èƒ½è®©ä¸¤è€…é‡å¤
+				#ÈôÊÇÔÚÏßµÄÕıÒªÆ¥ÅäµÄÍæ¼Òµ±ÖĞ£¬ÓëÆ¥ÅäµÄÍæ¼ÒµÄ½±±­Êı²îÖµ×îÉÙµÄÍæ¼Ò
+				#ÔòÒª´«¸øbaseapp1µÄÆ¥ÅäÊµÌåMatch
+				#xÊôÓÚ±¾Ïß³ÌµÄÊµÌå£¬Ö±½Ó·ÃÎÊchampionÊôĞÔ
+			if charge_value<abs(x.champion-self.reqGetAttrs(player)) and x.id != player.id:#ÔÚÍ¬Ò»Ïß³ÌÖĞ£¬²»ÄÜÈÃÁ½ÕßÖØ¸´
 					charge_value=abs(x.champion-self.reqGetAttrs(player))
-					charge_id=x.id #è®°å½•æœ€å°å·®å€¼ç©å®¶çš„æ ‡å·
+					charge_id=x.id #¼ÇÂ¼×îĞ¡²îÖµÍæ¼ÒµÄ±êºÅ
 			else:
 				charge_value=abs(x.champion-self.reqGetAttrs(player))
 				charge_id=x.id
@@ -88,7 +89,7 @@ class Match(KBEngine.Base, GameObject):
 		else:
 			matchedPlayer=None
 
-			#ä¸»matchæ’åº
+			#Ö÷matchÅÅĞò
 		KBEngine.globalData["match1"].addPVPResult(matchedPlayer,matchedPlayer.champion,plalyer,self.reqGetAttrs(player),player_match_number,int(os.getenv("KBE_BOOTIDX_GROUP")))
 
 		DEBUG_MSG("KBEngine.globalData['match1'].addPVPResult(matchedPlayer[%s],matchedPlayer.champion[%i],plalyer[%s],self.reqGetAttrs(player,champion)[%i]),os.getenv('KBE_BOOTIDX_GROUP')[%i]" % (matchedPlayer,matchedPlayer.champion,plalyer,self.reqGetAttrs(player),int(os.getenv("KBE_BOOTIDX_GROUP"))))
@@ -97,22 +98,22 @@ class Match(KBEngine.Base, GameObject):
 		mailbox.onGetAttr(self.champion)
 		DEBUG_MSG("Player[%i].reqGetAttr(self, mailbox,attrs [%s]):" % (mailbox.id))
 
-	def addPVPResult(self,matchedPlayer,matchedChampion, player,playerChampion,player_match_number,match_order):#match_order æ˜¯matchçš„å¯åŠ¨å€¼
+	def addPVPResult(self,matchedPlayer,matchedChampion, player,playerChampion,player_match_number,match_order):#match_order ÊÇmatchµÄÆô¶¯Öµ
 
-		#ä¸»matchå®ä½“æ±‡æ€»å¤„ç†
-		#è€ƒè™‘åˆ°baseappçš„é¡ºåºmatch_order
+		#Ö÷matchÊµÌå»ã×Ü´¦Àí
+		#¿¼ÂÇµ½baseappµÄË³Ğòmatch_order
 		self.playerCal[player.id][match_order]=matchedPlayer
 
-		#è‹¥æ˜¯æ‰€æœ‰çš„matchç³»ç»Ÿéƒ½å·²ç»ä¼ è¿‡æ¥åŒ¹é…å€¼ï¼Œåˆ™è¿›è¡Œæœ€ç»ˆæŒ‘é€‰
+		#ÈôÊÇËùÓĞµÄmatchÏµÍ³¶¼ÒÑ¾­´«¹ıÀ´Æ¥ÅäÖµ£¬Ôò½øĞĞ×îÖÕÌôÑ¡
 		if self.playerCal[player.id].__len__()==2:
 			cal_result(player_match_number)
 
-	#æœ€ç»ˆçš„åŒ¹é…å‡½æ•°	
+	#×îÖÕµÄÆ¥Åäº¯Êı	
 	def cal_result(self,player_match_number):
 		end_palyer=None
 		
 		min_val=30
-		match_num=0 #æœ€å°çš„ç©å®¶æ‰€åœ¨çš„baseapp
+		match_num=0 #×îĞ¡µÄÍæ¼ÒËùÔÚµÄbaseapp
 		for k ,v in self.playerCal[player.id].items():
 			if v !=None:
 				if min_val>abs(self.reqGetAttrs(v)-self.reqGetAttrs(player)):
@@ -120,11 +121,11 @@ class Match(KBEngine.Base, GameObject):
 					end_palyer=v
 					match_num=k
 
-		#ä¸‹é¢æ˜¯æ ¹æ®é€‰å‡ºæ¥çš„ä¸¤ä¸ªå®ä½“ï¼Œåˆ›å»ºæˆ¿é—´
+		#ÏÂÃæÊÇ¸ù¾İÑ¡³öÀ´µÄÁ½¸öÊµÌå£¬´´½¨·¿¼ä
 		KBEngine.globalData["Rooms"].createSpace(0,{},self.playerCal[player.id][k], player)
 
-		#é€‰å‡ºæ¥ä¸¤è€…ä¹‹åï¼ŒæŠŠå®ƒçš„å­—å…¸åˆ é™¤äº†ã€‚
-		#æœ‰ä¸ªé—®é¢˜ï¼Œä¼šä¸ä¼šåˆ é™¤å¤ªæ—©äº†ï¼Ÿ
+		#Ñ¡³öÀ´Á½ÕßÖ®ºó£¬°ÑËüµÄ×ÖµäÉ¾³ıÁË¡£
+		#ÓĞ¸öÎÊÌâ£¬»á²»»áÉ¾³ıÌ«ÔçÁË£¿
 
 		del self.playerCal[player.id]
 		del KBEngine.globalData["match1"%player_match_number].playerMatch[player.id]
@@ -140,7 +141,7 @@ class Match(KBEngine.Base, GameObject):
 	def onTimer(self, tid, userArg):
 		"""
 		KBEngine method.
-		å¼•æ“å›è°ƒtimerè§¦å‘
+		ÒıÇæ»Øµ÷timer´¥·¢
 		"""
 		#DEBUG_MSG("%s::onTimer: %i, tid:%i, arg:%i" % (self.getScriptName(), self.id, tid, userArg))
 		

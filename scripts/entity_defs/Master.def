@@ -1,0 +1,18 @@
+<root>
+	
+
+	<Implements>
+		<Interface>			GameObject		</Interface>
+	</Implements>
+
+	<Properties>
+	</Properties>
+
+	<BaseMethods>
+		
+	</BaseMethods>
+
+	<CellMethods>
+	</CellMethods>
+</root>
+
