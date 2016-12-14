@@ -52,19 +52,20 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		"""
 		return self.champion
 
-		DEBUG_MSG("Player[%i].self.attrs[%s]" % (self.id,self.champion)
+		DEBUG_MSG("Player[%i].self.champion[%i]" % (self.id,self.champion))
 	#-----------------------------------------------------------
 	#						Callbacks
 	#-----------------------------------------------------------
 
+	
 	def onEntitiesEnabled(self):
 		"""
 		KBEngine method.
 		该entity被正式激活为可使用， 此时entity已经建立了client对应实体， 可以在此创建它的
 		cell部分。
 		"""
-		INFO_MSG("Account[%i]::onEntitiesEnabled:entities enable. mailbox:%s, clientType(%i), clientDatas=(%s),  accountName=%s" % \
-			(self.id, self.client, self.getClientType(), self.getClientDatas(),  self.__ACCOUNT_NAME__))
+		INFO_MSG("Account[%i]::onEntitiesEnabled:entities enable. mailbox:%s, clientType(%i), clientDatas=(%s), accountName=%s" % \
+			(self.id, self.client, self.getClientType(), self.getClientDatas(), self.__ACCOUNT_NAME__))
 		Teleport.onEntitiesEnabled(self)
 
 	def onLogOnAttempt(self, ip, port, password):
