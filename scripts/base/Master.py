@@ -22,16 +22,13 @@ class Master(KBEngine.Base, GameObject):
 		KBEngine.Base.__init__(self)
 		GameObject.__init__(self)
 
-		#?è????????????????
+		#需要匹配的玩家集合
 		self.playerMactch={}
-		#?ù???????óPVP??????????????
+		#所有的请求PVP对战的玩家集合
 
-		#match1 ?¨???????¨?·?????÷??????
+		#Master建立的决定确认的各个实体
 		self.playerCal={}
-		#self.players={}
-		
 	
-
 		# 将自己注册到共享数据中， 在当前进程KBEngine.globalData["Halls"]返回的是Halls实体，其他进程中
 		# 由于实体不在那个进程所以KBEngine.globalData["Halls"]返回的是mailbox
 		# 因此调用KBEngine.globalData["Halls"].xxx方法必须在def定义，允许远程访问
@@ -70,7 +67,7 @@ class Master(KBEngine.Base, GameObject):
 		self.playerCal[player.id][match_order]=matchedPlayer
 
 		#若是所有的match系统都已经传过来匹配值，则进行最终挑选
-		if self.playerCal[player.id].__len__()==2:
+		if self.playerCal[player.id].__len__()==4:
 			cal_result(player_match_number)
 
 	#最终的匹配函数	
@@ -93,8 +90,8 @@ class Master(KBEngine.Base, GameObject):
 		#有个问题，会不会删除太早了？
 
 		del self.playerCal[player.id]
-		del KBEngine.globalData["match1"%player_match_number].playerMatch[player.id]
-		del KBEngine.globalData["match1"%k].playerMatch[end_palyer.id]
+		del KBEngine.globalData["match%i"%player_match_number].playerMatch[player.id]
+		del KBEngine.globalData["Master"%k].playerMatch[end_palyer.id]
 
 		#roomID=int(time.time()*100)
 

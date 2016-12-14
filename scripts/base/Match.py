@@ -22,10 +22,7 @@ class Match(KBEngine.Base, GameObject):
 		KBEngine.Base.__init__(self)
 		GameObject.__init__(self)
 
-		#需要匹配的玩家集合
-		self.playerMactch={}
-		#所有的请求PVP对战的玩家集合
-
+	
 		#match1 建立的决定确认的各个实体
 		self.playerCal={}
 		#self.players={}
