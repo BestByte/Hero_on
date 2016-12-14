@@ -27,20 +27,21 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 	def req_match(self):
 		"""
 		exposed
+
+		defined method.
 		客户端请求匹配
 		"""
-		i=random.randint(1,ser_number)
+		i=random.randint(1,2)
 		DEBUG_MSG("Player[%i].req_match" % (self.id))
-		KBEngine.globalData["match%i"%i)].addPVPMatch(self,i))
-		
+		KBEngine.globalData["match%i"%i].addPVPMatch(self,i)
 		DEBUG_MSG("KBEngine.globalData[match%i]:addPVPMatch(self)" % (i))
 
 		self.client.on_req_match("正在匹配中...")
 
 	def func(self):
          # 请求获取match的属性
-		 i=random.randint(1,ser_number)
-		 KBEngine.globalData["match%i"%(i))].reqGetAttrs(self)# // 注意：这里将自己传入方法了， 引擎会将其转变为mailbox传输到对方进程上并传入这个实体的方法中， 在spaces中就可以将信息返回给指定实体了。
+		 i=random.randint(1,2)
+		 KBEngine.globalData["match%i"%(i)].reqGetAttrs(self)# // 注意：这里将自己传入方法了， 引擎会将其转变为mailbox传输到对方进程上并传入这个实体的方法中， 在spaces中就可以将信息返回给指定实体了。
 		 DEBUG_MSG("KBEngine.globalData[match%i]:reqGetAttrs(self)" % (i))
 
 	def onGetAttr(self):

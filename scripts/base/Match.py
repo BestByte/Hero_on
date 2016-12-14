@@ -37,17 +37,22 @@ class Match(KBEngine.Base, GameObject):
 		# 因此调用KBEngine.globalData["Halls"].xxx方法必须在def定义，允许远程访问
 
 		# 向全局共享数据中注册这个管理器的mailbox以便在所有逻辑进程中可以方便的访问
-		KBEngine.globalData["match1"] = self
+		KBEngine.globalData["match%i"%int(os.getenv("KBE_BOOTIDX_GROUP"))] = self
+		DEBUG_MSG("KBEngine.globalData[match%i)"%int(os.getenv("KBE_BOOTIDX_GROUP"))
 
 		# 通过添加一个定时器延时执行房间的创建，确保一些状态在此期间能够初始化完毕
 		#self.addTimer(3, 1, 1)
 
 	def addPVPMatch(self,player,player_match_num):
 		"""
+		defined method.
+
 		player:MailBox
 		player_match_num:Match所在的baseAPP编号
+
+		目前系统共涉及baseapp5个，其中1、2专门负责match匹配实体，3负责rooms创建房间实体，3、4、5生成player实体、room房间实体
 		""" 
-		DEBUG_MSG("Match[%i].addPVPMatch" % 1)
+		DEBUG_MSG("Match[%i].addPVPMatch" % int(os.getenv("KBE_BOOTIDX_GROUP")))
 		
 		#只要是匹配的玩家那么，就建立初始化列表 
 		self.playerMactch[player.id]=player

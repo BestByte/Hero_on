@@ -7,6 +7,8 @@ from KBEDebug import *
 import os
 import  math
 global ser_number 
+import re
+
 def onBaseAppReady(isBootstrap):
 	"""
 	KBEngine method.
@@ -21,6 +23,7 @@ def onBaseAppReady(isBootstrap):
 	
 	ser_number= int(os.getenv("KBE_BOOTIDX_GROUP"))
 	INFO_MSG('onBaseAppReady: ser_number=%s' % ser_number)
+
 	#不论第几个baseAPP，都要创建匹配实体Match
 	if isBootstrap:
 		# 创建spacemanager
@@ -28,6 +31,10 @@ def onBaseAppReady(isBootstrap):
 		KBEngine.setAppFlags(KBEngine.APP_FLAGS_NOT_PARTCIPATING_LOAD_BALANCING )
 		
 	elif int(os.getenv("KBE_BOOTIDX_GROUP"))==2 :
+		KBEngine.createBaseLocally( "Match", {} )
+		KBEngine.setAppFlags(KBEngine.APP_FLAGS_NOT_PARTCIPATING_LOAD_BALANCING )
+
+	elif int(os.getenv("KBE_BOOTIDX_GROUP"))==3 :
 		KBEngine.createBaseLocally( "Rooms", {} )
 
 
