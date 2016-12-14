@@ -31,11 +31,10 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		defined method.
 		客户端请求匹配
 		"""
-		i=random.randint(1,2)
+		
 		DEBUG_MSG("Player[%i].req_match" % (self.id))
-		KBEngine.globalData["match%i"%i].addPVPMatch(self,i)
-		DEBUG_MSG("KBEngine.globalData[match%i]:addPVPMatch(self)" % (i))
-
+		KBEngine.globalData["Master"].addPVPMatch(self)
+		DEBUG_MSG("KBEngine.globalData[Master]:addPVPMatch(self)" )
 		self.client.on_req_match("正在匹配中...")
 
 	def func(self):

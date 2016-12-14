@@ -61,7 +61,7 @@ class Match(KBEngine.Base, GameObject):
 		KBEngine.globalData["match1"].playerCal[player.id]={}
 
 		for x in range(2):
-		KBEngine.globalData["match%i"% int(os.getenv("KBE_BOOTIDX_GROUP"))].eachPVPMatch(player,player_match_num)
+			KBEngine.globalData["match%i"% int(os.getenv("KBE_BOOTIDX_GROUP"))].eachPVPMatch(player,player_match_num)
 
 		#self.charge_value=100#起始设定的与玩家奖杯的差值
 
