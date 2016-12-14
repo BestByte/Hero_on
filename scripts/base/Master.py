@@ -94,9 +94,9 @@ class Master(KBEngine.Base, GameObject):
 		#roomID=int(time.time()*100)
 
 		#self.reqEnterRoom(self, roomID,self.playerMactch[player][x], player)
-	#---------------------------------------------------------------------
+	#-----------------------------------------------------------
 	#                              Callbacks
-	#---------------------------------------------------------------------
+	#-----------------------------------------------------------
 	def onTimer(self, tid, userArg):
 		"""
 		KBEngine method.

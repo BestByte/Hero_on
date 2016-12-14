@@ -9,7 +9,18 @@
 	</Properties>
 
 	<BaseMethods>
-		
+    <addPVPMatch>
+      <Arg>		MAILBOX		</Arg>
+    </addPVPMatch>
+
+    <addPVPResult>
+      <Arg>		MAILBOX		</Arg>
+      <Arg>		ENTITY_UTYPE	</Arg>
+      <Arg>		MAILBOX		</Arg>
+      <Arg>		ENTITY_UTYPE	</Arg>
+      <Arg>		ENTITY_UTYPE	</Arg>
+      
+    </addPVPResult>
 	</BaseMethods>
 
 	<CellMethods>
