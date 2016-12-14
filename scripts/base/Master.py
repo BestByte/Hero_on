@@ -50,10 +50,10 @@ class Master(KBEngine.Base, GameObject):
 		""" 
 		DEBUG_MSG("Match[%i].addPVPMatch" % int(os.getenv("KBE_BOOTIDX_GROUP")))
 		
-		#在match1上建立，各个match汇总的匹配数据
+		#在Master上建立，各个match汇总的匹配数据
 		self.playerMactch[player.id]=player
 
-		#在match1上建立，各个match汇总的匹配数据
+		#在Master上建立，各个match汇总的匹配数据
 		KBEngine.globalData["Master"].playerCal[player.id]={}
 
 		for x in range(4):
