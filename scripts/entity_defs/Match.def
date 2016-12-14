@@ -11,9 +11,12 @@
 	<BaseMethods>
     <eachPVPMatch>
       <Arg>		MAILBOX		</Arg>
-      <Arg>		ENTITY_UTYPE	</Arg>
-      <Arg>		PYTHON		</Arg>
+     
     </eachPVPMatch>
+    
+    <reqGetAttrs>
+      <Arg>		MAILBOX		</Arg>
+    </reqGetAttrs>
   </BaseMethods>
 
 	<CellMethods>

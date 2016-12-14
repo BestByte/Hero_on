@@ -39,8 +39,7 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 
 	def func(self):
 		"""
-		defined method.
-		
+		defined method
 		"""
          # 请求获取match的属性
 		 i=random.randint(2,5)
@@ -50,17 +49,13 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 	def onGetAttr(self):
 		"""
 		defined method.
-		
 		"""
 		return self.champion
 
-		DEBUG_MSG("Player[%i].self.attrs[%s]" % (self.id,self.champion))
-
-	
-
-	#---------------------------------------------------------------------------------------
+		DEBUG_MSG("Player[%i].self.attrs[%s]" % (self.id,self.champion)
+	#-----------------------------------------------------------
 	#						Callbacks
-	#---------------------------------------------------------------------------------------
+	#-----------------------------------------------------------
 
 	def onEntitiesEnabled(self):
 		"""
@@ -90,9 +85,7 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		
 		# 如果一个在线的账号被一个客户端登陆并且onLogOnAttempt返回允许
 		# 那么会踢掉之前的客户端连接
-		# 那么此时self.activeAvatar可能不为None， 常规的流程是销毁这个角色等新客户端上来重新选择角色进入
-		
-			
+		# 那么此时self.activeAvatar可能不为None， 常规的流程是销毁这个角色等新客户端上来重新选择角色进
 		return KBEngine.LOG_ON_ACCEPT
 		
 	def onClientDeath(self):
@@ -100,8 +93,6 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		KBEngine method.
 		客户端对应实体已经销毁
 		"""
-		
-
 		DEBUG_MSG("Account[%i].onClientDeath:" % self.id)
 		self.destroy()		
 		
