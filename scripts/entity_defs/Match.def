@@ -9,8 +9,12 @@
 	</Properties>
 
 	<BaseMethods>
-		
-	</BaseMethods>
+    <eachPVPMatch>
+      <Arg>		MAILBOX		</Arg>
+      <Arg>		ENTITY_UTYPE	</Arg>
+      <Arg>		PYTHON		</Arg>
+    </eachPVPMatch>
+  </BaseMethods>
 
 	<CellMethods>
 	</CellMethods>

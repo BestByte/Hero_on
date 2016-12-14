@@ -37,7 +37,7 @@ class Master(KBEngine.Base, GameObject):
 		KBEngine.globalData["Master"] = self
 		DEBUG_MSG("KBEngine.globalData[Master]")
 
-	def addPVPMatch(self,player,player_match_num):
+	def addPVPMatch(self,player):
 		"""
 		defined method.
 
@@ -55,10 +55,10 @@ class Master(KBEngine.Base, GameObject):
 		self.playerCal[player.id]={}
 
 		for x in range(4):
-			KBEngine.globalData["match%i"% (x+2)].eachPVPMatch(player,player_match_num)
+			KBEngine.globalData["match%i"% (x+2)].eachPVPMatch(player)
 
 
-	def addPVPResult(self,matchedPlayer,matchedChampion, player,playerChampion,player_match_number,match_order):#match_order 是match的启动值
+	def addPVPResult(self,matchedPlayer,matchedChampion, player,playerChampion,match_order):#match_order 是match的启动值
 
 		#主match实体汇总处理
 		#考虑到baseapp的顺序match_order
