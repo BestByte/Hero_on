@@ -28,8 +28,13 @@ def onBaseAppReady(isBootstrap):
 	if isBootstrap:
 		# 创建spacemanager
 		KBEngine.createBaseLocally( "Master", {} )
-		KBEngine.setAppFlags(KBEngine.APP_FLAGS_NOT_PARTCIPATING_LOAD_BALANCING )
-		
+		#KBEngine.setAppFlags(KBEngine.APP_FLAGS_NOT_PARTCIPATING_LOAD_BALANCING )
+
+		#改为单个baseapp后更改的，若多个baseapp之后，直接删除下面，把下面的注释的重新取消注释即可
+		KBEngine.createBaseLocally( "Rooms", {} )
+		KBEngine.createBaseLocally( "Match", {} )
+
+	"""
 	elif int(os.getenv("KBE_BOOTIDX_GROUP"))==2 :
 		KBEngine.createBaseLocally( "Match", {} )
 		
@@ -39,7 +44,7 @@ def onBaseAppReady(isBootstrap):
 		KBEngine.createBaseLocally( "Match", {} )
 	else:
 		KBEngine.createBaseLocally( "Match", {} )
-
+	"""
 
 def onBaseAppShutDown(state):
 	"""

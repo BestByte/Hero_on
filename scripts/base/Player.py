@@ -41,10 +41,14 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		"""
 		defined method
 		"""
+		#改为单个baseapp后更改的，若多个baseapp之后，直接删除下面，把下面的注释的重新取消注释即可
          # 请求获取match的属性
+		"""
 		for i in range(4):
 			KBEngine.globalData["match%i"%(i+2)].reqGetAttrs(self)# // 注意：这里将自己传入方法了， 引擎会将其转变为mailbox传输到对方进程上并传入这个实体的方法中， 在spaces中就可以将信息返回给指定实体了。
 		DEBUG_MSG("KBEngine.globalData[match%i]:reqGetAttrs(self)")
+		"""
+		KBEngine.globalData["match1"].reqGetAttrs(self)
 
 	def onGetAttr(self):
 		"""

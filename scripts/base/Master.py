@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import KBEngine
 import Functor
 import d_spaces
@@ -54,10 +54,12 @@ class Master(KBEngine.Base, GameObject):
 		#��Master�Ͻ���������match���ܵ�ƥ������
 		self.playerCal[player.id]={}
 
+		#改为单个baseapp后更改的，若多个baseapp之后，直接删除下面，把下面的注释的重新取消注释即可
+		"""
 		for x in range(4):
 			KBEngine.globalData["match%i"% (x+2)].eachPVPMatch(player)
-
-
+		"""
+		KBEngine.globalData["match1"].eachPVPMatch(player)
 	def addPVPResult(self,matchedPlayer,matchedChampion, player,playerChampion,match_order):#match_order ��match������ֵ
 
 		#��matchʵ�����ܴ���
@@ -65,9 +67,14 @@ class Master(KBEngine.Base, GameObject):
 		self.playerCal[player.id][match_order]=matchedPlayer
 
 		#�������е�matchϵͳ���Ѿ�������ƥ��ֵ��������������ѡ
+
+		#改为单个baseapp后更改的，若多个baseapp之后，直接删除下面，把下面的注释的重新取消注释即可
+		"""
 		if self.playerCal[player.id].__len__()==4:
 			cal_result(player_match_number)
-
+		"""
+		if self.playerCal[player.id].__len__()==1:
+			cal_result(player_match_number)
 	#���յ�ƥ�亯��	
 	def cal_result(self,player_match_number):
 		end_palyer=None
@@ -86,14 +93,16 @@ class Master(KBEngine.Base, GameObject):
 
 		#ѡ��������֮�󣬰������ֵ�ɾ���ˡ�
 		#�и����⣬�᲻��ɾ��̫���ˣ�
-
+		"""
 		del self.playerCal[player.id]
 		del KBEngine.globalData["match%i"%player_match_number].playerMatch[player.id]
-		del KBEngine.globalData["Master"%k].playerMatch[end_palyer.id]
+		del KBEngine.globalData["Master"].playerMatch[end_palyer.id]
+		"""
+		#改为单个baseapp后更改的，若多个baseapp之后，直接删除下面，把下面的注释的重新取消注释即可
+		del self.playerCal[player.id]
+		del KBEngine.globalData["match1"].playerMatch[player.id]
+		del KBEngine.globalData["Master"].playerMatch[end_palyer.id]
 
-		#roomID=int(time.time()*100)
-
-		#self.reqEnterRoom(self, roomID,self.playerMactch[player][x], player)
 	#-----------------------------------------------------------
 	#                              Callbacks
 	#-----------------------------------------------------------
