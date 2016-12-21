@@ -42,11 +42,21 @@ class Match(KBEngine.Base, GameObject):
 				#若是在线的正要匹配的玩家当中，与匹配的玩家的奖杯数差值最少的玩家
 				#则要传给baseapp1的匹配实体Match
 				#x属于本线程的实体，直接访问champion属性
+
+			#改为单个baseapp后更改的，若多个baseapp之后，直接删除下面，把下面的注释的重新取消注释即可
+			"""
 			if charge_value<abs(x.champion-self.reqGetAttrs(player)) and x.id != player.id:#在同一线程中，不能让两者重复
 					charge_value=abs(x.champion-self.reqGetAttrs(player))
 					charge_id=x.id #记录最小差值玩家的标号
 			else:
 				charge_value=abs(x.champion-self.reqGetAttrs(player))
+				charge_id=x.id
+			"""
+			if charge_value<abs(x.champion-player.champion) and x.id != player.id:#在同一线程中，不能让两者重复
+					charge_value=abs(x.champion-player.champion)
+					charge_id=x.id #记录最小差值玩家的标号
+			else:
+				charge_value=abs(x.champion-player.champion)
 				charge_id=x.id
 		if KBEngine.entities.has_key(charge_id):
 			matchedPlayer=KBEngine.entities[charge_id]
@@ -54,10 +64,11 @@ class Match(KBEngine.Base, GameObject):
 			matchedPlayer=None
 
 			#主match排序
-		KBEngine.globalData["Master"].addPVPResult(matchedPlayer,matchedPlayer.champion,plalyer,self.reqGetAttrs(player),int(os.getenv("KBE_BOOTIDX_GROUP")))
+		KBEngine.globalData["Master"].addPVPResult(matchedPlayer,matchedPlayer.champion,player,player.champion,int(os.getenv("KBE_BOOTIDX_GROUP")))
 
-		DEBUG_MSG("KBEngine.globalData['match1'].addPVPResult(matchedPlayer[%s],matchedPlayer.champion[%i],plalyer[%s],self.reqGetAttrs(player,champion)[%i]),os.getenv('KBE_BOOTIDX_GROUP')[%i]" % (matchedPlayer,matchedPlayer.champion,plalyer,self.reqGetAttrs(player),int(os.getenv("KBE_BOOTIDX_GROUP"))))
+		DEBUG_MSG("KBEngine.globalData['match1'].addPVPResult(matchedPlayer[%s],matchedPlayer.champion[%i],plalyer[%s],self.reqGetAttrs(player,champion)[%i]),os.getenv('KBE_BOOTIDX_GROUP')[%i]" % (matchedPlayer,matchedPlayer.champion,player,player.champion,int(os.getenv("KBE_BOOTIDX_GROUP"))))
 
+	#多个baseAPP需要
 	def reqGetAttrs(self, mailbox):
 		mailbox.onGetAttr(self.champion)
 		DEBUG_MSG("Player[%i].reqGetAttr(self, mailbox,attrs [%s]):" % (mailbox.id))

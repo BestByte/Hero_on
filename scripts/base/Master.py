@@ -13,10 +13,7 @@ import os
 
 class Master(KBEngine.Base, GameObject):
 	"""
-	����һ��ƥ��ϵͳ
-	���ͻ��˵�¼ʱ��PVPģʽ�£�����PVP������
-	ƥ��ϵͳ�������ߵ�champion�÷�����ʱƥ�䴴��space
-	KBEngine��space��һ�������ռ��ĸ��һ���ռ����Ա��ű�����Ϊ��Ϸ��������Ϸ���䡢������һ�����档
+	
 	"""
 	def __init__(self):
 		KBEngine.Base.__init__(self)
@@ -29,11 +26,7 @@ class Master(KBEngine.Base, GameObject):
 		#Master�����ľ���ȷ�ϵĸ���ʵ��
 		self.playerCal={}
 	
-		# ���Լ�ע�ᵽ���������У� �ڵ�ǰ����KBEngine.globalData["Halls"]���ص���Hallsʵ�壬����������
-		# ����ʵ�岻���Ǹ���������KBEngine.globalData["Halls"]���ص���mailbox
-		# ���˵���KBEngine.globalData["Halls"].xxx����������def���壬����Զ�̷���
-
-		# ��ȫ�ֹ���������ע��������������mailbox�Ա��������߼������п��Է����ķ���
+		
 		KBEngine.globalData["Master"] = self
 		DEBUG_MSG("KBEngine.globalData[Master]")
 
@@ -109,7 +102,7 @@ class Master(KBEngine.Base, GameObject):
 	def onTimer(self, tid, userArg):
 		"""
 		KBEngine method.
-		???????��timer??��?
+		引擎回调timer触发
 		"""
 		#DEBUG_MSG("%s::onTimer: %i, tid:%i, arg:%i" % (self.getScriptName(), self.id, tid, userArg))
 		
