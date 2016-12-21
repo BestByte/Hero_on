@@ -59,7 +59,7 @@ class Master(KBEngine.Base, GameObject):
 		#���ǵ�baseapp��˳��match_order
 		self.playerCal[player.id][match_order]=matchedPlayer
 
-		#�������е�matchϵͳ���Ѿ�������ƥ��ֵ��������������ѡ
+		
 
 		#改为单个baseapp后更改的，若多个baseapp之后，直接删除下面，把下面的注释的重新取消注释即可
 		"""
@@ -68,24 +68,31 @@ class Master(KBEngine.Base, GameObject):
 		"""
 		if self.playerCal[player.id].__len__()==1:
 			cal_result(player_match_number)
-	#���յ�ƥ�亯��	
+	
 	def cal_result(self,player_match_number):
 		end_palyer=None
 		
 		min_val=30
 		match_num=0 #��С���������ڵ�baseapp
+		#改为单个baseapp后更改的，若多个baseapp之后，直接删除下面，把下面的注释的重新取消注释即可
+		"""
 		for k ,v in self.playerCal[player.id].items():
 			if v !=None:
 				if min_val>abs(self.reqGetAttrs(v)-self.reqGetAttrs(player)):
 					min_val=abs(self.reqGetAttrs(v)-self.reqGetAttrs(player))
 					end_palyer=v
 					match_num=k
-
+		"""
+		for k ,v in self.playerCal[player.id].items():
+			if v !=None:
+				if min_val>abs(v.champion-palyer.champion):
+					min_val=abs(v.champion-palyer.champion)
+					end_palyer=v
+					match_num=k
 		#�����Ǹ���ѡ����������ʵ�壬��������
 		KBEngine.globalData["Rooms"].createSpace(0,{},self.playerCal[player.id][k], player)
 
-		#ѡ��������֮�󣬰������ֵ�ɾ���ˡ�
-		#�и����⣬�᲻��ɾ��̫���ˣ�
+		
 		"""
 		del self.playerCal[player.id]
 		del KBEngine.globalData["match%i"%player_match_number].playerMatch[player.id]
