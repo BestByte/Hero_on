@@ -30,8 +30,14 @@
     <Compile Include="scripts\base\items\base\__init__.py" />
     <Compile Include="scripts\base\items\__init__.py" />
     <Compile Include="scripts\base\kbemain.py" />
+    <Compile Include="scripts\base\lowHall.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\base\Master.py" />
     <Compile Include="scripts\base\Match.py" />
+    <Compile Include="scripts\base\medHall.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\base\Player.py" />
     <Compile Include="scripts\base\quests\base\__init__.py" />
     <Compile Include="scripts\base\quests\__init__.py" />
@@ -252,7 +258,7 @@
     <Compile Include="scripts\data\d_spaces_spawns.py" />
     <Compile Include="scripts\db\kbemain.py" />
     <Compile Include="scripts\db\kbengine.py" />
-    <Compile Include="scripts\highHall.py">
+    <Compile Include="scripts\base\highHall.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="scripts\interface\kbemain.py" />

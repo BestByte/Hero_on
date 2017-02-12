@@ -1,4 +1,4 @@
-ï»¿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import KBEngine
 import Functor
 import d_spaces
@@ -10,6 +10,7 @@ import math
 import time
 import os
 from collections import *
+
 class highHall(KBEngine.Base, GameObject):
 	"""
 	"""
@@ -17,8 +18,8 @@ class highHall(KBEngine.Base, GameObject):
 		KBEngine.Base.__init__(self)
 		GameObject.__init__(self)
 
-		
-		self.high_deque=deque()
+		#´æ·Å¸ßÕ½¶·Á¦Íæ¼ÒµÄdequeue
+		self.low_deque=deque()
 		
 		KBEngine.globalData["highHall"] = self
 		DEBUG_MSG("KBEngine.globalData[highHall]")
@@ -27,9 +28,9 @@ class highHall(KBEngine.Base, GameObject):
 
 	def high_match(self):
 		while True:
-			if len(self.high_deque)>2:
-				a_Mb=self.high_deque.pop()
-				b_Mb=self.high_deque.pop()
+			if len(self.low_deque)>2:
+				a_Mb=self.low_deque.pop()
+				b_Mb=self.l_deque.pop()
 				KBEngine.createBaseAnywhere("Room", \
 											{
 											"spaceKey" : KBEngine.genUUID64(),	\
@@ -40,14 +41,14 @@ class highHall(KBEngine.Base, GameObject):
 
 	def onSpaceCreatedCB(self, spaceKey,player_mailbox,matched_player, space):
 		"""
-		ä¸€ä¸ªspaceåˆ›å»ºå¥½åçš„å›è°ƒ
+		Ò»¸öspace´´½¨ºÃºóµÄ»Øµ÷
 		"""
 		DEBUG_MSG("Rooms::onSpaceCreatedCB: room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
 
-		player_mailbox.client.on_match_success("åŒ¹é…æˆåŠŸ")
-		DEBUG_MSG("player_mailbox.client.on_match_success(åŒ¹é…æˆåŠŸ) room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
-		matched_player.client.on_match_success("åŒ¹é…æˆåŠŸ")
-		DEBUG_MSG("matched_player.client.on_match_success(åŒ¹é…æˆåŠŸ): room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
+		player_mailbox.client.on_match_success("Æ¥Åä³É¹¦")
+		DEBUG_MSG("player_mailbox.client.on_match_success(Æ¥Åä³É¹¦) room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
+		matched_player.client.on_match_success("Æ¥Åä³É¹¦")
+		DEBUG_MSG("matched_player.client.on_match_success(Æ¥Åä³É¹¦): room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
 
 	#-----------------------------------------------------------
 	#                              Callbacks
@@ -55,7 +56,7 @@ class highHall(KBEngine.Base, GameObject):
 	def onTimer(self, tid, userArg):
 		"""
 		KBEngine method.
-		å¼•æ“å›è°ƒtimerè§¦å‘
+		ÒıÇæ»Øµ÷timer´¥·¢
 		"""
 		#DEBUG_MSG("%s::onTimer: %i, tid:%i, arg:%i" % (self.getScriptName(), self.id, tid, userArg))
 		if userArg==1:
