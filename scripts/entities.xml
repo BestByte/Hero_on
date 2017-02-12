@@ -8,7 +8,7 @@
 	<!-- <Avatar/> -->
   <Player hasClient="true"></Player>
   <Room/>
-  <Rooms/>
-  <Match/>
-  <Master/>
+  <highHall/>
+  <medHall/>
+  <lowHall/>
 </root>

@@ -27,13 +27,6 @@ class Room(KBEngine.Base, GameObject):
 		#此功能由createInNewSpace完成, __init__可以理解为Space的构造函数。
 		self.createInNewSpace(None)
 		
-		#self.spaceUTypeB = self.cellData["spaceUType"]
-		
-		#self.spaceResName = d_spaces.datas.get(self.spaceUTypeB)['resPath']
-		
-		# 这个地图上创建的entity总数
-		#self.tmpCreateEntityDatas = copy.deepcopy(d_spaces_spawns.datas.get(self.spaceUTypeB, ()))
-		
 		self.avatars = {}
 		
 	def teleportSpace(self, spaceKey, playerA, playerB, context):

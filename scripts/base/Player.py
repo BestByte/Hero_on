@@ -63,11 +63,10 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		return self.champion
 
 		DEBUG_MSG("Player[%i].self.champion[%i]" % (self.id,self.champion))
-	#-----------------------------------------------------------
+	#-------------------------------------------------
 	#						Callbacks
-	#-----------------------------------------------------------
+	#-------------------------------------------------
 
-	
 	def onEntitiesEnabled(self):
 		"""
 		KBEngine method.
