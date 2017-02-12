@@ -32,17 +32,14 @@ def onBaseAppReady(isBootstrap):
 		KBEngine.createBaseLocally( "Rooms", {} )
 		#KBEngine.createBaseLocally( "Match", {} )
 
-	"""
+	
 	elif int(os.getenv("KBE_BOOTIDX_GROUP"))==2 :
-		KBEngine.createBaseLocally( "Match", {} )
+		KBEngine.createBaseLocally( "medHall", {} )
 		
 
 	elif int(os.getenv("KBE_BOOTIDX_GROUP"))==3 :
-		KBEngine.createBaseLocally( "Rooms", {} )
-		KBEngine.createBaseLocally( "Match", {} )
-	else:
-		KBEngine.createBaseLocally( "Match", {} )
-	"""
+		KBEngine.createBaseLocally( "lowHall", {} )
+		
 
 def onBaseAppShutDown(state):
 	"""

@@ -252,6 +252,9 @@
     <Compile Include="scripts\data\d_spaces_spawns.py" />
     <Compile Include="scripts\db\kbemain.py" />
     <Compile Include="scripts\db\kbengine.py" />
+    <Compile Include="scripts\highHall.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="scripts\interface\kbemain.py" />
     <Compile Include="scripts\interface\Poller.py" />
     <Compile Include="scripts\logger\kbemain.py" />

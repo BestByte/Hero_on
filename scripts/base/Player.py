@@ -33,8 +33,14 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		"""
 		
 		DEBUG_MSG("Player[%i].req_match" % (self.id))
-		KBEngine.globalData["Master"].addPVPMatch(self)
-		DEBUG_MSG("KBEngine.globalData[Master]:addPVPMatch(self)" )
+		if self.champion>600:
+			KBEngine.globalData["highHall"].high_dequeue.append(self)
+		elif self.champion<200:
+			KBEngine.globalData["lowHall"].low_dequeue.append(self)
+		else:
+			KBEngine.globalData["medHall"].med_dequeue.append(self)
+		
+		DEBUG_MSG("player [%d]:req_match(self)"%self.id )
 		self.client.on_req_match("正在匹配中...")
 
 	def func(self):
