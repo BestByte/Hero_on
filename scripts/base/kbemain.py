@@ -6,8 +6,6 @@ import items
 from KBEDebug import *
 import os
 import  math
-global ser_number 
-
 
 def onBaseAppReady(isBootstrap):
 	"""
@@ -27,12 +25,12 @@ def onBaseAppReady(isBootstrap):
 	#不论第几个baseAPP，都要创建匹配实体Match
 	if isBootstrap:
 		# 创建spacemanager
-		KBEngine.createBaseLocally( "Master", {} )
-		#KBEngine.setAppFlags(KBEngine.APP_FLAGS_NOT_PARTCIPATING_LOAD_BALANCING )
+		KBEngine.createBaseLocally( "highHall", {} )
+		KBEngine.setAppFlags(KBEngine.APP_FLAGS_NOT_PARTCIPATING_LOAD_BALANCING )
 
 		#改为单个baseapp后更改的，若多个baseapp之后，直接删除下面，把下面的注释的重新取消注释即可
 		KBEngine.createBaseLocally( "Rooms", {} )
-		KBEngine.createBaseLocally( "Match", {} )
+		#KBEngine.createBaseLocally( "Match", {} )
 
 	"""
 	elif int(os.getenv("KBE_BOOTIDX_GROUP"))==2 :

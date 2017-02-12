@@ -5,7 +5,6 @@ import d_spaces
 import SCDefine
 import Watcher
 from KBEDebug import *
-
 from interfaces.GameObject import GameObject
 import math
 import time
@@ -53,6 +52,7 @@ class Master(KBEngine.Base, GameObject):
 			KBEngine.globalData["match%i"% (x+2)].eachPVPMatch(player)
 		"""
 		KBEngine.globalData["match1"].eachPVPMatch(player)
+
 	def addPVPResult(self,matchedPlayer,matchedChampion, player,playerChampion,match_order):#match_order ��match������ֵ
 
 		#��matchʵ�����ܴ���

@@ -52,8 +52,6 @@ class Rooms(KBEngine.Base, GameObject):
 		DEBUG_MSG("player_mailbox.client.on_match_success(匹配成功) room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
 		matched_player.client.on_match_success("匹配成功")
 		DEBUG_MSG("matched_player.client.on_match_success(匹配成功): room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
-		
-	
 
 	#---------------------------------------------------------------------
 	#                              Callbacks
@@ -78,8 +76,7 @@ class Rooms(KBEngine.Base, GameObject):
 		defined method.
 		space的cell创建好了
 		"""
-		
-		
+
 	def onSpaceGetCell(self, spaceKey,	
 											room_base_mailbox,
 											context,

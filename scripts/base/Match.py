@@ -5,7 +5,6 @@ import d_spaces
 import SCDefine
 import Watcher
 from KBEDebug import *
-
 from interfaces.GameObject import GameObject
 import math
 import time
@@ -64,9 +63,9 @@ class Match(KBEngine.Base, GameObject):
 			matchedPlayer=None
 
 			#主match排序
-		KBEngine.globalData["Master"].addPVPResult(matchedPlayer,matchedPlayer.champion,player,player.champion,int(os.getenv("KBE_BOOTIDX_GROUP")))
+		KBEngine.globalData["Master"].addPVPResult(matchedPlayer,matchedPlayer.champion,player,player.champion,1)
 
-		DEBUG_MSG("KBEngine.globalData['match1'].addPVPResult(matchedPlayer[%s],matchedPlayer.champion[%i],plalyer[%s],self.reqGetAttrs(player,champion)[%i]),os.getenv('KBE_BOOTIDX_GROUP')[%i]" % (matchedPlayer,matchedPlayer.champion,player,player.champion,int(os.getenv("KBE_BOOTIDX_GROUP"))))
+		DEBUG_MSG("KBEngine.globalData['match1'].addPVPResult(matchedPlayer[%s],matchedPlayer.champion[%i],plalyer[%s],self.reqGetAttrs(player,champion)[%i]),os.getenv('KBE_BOOTIDX_GROUP')[%i]" % (matchedPlayer,matchedPlayer.champion,player,player.champion,1))
 
 	#多个baseAPP需要
 	def reqGetAttrs(self, mailbox):

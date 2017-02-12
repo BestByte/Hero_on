@@ -78,16 +78,7 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		客户端登陆失败时会回调到这里
 		"""
 		INFO_MSG("Account[%i]::onLogOnAttempt: ip=%s, port=%i, selfclient=%s" % (self.id, ip, port, self.client))
-		"""
-		if self.activeAvatar != None:
-			return KBEngine.LOG_ON_REJECT
-
-		if ip == self.lastClientIpAddr and password == self.password:
-			return KBEngine.LOG_ON_ACCEPT
-		else:
-			return KBEngine.LOG_ON_REJECT
-		"""
-		
+	
 		# 如果一个在线的账号被一个客户端登陆并且onLogOnAttempt返回允许
 		# 那么会踢掉之前的客户端连接
 		# 那么此时self.activeAvatar可能不为None， 常规的流程是销毁这个角色等新客户端上来重新选择角色进
