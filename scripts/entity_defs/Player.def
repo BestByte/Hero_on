@@ -33,15 +33,17 @@
 	</ClientMethods>
 
 	<BaseMethods>
+    
     <req_match>
       <Exposed/>
     </req_match>
+    
     <func>
-      
     </func>
+    
     <onGetAttr>
-      
     </onGetAttr>
+    
 	</BaseMethods>
 
 	<CellMethods>

@@ -413,6 +413,9 @@
     <Content Include="scripts\data\__pycache__\d_spaces_spawns.cpython-34.pyc" />
     <Content Include="scripts\db\__pycache__\kbemain.cpython-34.pyc" />
     <Content Include="scripts\entities.xml" />
+    <Content Include="scripts\entity_defs\lowHall.def" />
+    <Content Include="scripts\entity_defs\medHall.def" />
+    <Content Include="scripts\entity_defs\highHall.def" />
     <Content Include="scripts\entity_defs\Master.def" />
     <Content Include="scripts\entity_defs\Player.def" />
     <Content Include="scripts\entity_defs\alias.xml" />

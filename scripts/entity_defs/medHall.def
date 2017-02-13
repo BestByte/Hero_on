@@ -1,0 +1,22 @@
+<root>
+	
+
+	<Implements>
+		<Interface>			GameObject		</Interface>
+	</Implements>
+
+	<Properties>
+	</Properties>
+
+	<BaseMethods>
+   
+
+    <high_match>
+    </high_match>
+    
+	</BaseMethods>
+
+	<CellMethods>
+	</CellMethods>
+</root>
+
