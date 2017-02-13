@@ -7,7 +7,7 @@ import d_spaces
 
 class Room(KBEngine.Entity, GameObject):
 	"""
-	游戏场景，在这里代表野外大地图
+	游戏场景
 	"""
 	def __init__(self):
 		KBEngine.Entity.__init__(self)
@@ -15,7 +15,7 @@ class Room(KBEngine.Entity, GameObject):
 		
 		# 一个space代表的是一个抽象的空间，这里向这个抽象的空间添加了几何资源数据，如果数据是3D场景的
 		# 该space中使用navigate寻路使用的是3D的API，如果是2D的几何数据navigate使用的是astar寻路
-		resPath = d_spaces.datas.get(self.spaceUType)['resPath']
+		resPath = d_spaces.datas.get(1)['resPath']
 		#KBEngine.addSpaceGeometryMapping(self.spaceID, None, resPath, True, {0 : "srv_xinshoucun_1.navmesh", 1 : "srv_xinshoucun.navmesh"})
 
 		

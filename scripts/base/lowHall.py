@@ -18,7 +18,7 @@ class highHall(KBEngine.Base, GameObject):
 		KBEngine.Base.__init__(self)
 		GameObject.__init__(self)
 
-		#存放高战斗力玩家的dequeue
+		#???鸥?战???????业?dequeue
 		self.low_deque=deque()
 		
 		KBEngine.globalData["highHall"] = self
@@ -31,32 +31,14 @@ class highHall(KBEngine.Base, GameObject):
 			if len(self.low_deque)>2:
 				a_Mb=self.low_deque.pop()
 				b_Mb=self.l_deque.pop()
-				KBEngine.createBaseAnywhere("Room", \
-											{
-											"spaceKey" : KBEngine.genUUID64(),	\
-											"matched_player":a_Mb, \
-											"player_mailbox":b_Mb
-											}, \
-											Functor.Functor(self.onSpaceCreatedCB, spaceKey,player_mailbox,matched_player))
-
-	def onSpaceCreatedCB(self, spaceKey,player_mailbox,matched_player, space):
-		"""
-		一个space创建好后的回调
-		"""
-		DEBUG_MSG("Rooms::onSpaceCreatedCB: room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
-
-		player_mailbox.client.on_match_success("匹配成功")
-		DEBUG_MSG("player_mailbox.client.on_match_success(匹配成功) room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
-		matched_player.client.on_match_success("匹配成功")
-		DEBUG_MSG("matched_player.client.on_match_success(匹配成功): room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
-
+				KBEngine.globalData["Rooms"].createSpace(KBEngine.genUUID64(),{},a_Mb,b_Mb)
 	#-----------------------------------------------------------
 	#                              Callbacks
 	#-----------------------------------------------------------
 	def onTimer(self, tid, userArg):
 		"""
 		KBEngine method.
-		引擎回调timer触发
+		?????氐?timer????
 		"""
 		#DEBUG_MSG("%s::onTimer: %i, tid:%i, arg:%i" % (self.getScriptName(), self.id, tid, userArg))
 		if userArg==1:

@@ -31,24 +31,8 @@ class highHall(KBEngine.Base, GameObject):
 			if len(self.high_deque)>2:
 				a_Mb=self.high_deque.pop()
 				b_Mb=self.high_deque.pop()
-				KBEngine.createBaseAnywhere("Room", \
-											{
-											"spaceKey" : KBEngine.genUUID64(),	\
-											"matched_player":a_Mb, \
-											"player_mailbox":b_Mb
-											}, \
-											Functor.Functor(self.onSpaceCreatedCB, spaceKey,player_mailbox,matched_player))
+				KBEngine.globalData["Rooms"].createSpace(KBEngine.genUUID64(),{},a_Mb,b_Mb)
 
-	def onSpaceCreatedCB(self, spaceKey,player_mailbox,matched_player, space):
-		"""
-		一个space创建好后的回调
-		"""
-		DEBUG_MSG("Rooms::onSpaceCreatedCB: room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
-
-		player_mailbox.client.on_match_success("匹配成功")
-		DEBUG_MSG("player_mailbox.client.on_match_success(匹配成功) room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
-		matched_player.client.on_match_success("匹配成功")
-		DEBUG_MSG("matched_player.client.on_match_success(匹配成功): room spaceKey [%i]. spaceID=[%i]" % (spaceKey, space.id))
 
 	#-----------------------------------------------------------
 	#                              Callbacks
