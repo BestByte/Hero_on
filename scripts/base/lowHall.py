@@ -11,7 +11,7 @@ import time
 import os
 from collections import *
 
-class highHall(KBEngine.Base, GameObject):
+class lowHall(KBEngine.Base, GameObject):
 	"""
 	"""
 	def __init__(self):
