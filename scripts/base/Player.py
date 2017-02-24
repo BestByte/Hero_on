@@ -20,7 +20,7 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		#考虑做个def中的存储
 		#self.state = 0
 		self.relogin = time.time()
-
+		self.cellData["dbid"] = self.databaseID
 		#Player创建完成之后自动加入大厅
 		#KBEngine.globalData["Hall"].reqEnterHall(self)
 
@@ -34,11 +34,11 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		
 		DEBUG_MSG("Player[%i].req_match" % (self.id))
 		if self.champion>600:
-			KBEngine.globalData["highHall"].high_dequeue.append(self)
+			KBEngine.globalData["Halls"].high_dequeue.append(self)
 		elif self.champion<200:
-			KBEngine.globalData["lowHall"].low_dequeue.append(self)
+			KBEngine.globalData["Halls"].low_dequeue.append(self)
 		else:
-			KBEngine.globalData["medHall"].med_dequeue.append(self)
+			KBEngine.globalData["Halls"].med_dequeue.append(self)
 		
 		DEBUG_MSG("player [%d]:req_match(self)"%self.id )
 		self.client.on_req_match("正在匹配中...")
@@ -63,6 +63,13 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		return self.champion
 
 		DEBUG_MSG("Player[%i].self.champion[%i]" % (self.id,self.champion))
+
+	def createCell(self, space):
+		"""
+		defined method.
+		创建cell实体
+		"""
+		self.createCellEntity(space)
 	#-------------------------------------------------
 	#						Callbacks
 	#-------------------------------------------------
