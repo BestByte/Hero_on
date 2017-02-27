@@ -30,54 +30,8 @@ class Halls(KBEngine.Base):
 
 		self.roomKey=0
 
-        self.addTimer(1, 5, 1)
-	def findRoom(self, roomKey, notFoundCreate = False):
-		"""
-		查找一个指定房间，如果找不到允许创建一个新的
-		"""
-		roomDatas = self.rooms.get(roomKey)
-		
-		# 如果房间没有创建，则将其创建
-		if not roomDatas:
-			if not notFoundCreate:
-				return FIND_ROOM_NOT_FOUND
-			
-			# 如果最后创建的房间没有满员，则使用最后创建的房间key，否则产生一个新的房间唯一Key
-			roomDatas = self.rooms.get(self.lastNewRoomKey)
-			if roomDatas is not None and roomDatas["PlayerCount"] < GameConfigs.ROOM_MAX_PLAYER:
-				return roomDatas
-
-			self.lastNewRoomKey = KBEngine.genUUID64()
-			
-			# 将房间base实体创建在任意baseapp上
-			# 此处的字典参数中可以对实体进行提前def属性赋值
-			KBEngine.createBaseAnywhere("Room", \
-									{
-									"roomKey" : self.lastNewRoomKey,	\
-									}, \
-									Functor.Functor(self.onRoomCreatedCB, self.lastNewRoomKey))
-			
-			roomDatas = {"roomMailbox" : None, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : self.lastNewRoomKey}
-			self.rooms[self.lastNewRoomKey] = roomDatas
-			return roomDatas
-
-		return roomDatas
-
-	def enterRoom(self, entityMailbox, position, direction, roomKey):
-		"""
-		defined method.
-		请求进入某个Room中
-		"""
-		roomDatas = self.findRoom(roomKey, True)
-
-		roomDatas["PlayerCount"] += 1
-		
-		roomMailbox = roomDatas["roomMailbox"]
-		if roomMailbox is not None:
-			roomMailbox.enterRoom(entityMailbox, position, direction)
-		else:
-			DEBUG_MSG("Halls::enterRoom: space %i creating..., enter entityID=%i" % (roomDatas["roomKey"], entityMailbox.id))
-			roomDatas["enterRoomReqs"].append((entityMailbox, position, direction))
+		#每两秒检查一次需要匹配的玩家情况
+        self.addTimer(1, 2, 1)
 
 	def leaveRoom(self, avatarID, roomKey):
 		"""
@@ -124,11 +78,57 @@ class Halls(KBEngine.Base):
 					roomDatas["enterRoomReqs"].append((b_Mb, position, direction))
 
 
-                elif len(self.high_deque)>2:
-			        a_Mb=self.high_deque.pop()
+                elif len(self.med_deque)>2:
+			       a_Mb=self.high_deque.pop()
 				    b_Mb=self.high_deque.pop()
-				    KBEngine.globalData["Rooms"].createSpace(KBEngine.genUUID64(),{},a_Mb,b_Mb):
+				
+					#产生房间的key
+					self.roomKey=KBEngine.genUUID64()
+				
+					# 将房间base实体创建在任意baseapp上
+					# 此处的字典参数中可以对实体进行提前def属性赋值
+					KBEngine.createBaseAnywhere("Room", \
+									{
+									"roomKey" : self.roomKey,	\
+									}, \
+									Functor.Functor(self.onRoomCreatedCB, self.roomKey))
+			
+					roomDatas = {"roomMailbox" : None, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : self.roomKey}
 
+					self.rooms[self.roomKey]=roomDatas	
+					
+					roomMailbox = roomDatas["roomMailbox"]
+
+					#这样，两个匹配的玩家就就加入房间了
+					roomDatas["enterRoomReqs"].append((a_Mb, position, direction))
+
+					roomDatas["enterRoomReqs"].append((b_Mb, position, direction))
+				
+				 elif len(self.low_deque)>2:
+			       a_Mb=self.high_deque.pop()
+				    b_Mb=self.high_deque.pop()
+				
+					#产生房间的key
+					self.roomKey=KBEngine.genUUID64()
+				
+					# 将房间base实体创建在任意baseapp上
+					# 此处的字典参数中可以对实体进行提前def属性赋值
+					roomMailbox=KBEngine.createBaseAnywhere("Room", \
+									{
+									"roomKey" : self.roomKey,	\
+									}, \
+									Functor.Functor(self.onRoomCreatedCB, self.roomKey))
+			
+					roomDatas = {"roomMailbox" : roomMailbox, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : self.roomKey}
+
+					self.rooms[self.roomKey]=roomDatas	
+					
+					roomMailbox = roomDatas["roomMailbox"]
+
+					#这样，两个匹配的玩家就就加入房间了
+					roomDatas["enterRoomReqs"].append((a_Mb, position, direction))
+
+					roomDatas["enterRoomReqs"].append((b_Mb, position, direction))
 	
 
 			
