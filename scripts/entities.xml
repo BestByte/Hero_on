@@ -8,8 +8,6 @@
 	<!-- <Avatar/> -->
   <Player hasClient="true"></Player>
   <Room/>
-  <highHall/>
-  <medHall/>
-  <lowHall/>
-  <Rooms/>
+  <Halls/>
+  <Monster>
 </root>
