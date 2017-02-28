@@ -8,7 +8,7 @@ from interfaces.Teleport import Teleport
 import math
 from KBEDebug import *
 import random
-class Player(KBEngine.Proxy,GameObject,Teleport):
+class Player(KBEngine.Proxy,GameObject):
 	"""
 	账号实体
 	客户端登陆到服务端后，服务端将自动创建这个实体，通过这个实体与客户端进行交互
@@ -70,6 +70,25 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		创建cell实体
 		"""
 		self.createCellEntity(space)
+	
+	def attack(self,exposed,type):
+		'''
+		defined method.
+		攻击
+		'''
+		#若是将来考虑延时的时候，做一个一次性的定时器，目前看也能达到类似的效果
+		if exposed !=self.id:
+			return
+
+		DEBUG_MSG("Avatar::attack: %i, type=%i." % (self.id, type))
+
+		#通过modelID这样，客户端在onenterworld中加载不同的额模型
+		params={
+			"modelID":type
+		}
+
+		e=KBEngine.createEntity("Monster",self,spaceID,tuple(self.position),tuple(self.direction),params)
+
 	#-------------------------------------------------
 	#						Callbacks
 	#-------------------------------------------------
@@ -82,7 +101,7 @@ class Player(KBEngine.Proxy,GameObject,Teleport):
 		"""
 		INFO_MSG("Account[%i]::onEntitiesEnabled:entities enable. mailbox:%s, clientType(%i), clientDatas=(%s), accountName=%s" % \
 			(self.id, self.client, self.getClientType(), self.getClientDatas(), self.__ACCOUNT_NAME__))
-		Teleport.onEntitiesEnabled(self)
+		
 
 	def onLogOnAttempt(self, ip, port, password):
 		"""
