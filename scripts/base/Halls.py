@@ -33,11 +33,25 @@ class Halls(KBEngine.Base):
 
 		#考虑增加左右添加或者减少
 		if playerChampion>600:
-			self.high_deque.append(playerMailbox)
+			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque palyer[%d] champion[%d]"%playerMailbox.id,playerChampion)
+
+			self.high_deque.appendleft(playerMailbox)
+
+			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque1[%d] deque2[%d]"%self.high_deque(0),self.high_deque(1))
+
 		elif playerChampion<200:
-			self.low_deque.append(playerMailbox)
+
+			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque palyer[%d] champion[%d]"%playerMailbox.id,playerChampion)
+
+			self.low_deque.appendleft(playerMailbox)
+
+			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque1[%d] deque2[%d]"%self.low_deque(0),self.low_deque(1))
 		else:
-			self.med_deque.append(playerMailbox)
+			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque palyer[%d] champion[%d]"%playerMailbox.id,playerChampion)
+
+			self.med_deque.appendleft(playerMailbox)
+
+			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque1[%d] deque2[%d]"%self.med_deque(0),self.med_deque(1))
 
 	def leaveRoom(self, avatarID, roomKey):
 		"""
@@ -70,13 +84,11 @@ class Halls(KBEngine.Base):
 			
 		roomDatas = {"roomMailbox" : None, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : matchKey}
 
-		self.rooms[matchKey]=roomDatas	
-					
+		self.rooms[matchKey]=roomDatas			
 		roomDatas["roomMailbox"]=roomMailbox
 
 		#这样，两个匹配的玩家就就加入房间了
 		roomDatas["enterRoomReqs"].append((a_Mb, position, direction))
-
 		roomDatas["enterRoomReqs"].append((b_Mb, position, direction))
 
 	def matchRoom(self):

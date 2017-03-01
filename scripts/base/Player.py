@@ -24,6 +24,8 @@ class Player(KBEngine.Proxy,GameObject):
 		#Player创建完成之后自动加入大厅
 		#KBEngine.globalData["Hall"].reqEnterHall(self)
 
+		self.in_match=False
+
 	def req_match(self):
 		"""
 		exposed
@@ -34,9 +36,14 @@ class Player(KBEngine.Proxy,GameObject):
 		DEBUG_MSG("Player[%i].req_match" % (self.id))
 		
 		#考虑增加对于反复点击匹配的问题，检测deque里是否有玩家，若有的话则不再往deque里添加了。
-		KBEngine.globalData["Halls"].addDeque(self,int(self.champion))
+
+		#若玩家玩完一局再次匹配时，就不好做了。所以得全局控制玩家是否再次匹配
+		if self.in_match==False:
+			KBEngine.globalData["Halls"].addDeque(self,self.champion)
+
+			self.in_match=True
 		
-		DEBUG_MSG("player [%d]:req_match(self)"%self.id )
+		DEBUG_MSG("player [%d]:req_match(self) champion [%d]"%self.id,self.champion )
 		self.client.on_req_match("正在匹配中...")
 
 	def func(self):
