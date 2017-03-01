@@ -30,20 +30,13 @@
     <Compile Include="scripts\base\interfaces\__init__.py" />
     <Compile Include="scripts\base\items\base\__init__.py" />
     <Compile Include="scripts\base\items\__init__.py" />
-    <Compile Include="scripts\base\kbemain.py" />
-    <Compile Include="scripts\base\lowHall.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="scripts\base\Master.py" />
-    <Compile Include="scripts\base\Match.py" />
-    <Compile Include="scripts\base\medHall.py">
+    <Compile Include="scripts\base\kbemain.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="scripts\base\Player.py" />
     <Compile Include="scripts\base\quests\base\__init__.py" />
     <Compile Include="scripts\base\quests\__init__.py" />
     <Compile Include="scripts\base\Room.py" />
-    <Compile Include="scripts\base\Rooms.py" />
     <Compile Include="scripts\base\SubSystem\ActivitySystem.py">
       <SubType>Code</SubType>
     </Compile>
@@ -259,9 +252,6 @@
     <Compile Include="scripts\data\d_spaces_spawns.py" />
     <Compile Include="scripts\db\kbemain.py" />
     <Compile Include="scripts\db\kbengine.py" />
-    <Compile Include="scripts\base\highHall.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="scripts\interface\kbemain.py" />
     <Compile Include="scripts\interface\Poller.py" />
     <Compile Include="scripts\logger\kbemain.py" />
@@ -414,10 +404,6 @@
     <Content Include="scripts\data\__pycache__\d_spaces_spawns.cpython-34.pyc" />
     <Content Include="scripts\db\__pycache__\kbemain.cpython-34.pyc" />
     <Content Include="scripts\entities.xml" />
-    <Content Include="scripts\entity_defs\lowHall.def" />
-    <Content Include="scripts\entity_defs\medHall.def" />
-    <Content Include="scripts\entity_defs\highHall.def" />
-    <Content Include="scripts\entity_defs\Master.def" />
     <Content Include="scripts\entity_defs\Player.def" />
     <Content Include="scripts\entity_defs\alias.xml" />
     <Content Include="scripts\entity_defs\interfaces\AI.def" />
@@ -433,8 +419,6 @@
     <Content Include="scripts\entity_defs\interfaces\State.def" />
     <Content Include="scripts\entity_defs\interfaces\Teleport.def" />
     <Content Include="scripts\entity_defs\Room.def" />
-    <Content Include="scripts\entity_defs\Rooms.def" />
-    <Content Include="scripts\entity_defs\Match.def" />
     <Content Include="scripts\interface\__pycache__\kbemain.cpython-34.pyc" />
     <Content Include="scripts\interface\__pycache__\Poller.cpython-34.pyc" />
     <Content Include="scripts\logger\__pycache__\kbemain.cpython-34.pyc" />

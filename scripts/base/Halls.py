@@ -26,12 +26,9 @@ class Halls(KBEngine.Base):
 		self.med_deque=deque()
 		self.low_deque=deque()
 
-		self.lastNewRoomKey = 0
-
-		self.roomKey=0
 
 		#每两秒检查一次需要匹配的玩家情况
-        self.addTimer(1, 2, 1)
+		self.addTimer(1, 2, 1)
 
 	def leaveRoom(self, avatarID, roomKey):
 		"""
@@ -49,89 +46,48 @@ class Halls(KBEngine.Base):
 			if roomDatas == FIND_ROOM_CREATING:
 				raise Exception("FIND_ROOM_CREATING")
 
-    def matchRoom(self):
-		while (len(self.high_deque)>2 or len(self.low_deque)>2 orlen(self.med_deque)>2):
-				if len(self.high_deque)>2:
-				    a_Mb=self.high_deque.pop()
-				    b_Mb=self.high_deque.pop()
-				
-					#产生房间的key
-					roomKey=KBEngine.genUUID64()
+	#把matchRoom重复的代码整合到一个函数中
+	def createRoom(self,playerMailbox,matchMailbox):
+
+		matchKey=KBEngine.genUUID64()
 				
 					# 将房间base实体创建在任意baseapp上
 					# 此处的字典参数中可以对实体进行提前def属性赋值
-					KBEngine.createBaseAnywhere("Room", \
+		roomMailbox=KBEngine.createBaseAnywhere("Room", \
 									{
-									"roomKey" : self.roomKey,	\
+									"roomKey" : matchKey,	\
 									}, \
-									Functor.Functor(self.onRoomCreatedCB, self.roomKey))
+									Functor.Functor(self.onRoomCreatedCB, matchKey))
 			
-					roomDatas = {"roomMailbox" : None, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : roomKey}
+		roomDatas = {"roomMailbox" : None, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : matchKey}
 
-					self.rooms[self.roomKey]=roomDatas	
+		self.rooms[matchKey]=roomDatas	
 					
-					roomMailbox = roomDatas["roomMailbox"]
+		roomDatas["roomMailbox"]=roomMailbox
 
-					#这样，两个匹配的玩家就就加入房间了
-					roomDatas["enterRoomReqs"].append((a_Mb, position, direction))
+		#这样，两个匹配的玩家就就加入房间了
+		roomDatas["enterRoomReqs"].append((a_Mb, position, direction))
 
-					roomDatas["enterRoomReqs"].append((b_Mb, position, direction))
+		roomDatas["enterRoomReqs"].append((b_Mb, position, direction))
 
-
-                elif len(self.med_deque)>2:
-			       a_Mb=self.high_deque.pop()
-				    b_Mb=self.high_deque.pop()
-				
-					#产生房间的key
-					roomKey=KBEngine.genUUID64()
-				
-					# 将房间base实体创建在任意baseapp上
-					# 此处的字典参数中可以对实体进行提前def属性赋值
-					KBEngine.createBaseAnywhere("Room", \
-									{
-									"roomKey" : self.roomKey,	\
-									}, \
-									Functor.Functor(self.onRoomCreatedCB, self.roomKey))
+	def matchRoom(self):
+		while (len(self.high_deque)>2 or len(self.low_deque)>2 or len(self.med_deque)>2):
 			
-					roomDatas = {"roomMailbox" : None, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : roomKey}
+			if len(self.high_deque)>2:
+					a_Mb=self.high_deque.pop()
+					b_Mb=self.high_deque.pop()
 
-					self.rooms[self.roomKey]=roomDatas	
-					
-					roomMailbox = roomDatas["roomMailbox"]
-
-					#这样，两个匹配的玩家就就加入房间了
-					roomDatas["enterRoomReqs"].append((a_Mb, position, direction))
-
-					roomDatas["enterRoomReqs"].append((b_Mb, position, direction))
+					self.createRoom(a_Mb,b_Mb)
+			elif len(self.med_deque)>2:
+					a_Mb=self.high_deque.pop()
+					b_Mb=self.high_deque.pop()
 				
-				 elif len(self.low_deque)>2:
-			       a_Mb=self.high_deque.pop()
-				    b_Mb=self.high_deque.pop()
-				
-					#产生房间的key
-					roomKey=KBEngine.genUUID64()
-				
-					# 将房间base实体创建在任意baseapp上
-					# 此处的字典参数中可以对实体进行提前def属性赋值
-					roomMailbox=KBEngine.createBaseAnywhere("Room", \
-									{
-									"roomKey" : self.roomKey,	\
-									}, \
-									Functor.Functor(self.onRoomCreatedCB, self.roomKey))
-			
-					roomDatas = {"roomMailbox" : roomMailbox, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : roomKey}
-
-					self.rooms[self.roomKey]=roomDatas	
-					
-					roomMailbox = roomDatas["roomMailbox"]
-
-					#这样，两个匹配的玩家就就加入房间了
-					roomDatas["enterRoomReqs"].append((a_Mb, position, direction))
-
-					roomDatas["enterRoomReqs"].append((b_Mb, position, direction))
+					self.createRoom(a_Mb,b_Mb)
+			if len(self.low_deque)>2:
+					a_Mb=self.high_deque.pop()
+					b_Mb=self.high_deque.pop()
 	
-
-			
+					self.createRoom(a_Mb,b_Mb)
 	#--------------------------------------------------------------------------------------------
 	#                              Callbacks
 	#--------------------------------------------------------------------------------------------
@@ -170,5 +126,5 @@ class Halls(KBEngine.Base):
 		for infos in self.rooms[roomKey]["enterRoomReqs"]:
 			entityMailbox = infos[0]
 			entityMailbox.createCell(roomMailbox.cell)
-			
-		self.rooms[roomKey]["enterRoomReqs"] = []
+
+			self.rooms[roomKey]["enterRoomReqs"] =[]
