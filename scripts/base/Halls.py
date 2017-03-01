@@ -22,9 +22,9 @@ class Halls(KBEngine.Base):
 		# enterRoomReqs, 在房间未创建完成前， 请求进入房间和登陆到房间的请求记录在此，等房间建立完毕将他们扔到space中
 		self.rooms = {}
 		
-        self.high_deque=deque()
-        self.med_deque=deque()
-        self.low_deque=deque()
+		self.high_deque=deque()
+		self.med_deque=deque()
+		self.low_deque=deque()
 
 		self.lastNewRoomKey = 0
 
@@ -56,7 +56,7 @@ class Halls(KBEngine.Base):
 				    b_Mb=self.high_deque.pop()
 				
 					#产生房间的key
-					self.roomKey=KBEngine.genUUID64()
+					roomKey=KBEngine.genUUID64()
 				
 					# 将房间base实体创建在任意baseapp上
 					# 此处的字典参数中可以对实体进行提前def属性赋值
@@ -66,7 +66,7 @@ class Halls(KBEngine.Base):
 									}, \
 									Functor.Functor(self.onRoomCreatedCB, self.roomKey))
 			
-					roomDatas = {"roomMailbox" : None, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : self.roomKey}
+					roomDatas = {"roomMailbox" : None, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : roomKey}
 
 					self.rooms[self.roomKey]=roomDatas	
 					
@@ -83,7 +83,7 @@ class Halls(KBEngine.Base):
 				    b_Mb=self.high_deque.pop()
 				
 					#产生房间的key
-					self.roomKey=KBEngine.genUUID64()
+					roomKey=KBEngine.genUUID64()
 				
 					# 将房间base实体创建在任意baseapp上
 					# 此处的字典参数中可以对实体进行提前def属性赋值
@@ -93,7 +93,7 @@ class Halls(KBEngine.Base):
 									}, \
 									Functor.Functor(self.onRoomCreatedCB, self.roomKey))
 			
-					roomDatas = {"roomMailbox" : None, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : self.roomKey}
+					roomDatas = {"roomMailbox" : None, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : roomKey}
 
 					self.rooms[self.roomKey]=roomDatas	
 					
@@ -109,7 +109,7 @@ class Halls(KBEngine.Base):
 				    b_Mb=self.high_deque.pop()
 				
 					#产生房间的key
-					self.roomKey=KBEngine.genUUID64()
+					roomKey=KBEngine.genUUID64()
 				
 					# 将房间base实体创建在任意baseapp上
 					# 此处的字典参数中可以对实体进行提前def属性赋值
@@ -119,7 +119,7 @@ class Halls(KBEngine.Base):
 									}, \
 									Functor.Functor(self.onRoomCreatedCB, self.roomKey))
 			
-					roomDatas = {"roomMailbox" : roomMailbox, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : self.roomKey}
+					roomDatas = {"roomMailbox" : roomMailbox, "PlayerCount": 0, "enterRoomReqs" : [], "roomKey" : roomKey}
 
 					self.rooms[self.roomKey]=roomDatas	
 					

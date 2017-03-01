@@ -9,5 +9,5 @@
   <Player hasClient="true"></Player>
   <Room/>
   <Halls/>
-  <Monster>
+  <Monster/>
 </root>

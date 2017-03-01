@@ -16,16 +16,12 @@ class Room(KBEngine.Entity):
 		KBEngine.Entity.__init__(self)
 		
 		# 把自己移动到一个不可能触碰陷阱的地方
-		self.position = (999999.0, 0.0, 0.0)
+		#self.position = (999999.0, 0.0, 0.0)
 
 		# 这个房间中所有的玩家
 		self.avatars = {}
 		
-		# 这个房间中产生的所有粮食
-		self.foods = []
 		
-		# 这个房间中产生的所有粉碎球
-		self.smashs = []
 		
 		# 告诉客户端加载地图
 		KBEngine.addSpaceGeometryMapping(self.spaceID, None, "spaces/gameMap")
@@ -40,46 +36,7 @@ class Room(KBEngine.Entity):
 		KBEngine.setSpaceData(self.spaceID, "ROOM_MAX_PLAYER",  str(GameConfigs.ROOM_MAX_PLAYER))
 		KBEngine.setSpaceData(self.spaceID, "GAME_ROUND_TIME",  str(GameConfigs.GAME_ROUND_TIME))
 		
-		# 开始记录一局游戏时间， 时间结束后将玩家踢出空间同时销毁自己和空间
-		self._destroyTimer = self.addTimer(GameConfigs.GAME_ROUND_TIME, 0, TIMER_TYPE_DESTROY)
-		
-		# 开启一个timer周期性的平衡粮食和粉碎球的数量
-		self.addTimer(0.1, GameConfigs.GAME_BALANCE_MASS_TIME, TIMER_TYPE_BALANCE_MASS)
-
-	def balanceMass(self):
-		"""
-		平衡粮食和粉碎球的数量
-		"""
-		diffSmashsCount = GameConfigs.SMASH_MAX - len(self.smashs)
-		
-		# 一次最多10个
-		if diffSmashsCount > 10:
-			diffSmashsCount = 10
-			
-		for i in range(diffSmashsCount):
-			radius = 1.0 + random.random()
-			pos = GameUtils.randomPosition3D(radius)
-			dir = (0.0, 0.0, 0.0)
-			entity = KBEngine.createEntity("Smash", self.spaceID, pos, dir, {"modelID" : 0, "modelScale" : 1.0, "modelRadius" : radius})
-			self.smashs.append(entity.id)
-
-		diffFoodsCount = GameConfigs.MAP_FOOD_MAX - len(self.foods)
-
-		# 一次最多200个
-		if diffFoodsCount > 200:
-			diffFoodsCount = 200
-
-		for i in range(diffFoodsCount):
-			pos = GameUtils.randomPosition3D(5.0)
-			dir = (0.0, 0.0, 0.0)
-			mass = random.randint(5, 10) # 这个粮食吃掉奖励的能量
-			radius = 1.0
-			entity = KBEngine.createEntity("Food", self.spaceID, pos, dir, {"modelID" : random.randint(0, 2), "mass" : mass, "modelRadius" : radius})
-			self.foods.append(entity.id)
-
-		if diffFoodsCount > 0 or diffSmashsCount > 0:
-			DEBUG_MSG('Room::balanceMass: space %i, roomKey=%i, addNewFoodsCount = %i, totalFoodsCount = %i, addNewSmashsCount = %i, totalSmashsCount = %i.' % 
-				(self.spaceID, self.roomKeyC, diffFoodsCount, len(self.foods), diffSmashsCount, len(self.smashs)))
+	
 			
 	#--------------------------------------------------------------------------------------------
 	#                              Callbacks
@@ -103,24 +60,7 @@ class Room(KBEngine.Entity):
 		DEBUG_MSG("Room::onDestroy: %i" % (self.id))
 		del KBEngine.globalData["Room_%i" % self.spaceID]
 		
-	def onDestroyTimer(self):
-		DEBUG_MSG("Room::onDestroyTimer: %i" % (self.id))
-		# 请求销毁引擎中创建的真实空间，在空间销毁后，所有该空间上的实体都被销毁
-		self.destroySpace()
 	
-	def onFoodDestroy(self, foodID):
-		if foodID not in self.foods:
-			ERROR_MSG("Room::onFoodDestroy: not found %i" % (foodID))
-			return
-			
-		self.foods.remove(foodID)
-
-	def onFoodSmash(self, smashID):
-		if smashID not in self.smashs:
-			ERROR_MSG("Room::onFoodSmash: not found %i" % (smashID))
-			return
-			
-		self.smashs.remove(smashID)
 		
 	def onEnter(self, entityMailbox):
 		"""

@@ -23,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Hero_on.py" />
+    <Compile Include="scripts\base\Halls.py" />
     <Compile Include="scripts\base\interfaces\GameObject.py" />
     <Compile Include="scripts\base\interfaces\NPCObject.py" />
     <Compile Include="scripts\base\interfaces\Teleport.py" />
