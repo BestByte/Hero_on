@@ -33,12 +33,8 @@ class Player(KBEngine.Proxy,GameObject):
 		"""
 		
 		DEBUG_MSG("Player[%i].req_match" % (self.id))
-		if self.champion>600:
-			KBEngine.globalData["Halls"].high_dequeue.append(self)
-		elif self.champion<200:
-			KBEngine.globalData["Halls"].low_dequeue.append(self)
-		else:
-			KBEngine.globalData["Halls"].med_dequeue.append(self)
+		
+		KBEngine.globalData["Halls"].addDeque(self,int(self.champion))
 		
 		DEBUG_MSG("player [%d]:req_match(self)"%self.id )
 		self.client.on_req_match("正在匹配中...")

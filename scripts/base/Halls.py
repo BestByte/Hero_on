@@ -26,9 +26,17 @@ class Halls(KBEngine.Base):
 		self.med_deque=deque()
 		self.low_deque=deque()
 
-
 		#每两秒检查一次需要匹配的玩家情况
 		self.addTimer(1, 2, 1)
+
+	def addDeque(self,playerMailbox,playerChampion):
+
+		if playerChampion>600:
+			self.high_deque.append(playerMailbox)
+		elif playerChampion<200:
+			self.low_deque.append(playerMailbox)
+		else:
+			self.med_deque.append(playerMailbox)
 
 	def leaveRoom(self, avatarID, roomKey):
 		"""
@@ -103,9 +111,9 @@ class Halls(KBEngine.Base):
 		引擎回调timer触发
 		"""
 		#DEBUG_MSG("%s::onTimer: %i, tid:%i, arg:%i" % (self.getScriptName(), self.id, tid, userArg))
-		if userArg==1 and len(self.high_deque)>2 and len(self.high_deque)>2:
-			self.high_match()
-		GameObject.onTimer(self, tid, userArg)
+		if userArg==1 and (len(self.high_deque)>2 or len(self.low_deque)>2 or len(self.med_deque)>2):
+			self.matchRoom]()
+		
 		
 	def onRoomLoseCell(self, roomKey):
 		"""
