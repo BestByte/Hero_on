@@ -404,6 +404,8 @@
     <Content Include="scripts\data\__pycache__\d_spaces_spawns.cpython-34.pyc" />
     <Content Include="scripts\db\__pycache__\kbemain.cpython-34.pyc" />
     <Content Include="scripts\entities.xml" />
+    <Content Include="scripts\entity_defs\Halls.def" />
+    <Content Include="scripts\entity_defs\Monster.def" />
     <Content Include="scripts\entity_defs\Player.def" />
     <Content Include="scripts\entity_defs\alias.xml" />
     <Content Include="scripts\entity_defs\interfaces\AI.def" />

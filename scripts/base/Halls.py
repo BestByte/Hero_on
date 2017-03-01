@@ -27,10 +27,11 @@ class Halls(KBEngine.Base):
 		self.low_deque=deque()
 
 		#每两秒检查一次需要匹配的玩家情况
-		self.addTimer(1, 2, 1)
+		self.addTimer(0.2, 2, 1)
 
 	def addDeque(self,playerMailbox,playerChampion):
 
+		#考虑增加左右添加或者减少
 		if playerChampion>600:
 			self.high_deque.append(playerMailbox)
 		elif playerChampion<200:
@@ -79,19 +80,19 @@ class Halls(KBEngine.Base):
 		roomDatas["enterRoomReqs"].append((b_Mb, position, direction))
 
 	def matchRoom(self):
-		while (len(self.high_deque)>2 or len(self.low_deque)>2 or len(self.med_deque)>2):
+		while (len(self.high_deque)>=2 or len(self.low_deque)>=2 or len(self.med_deque)>=2):
 			
-			if len(self.high_deque)>2:
+			if len(self.high_deque)>=2:
 					a_Mb=self.high_deque.pop()
 					b_Mb=self.high_deque.pop()
 
 					self.createRoom(a_Mb,b_Mb)
-			elif len(self.med_deque)>2:
+			if len(self.med_deque)>=2:
 					a_Mb=self.high_deque.pop()
 					b_Mb=self.high_deque.pop()
 				
 					self.createRoom(a_Mb,b_Mb)
-			if len(self.low_deque)>2:
+			if len(self.low_deque)>=2:
 					a_Mb=self.high_deque.pop()
 					b_Mb=self.high_deque.pop()
 	
@@ -111,8 +112,8 @@ class Halls(KBEngine.Base):
 		引擎回调timer触发
 		"""
 		#DEBUG_MSG("%s::onTimer: %i, tid:%i, arg:%i" % (self.getScriptName(), self.id, tid, userArg))
-		if userArg==1 and (len(self.high_deque)>2 or len(self.low_deque)>2 or len(self.med_deque)>2):
-			self.matchRoom]()
+		if userArg==1 and (len(self.high_deque)>=2 or len(self.low_deque)>=2 or len(self.med_deque)>=2):
+			self.matchRoom()
 		
 		
 	def onRoomLoseCell(self, roomKey):

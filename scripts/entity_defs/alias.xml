@@ -17,14 +17,13 @@
 	<DIRECTION3D>		VECTOR3		</DIRECTION3D>
 	<ENTITY_UTYPE>		UINT32		</ENTITY_UTYPE>
 	<ITEM_COUNT>        UINT32      </ITEM_COUNT>
-	
-	
+
 	<SPACE_KEY>				UINT64		</SPACE_KEY>
 	<DAMAGE_TYPE>		INT32		</DAMAGE_TYPE>
 	<ENMITY>			DAMAGE_TYPE	 </ENMITY>
 	<HP>				INT32		</HP>
 	<MP>				INT32		</MP>
-
+  <CHAMPION>UINT8</CHAMPION>
 	<ENTITY_STATE> INT8		</ENTITY_STATE>
 	<ENTITY_SUBSTATE> UINT8	</ENTITY_SUBSTATE>
 	<ENTITY_FORBIDS> INT32	</ENTITY_FORBIDS>
@@ -83,7 +82,7 @@
         <implementedBy>ITEM_INFO.item_info_list_inst</implementedBy>
         <Properties>
             <values>
-                    <Type>        ARRAY <of> ITEM_INFO </of>        </Type>
+                    <Type>   ARRAY <of> ITEM_INFO </of>        </Type>
             </values>
         </Properties>
     </ITEM_INFO_LIST>        

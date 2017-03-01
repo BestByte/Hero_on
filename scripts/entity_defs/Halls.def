@@ -9,9 +9,10 @@
 	</Properties>
 
 	<BaseMethods>
-
-   
-    
+    <addDeque>
+      <Arg>		MAILBOX	</Arg>
+      <Arg>		CHAMPION		</Arg>
+    </addDeque>
 	</BaseMethods>
 
 	<CellMethods>

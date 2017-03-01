@@ -31,9 +31,9 @@ class Player(KBEngine.Proxy,GameObject):
 		defined method.
 		客户端请求匹配
 		"""
-		
 		DEBUG_MSG("Player[%i].req_match" % (self.id))
 		
+		#考虑增加对于反复点击匹配的问题，检测deque里是否有玩家，若有的话则不再往deque里添加了。
 		KBEngine.globalData["Halls"].addDeque(self,int(self.champion))
 		
 		DEBUG_MSG("player [%d]:req_match(self)"%self.id )
