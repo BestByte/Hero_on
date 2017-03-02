@@ -37,7 +37,7 @@ class Halls(KBEngine.Base):
 
 			self.high_deque.appendleft(playerMailbox)
 
-			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque1[%i] deque2[%i]"%(self.high_deque(0),self.high_deque(1)))
+			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque[0]:[%i] "%(self.high_deque[0]))
 
 		elif playerChampion<200:
 
@@ -45,13 +45,13 @@ class Halls(KBEngine.Base):
 
 			self.low_deque.appendleft(playerMailbox)
 
-			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque1[%i] deque2[%i]"%(self.low_deque(0),self.low_deque(1)))
+			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque[0]:[%i] "%(self.low_deque[0]))
 		else:
 			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque palyer[%i] champion[%i]"%(playerMailbox.id,playerChampion))
 
 			self.med_deque.appendleft(playerMailbox)
 
-			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque1[%i] deque2[%i]"%(self.med_deque(0),self.med_deque(1)))
+			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque[0]:[%i] "%(self.med_deque[0]))
 
 	def leaveRoom(self, avatarID, roomKey):
 		"""

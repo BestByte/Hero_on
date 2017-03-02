@@ -13,7 +13,7 @@
 
   <Properties>
     <champion>
-      <Type> UINT8 </Type>
+      <Type> INT8 </Type>
       <Flags> BASE </Flags>
       <Default>	100	</Default>
       <Persistent> true </Persistent>
