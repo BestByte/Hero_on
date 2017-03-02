@@ -26,7 +26,7 @@ class Room(KBEngine.Entity):
 		# 告诉客户端加载地图
 		KBEngine.addSpaceGeometryMapping(self.spaceID, None, "spaces/gameMap")
 		
-		DEBUG_MSG('created space[%d] entityID = %i, res = %s.' % (self.roomKeyC, self.id, "spaces/gameMap"))
+		DEBUG_MSG('created space[%d] entityID = %i, res = %s.' % (self.roomKeyC, self.id, "spaces/castle"))
 		
 		# 让baseapp和cellapp都能够方便的访问到这个房间的mailbox
 		KBEngine.globalData["Room_%i" % self.spaceID] = self.base

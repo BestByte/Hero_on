@@ -268,6 +268,7 @@
     <Folder Include="res\spaces\kbengine_cocos2d_js_demo\" />
     <Folder Include="res\spaces\kbengine_ogre_demo\" />
     <Folder Include="res\spaces\kbengine_unity3d_demo\" />
+    <Folder Include="res\spaces\castle\" />
     <Folder Include="res\spaces\teleportspace\" />
     <Folder Include="res\spaces\xinshoucun\" />
     <Folder Include="scripts\" />

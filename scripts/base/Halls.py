@@ -98,7 +98,10 @@ class Halls(KBEngine.Base):
 					a_Mb=self.high_deque.pop()
 					b_Mb=self.high_deque.pop()
 
+			#频繁报错，说明双向队列装进去的实体mailbox有问题
+			#若把ID放进去，弹出来id的话，如何取实体。
 					self.createRoom(a_Mb,b_Mb)
+
 					if a_Mb and b_Mb:
 						self.createRoom(a_Mb,b_Mb)
 					else:
