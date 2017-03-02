@@ -33,7 +33,7 @@ class Halls(KBEngine.Base):
 
 		#考虑增加左右添加或者减少
 		if playerChampion>600:
-			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque palyer[%i] champion[%i]"%(playerMailbox.id,playerChampion))
+			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque player[%i] champion:[%i]"%(playerMailbox.id,playerChampion))
 
 			self.high_deque.appendleft(playerMailbox)
 
@@ -41,17 +41,17 @@ class Halls(KBEngine.Base):
 
 		elif playerChampion<200:
 
-			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque palyer[%i] champion[%i]"% (playerMailbox.id,playerChampion))
+			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque player[%i] champion:[%i]"% (playerMailbox.id,playerChampion))
 
 			self.low_deque.appendleft(playerMailbox)
 
-			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque[0]:[%i] "%(self.low_deque[0].id))
+			DEBUG_MSG("KBEngine.globalData[Halls]:low_deque deque[0]:[%i] "%(self.low_deque[0].id))
 		else:
-			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque palyer[%i] champion[%i]"%(playerMailbox.id,playerChampion))
+			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque player[%i] champion:[%i]"%(playerMailbox.id,playerChampion))
 
 			self.med_deque.appendleft(playerMailbox)
 
-			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque[0]:[%i] "%(self.med_deque[0].id))
+			DEBUG_MSG("KBEngine.globalData[Halls]:med_deque deque[0]:[%i] "%(self.med_deque[0].id))
 
 	def leaveRoom(self, avatarID, roomKey):
 		"""
@@ -99,16 +99,29 @@ class Halls(KBEngine.Base):
 					b_Mb=self.high_deque.pop()
 
 					self.createRoom(a_Mb,b_Mb)
+					if a_Mb and b_Mb:
+						self.createRoom(a_Mb,b_Mb)
+					else:
+						DEBUG_MSG("Halls::matchRoom:high_deque： a_Mb: [%i], b_Mb: [%i]" % (a_Mb.id, b_Mb.id))
+
 			if len(self.med_deque)>=2:
 					a_Mb=self.med_deque.pop()
 					b_Mb=self.med_deque.pop()
 				
 					self.createRoom(a_Mb,b_Mb)
+					if a_Mb and b_Mb:
+						self.createRoom(a_Mb,b_Mb)
+					else:
+						DEBUG_MSG("Halls::matchRoom:med_deque: a_Mb: [%i], b_Mb: [%i]" % (a_Mb.id, b_Mb.id))
+
 			if len(self.low_deque)>=2:
 					a_Mb=self.low_deque.pop()
 					b_Mb=self.low_deque.pop()
-	
-					self.createRoom(a_Mb,b_Mb)
+					if a_Mb and b_Mb:
+						self.createRoom(a_Mb,b_Mb)
+					else:
+						DEBUG_MSG("Halls::matchRoom:low_deque: a_Mb: [%i], b_Mb: [%i]" % (a_Mb.id, b_Mb.id))
+
 	#--------------------------------------------------------------------------------------------
 	#                              Callbacks
 	#--------------------------------------------------------------------------------------------
