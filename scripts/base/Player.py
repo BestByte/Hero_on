@@ -42,8 +42,9 @@ class Player(KBEngine.Proxy,GameObject):
 			KBEngine.globalData["Halls"].addDeque(self,self.champion)
 
 			self.in_match=True
-		
-		DEBUG_MSG("player [%d]:req_match(self) champion [%d]"%self.id,self.champion )
+
+			DEBUG_MSG("player [%d]:req_match(self) champion [%d]" %self.id,self.champion )
+
 		self.client.on_req_match("正在匹配中...")
 
 	def func(self):

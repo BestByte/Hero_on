@@ -41,7 +41,7 @@ class Halls(KBEngine.Base):
 
 		elif playerChampion<200:
 
-			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque palyer[%d] champion[%d]"%playerMailbox.id,playerChampion)
+			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque palyer[%d] champion[%d]"% playerMailbox.id,playerChampion)
 
 			self.low_deque.appendleft(playerMailbox)
 
