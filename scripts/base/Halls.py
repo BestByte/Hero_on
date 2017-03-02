@@ -100,13 +100,13 @@ class Halls(KBEngine.Base):
 
 					self.createRoom(a_Mb,b_Mb)
 			if len(self.med_deque)>=2:
-					a_Mb=self.high_deque.pop()
-					b_Mb=self.high_deque.pop()
+					a_Mb=self.med_deque.pop()
+					b_Mb=self.med_deque.pop()
 				
 					self.createRoom(a_Mb,b_Mb)
 			if len(self.low_deque)>=2:
-					a_Mb=self.high_deque.pop()
-					b_Mb=self.high_deque.pop()
+					a_Mb=self.low_deque.pop()
+					b_Mb=self.low_deque.pop()
 	
 					self.createRoom(a_Mb,b_Mb)
 	#--------------------------------------------------------------------------------------------
