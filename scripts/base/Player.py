@@ -43,7 +43,7 @@ class Player(KBEngine.Proxy,GameObject):
 
 			self.in_match=True
 
-			DEBUG_MSG("player [%i]:req_match(self) champion [%i]" %self.id,self.champion )
+			DEBUG_MSG("player [%i]:req_match(self) champion [%i]" %(self.id,self.champion) )
 
 		self.client.on_req_match("正在匹配中...")
 
