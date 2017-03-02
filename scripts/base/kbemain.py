@@ -20,6 +20,8 @@ def onBaseAppReady(isBootstrap):
 	if isBootstrap:
 		# 创建大厅
 		KBEngine.createBaseLocally( "Halls", {} )
+		#第一个baseAPP不参加实体创建等工作
+		KBEngine.setAppFlags(KBEngine.APP_FLAGS_NOT_PARTCIPATING_LOAD_BALANCING )
 
 def onReadyForLogin(isBootstrap):
 	"""

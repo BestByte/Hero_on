@@ -27,7 +27,7 @@ class Halls(KBEngine.Base):
 		self.low_deque=deque()
 
 		#每两秒检查一次需要匹配的玩家情况
-		self.addTimer(0.2, 2, 1)
+		self.addTimer(0.2, 3, 1)
 
 	def addDeque(self,playerMailbox,playerChampion):
 
@@ -37,7 +37,7 @@ class Halls(KBEngine.Base):
 
 			self.high_deque.appendleft(playerMailbox)
 
-			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque[0]:[%i] "%(self.high_deque[0].id))
+			DEBUG_MSG("KBEngine.globalData[Halls]:high_deque deque[0]:[%i],len:[%i] "%(self.high_deque[0].id,len(self.high_deque)))
 
 		elif playerChampion<200:
 
@@ -45,13 +45,13 @@ class Halls(KBEngine.Base):
 
 			self.low_deque.appendleft(playerMailbox)
 
-			DEBUG_MSG("KBEngine.globalData[Halls]:low_deque deque[0]:[%i] "%(self.low_deque[0].id))
+			DEBUG_MSG("KBEngine.globalData[Halls]:low_deque deque[0]:[%i],len:[%i] "%(self.low_deque[0].id,len(self.low_deque)))
 		else:
 			DEBUG_MSG("KBEngine.globalData[Halls]:addDeque player[%i] champion:[%i]"%(playerMailbox.id,playerChampion))
 
 			self.med_deque.appendleft(playerMailbox)
 
-			DEBUG_MSG("KBEngine.globalData[Halls]:med_deque deque[0]:[%i] "%(self.med_deque[0].id))
+			DEBUG_MSG("KBEngine.globalData[Halls]:med_deque deque[0]:[%i],len:[%i] "%(self.med_deque[0].id, len(self.med_deque)))
 
 	def leaveRoom(self, avatarID, roomKey):
 		"""
@@ -117,6 +117,7 @@ class Halls(KBEngine.Base):
 			if len(self.low_deque)>=2:
 					a_Mb=self.low_deque.pop()
 					b_Mb=self.low_deque.pop()
+
 					if a_Mb and b_Mb:
 						self.createRoom(a_Mb,b_Mb)
 					else:
