@@ -13,8 +13,8 @@
 
   <Properties>
     <champion>
-      <Type> INT8 </Type>
-      <Flags> BASE </Flags>
+      <Type> INT32 </Type>
+      <Flags> BASE_AND_CLIENT </Flags>
       <Default>	100	</Default>
       <Persistent> true </Persistent>
     </champion>

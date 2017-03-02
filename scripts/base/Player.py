@@ -19,8 +19,10 @@ class Player(KBEngine.Proxy,GameObject):
 		# 状态0：未开始游戏， 1：游戏中,2:匹配中，3.上线
 		#考虑做个def中的存储
 		#self.state = 0
+
 		self.relogin = time.time()
 		self.cellData["dbid"] = self.databaseID
+
 		#Player创建完成之后自动加入大厅
 		#KBEngine.globalData["Hall"].reqEnterHall(self)
 
@@ -36,10 +38,10 @@ class Player(KBEngine.Proxy,GameObject):
 		DEBUG_MSG("Player[%i].req_match" % (self.id))
 		
 		#考虑增加对于反复点击匹配的问题，检测deque里是否有玩家，若有的话则不再往deque里添加了。
-
 		#若玩家玩完一局再次匹配时，就不好做了。所以得全局控制玩家是否再次匹配
+
 		if self.in_match==False:
-			KBEngine.globalData["Halls"].addDeque(self,self.champion)
+			KBEngine.globalData["Halls"].addDeque(self,int(self.champion))
 
 			self.in_match=True
 
